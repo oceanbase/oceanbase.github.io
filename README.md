@@ -75,7 +75,18 @@ git branch
 
 **3. 添加内容**
 
-**4. 内容提交**
+**4. 本地调试**
+
+```bash
+# 返回仓库初始目录
+cd oceanbase.github.io
+# 启动服务
+hugo server
+# 浏览器打开，确认格式&内容是否正确
+http://localhost:1313/
+```
+
+**5. 内容提交**
 
 ```bash
 # 确认当前分支
