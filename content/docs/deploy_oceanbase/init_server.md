@@ -12,7 +12,15 @@ weight: 1
 
 下面是一个初始化服务器的自动化脚本，仅供参考，如果使用可以根据实际详情进行变更。
 
-补充下述脚本内的 `pubkey` 后可执行如下命令运行脚本。
+补充修改脚本内的如下内容后可执行命令运行脚本。
+
+> - pubkey: 中控机（OBD或者OCP）所在机器的公钥
+> - datadir: 数据目录
+> - redodir: 日志目录
+> - diskdir: 数据盘挂载目录
+> - diskpath: 挂载盘，比如/dev/vdb
+> - diskinfo: 盘符简单信息，比如vdb
+> - 如果数据盘原先没有挂载，注释掉 umount $diskdir 
 
 ```bash
 bash init_ob.sh ob
@@ -54,6 +62,11 @@ logName=`basename $0 | awk -F. '{print $1}'`".log."`date '+%Y%m%d%H%M%S'`
 logFile="/tmp/$logName"
 # OBD所在机器公钥
 pubKey=""
+datadir=""
+redodir=""
+diskdir=""
+diskpath=""
+diskinfo=""
 
 logPrint()
 {
@@ -79,12 +92,12 @@ if [ $processCnt -gt 0 ];then
     exit 1
 fi
 
-mkdir -p /xx
-fileCnt=`ls /xx | grep -v fio | grep -v total | wc -l`
+mkdir -p $diskdir
+fileCnt=`ls $diskdir | grep -v fio | grep -v total | wc -l`
 if [ $fileCnt -gt 0 ];then
-    logPrint "ERROR" "目录 /xx 下有未清理干净文件, 请先检查!"
+    logPrint "ERROR" "目录 $diskdir 下有未清理干净文件, 请先检查!"
     echo '--------------------------------------------------------------------'
-    ls -l /xx | grep -v fio
+    ls -l $diskdir | grep -v fio
     echo '--------------------------------------------------------------------'
     exit 1
 fi
@@ -101,31 +114,30 @@ sed -i '/swap/s/^/#/' /etc/fstab
 sysctl -p  2>&1 > /dev/null || true
 
 # 初始化磁盘
-# 其中 /xx 代表磁盘目录，分多个盘的话初始化多次，如果同一盘多个目录可自行设置
+# 分多个盘的话初始化多次，如果同一盘多个目录可自行设置
 logPrint "INFO" "Format disk"
-mkdir -p /xx/data
-umount /xx
-## 将原先这个磁盘的信息注释
+umount $diskdir
+## 将原先这个磁盘的信息注释，将xx替换成原先的盘目录
 sed -i '/xx/s/^/#/' /etc/fstab
 
-mkfs.ext4 -F /dev/nvme0n1 &
+mkfs.ext4 -F $diskpath &
 wait
 sleep 3
-uuid=`lsblk -f | grep nvme0n1 | awk -F' ' '{print $3}'`
+uuid=`lsblk -f | grep $diskinfo | awk -F' ' '{print $3}'`
 echo '' >> /etc/fstab
-echo "UUID=\"${uuid}\" /xx ext4 defaults,nodelalloc,noatime 0 2" >> /etc/fstab
+echo "UUID=\"${uuid}\" $diskdir ext4 defaults,nodelalloc,noatime 0 2" >> /etc/fstab
 mount -a
 
 # 初始化安装包
 logPrint "INFO" "Install dependency packages"
-yum install -y htop linux-cpupower parted ntpstat  byobu mariadb-client numactl irqbalance 2>&1 > /dev/null
+yum install -y htop linux-cpupower parted ntpstat  byobu mariadb-client numactl irqbalance nc 2>&1 > /dev/null
 
 
 # 新建用户
-## 最后授权的 /xx 可以根据自己的数据、日志文件等进行修改
 if [ $dbType = 'ob' ];then
     # 初始化用户以及 ssh
-    mkdir -p /xx/ob
+    mkdir -p $datadir
+    mkdir -p $redodir
     logPrint "INFO" "Init admin user"
     useradd -m -s /bin/bash admin
     echo '' >> /etc/sudoers
@@ -134,7 +146,8 @@ if [ $dbType = 'ob' ];then
     echo '' >> /home/admin/.ssh/authorized_keys
     echo "${pubKey}" >> /home/admin/.ssh/authorized_keys
     chown -R admin:admin /home/admin/.ssh
-    chown -R admin:admin /xx
+    chown -R admin:admin $datadir
+    chown -R admin:admin $redodir
 fi
 
 # 修改 vim 设置
@@ -161,7 +174,6 @@ echo '* hard core unlimited' >> /etc/security/limits.conf
 
 
 # 配置 sysctl.conf 参数
-## 最后一行的 /data 要换成实际的 数据目录
 logPrint "INFO" "Set sysctl.conf config"
 echo '' >> /etc/sysctl.conf
 echo '# for oceanbase' >> /etc/sysctl.conf
@@ -194,7 +206,7 @@ echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 echo 'vm.min_free_kbytes = 2097152' >> /etc/sysctl.conf
 echo '' >> /etc/sysctl.conf
 echo '# 此处为 OceanBase 数据库的 data 目录' >> /etc/sysctl.conf
-echo 'kernel.core_pattern = /data/core-%e-%p-%t' >> /etc/sysctl.conf
+echo "kernel.core_pattern = $datadir/core-%e-%p-%t" >> /etc/sysctl.conf
 
 
 
