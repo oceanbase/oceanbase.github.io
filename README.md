@@ -3,7 +3,7 @@
 
 《OceanBase 用户手册》是 OceanBase 数据库的一站式解决方案，目的很简单，就是解决 OceanBase 使用的问题。
 
-手册访问地址：https://oceanbase.github.io，本仓库存放手册站点的所有文档。
+手册访问地址：<https://oceanbase.github.io>，本仓库存放手册站点的所有文档。
 
 在这里，大家可以得到如下帮助：
 
