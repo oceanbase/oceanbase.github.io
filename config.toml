@@ -46,7 +46,7 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo = 'https://github.com/foixes/foixes.github.io'
+  BookRepo = 'https://github.com/oceanbase/oceanbase.github.io'
 
   # Specifies commit portion of the link to the page's last modified commit hash for 'doc' page
   # type.
