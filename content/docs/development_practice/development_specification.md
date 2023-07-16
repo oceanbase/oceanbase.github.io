@@ -86,7 +86,7 @@ OceanBase 数据库对于使用者来讲，自上而下结构为：集群(cluste
 
 2. 【强制】MySQL 模式小数类型使用 decimal 类型存储，禁止使用 double，float。
 
-3. 【强制】对于字符类型，MySQL 模式建议采用 VARCHAR，不建议使用 NCHAR、NVARCHAR、NVARCHAR2、NCLOB。
+3. 【强制】对于字符类型，MySQL 模式建议采用 varchar，不建议使用 tinytext、text、mediumtext、longtext。
 
 4. 【强制】禁止使用枚举列类型：enum(‘x’,’y’,’z’)，需使用字符串类型替代。
 
