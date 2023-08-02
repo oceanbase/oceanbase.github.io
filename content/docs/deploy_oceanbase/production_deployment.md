@@ -189,7 +189,7 @@ resource_pool_list = ('pool_name1') set ob_tcp_invited_nodes = '%';
 ```sql
 obd cluster tenant create 部署名称 -n 租户名称 --max-cpu=5 --memory-size=10G --log-disk-size=30G --max-iops=10000 --iops-weight=1 --unit-num=1 --charset=utf8mb4
 
-#不带参数将创建最大剩余资源租户
+#不带参数将创建一个最大剩余资源的租户
 obd cluster tenant create 部署名称 -n 租户名称
 ```
 
