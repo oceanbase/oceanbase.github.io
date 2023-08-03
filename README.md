@@ -57,13 +57,21 @@ content/docs 下面的内容就是 oceanbase.github.io 站点展示的内容，�
 
 ### 内容提交
 
-**1. 克隆仓库到本地**
+您可以按照以下步骤提交 Pull Request（简称 PR）：
+
+**1. Fork 项目仓库**
+
+1. 访问 OceanBase 用户手册的 [GitHub 地址](https://github.com/oceanbase/oceanbase.github.io)。
+
+2. 点击 Fork 按钮创建远程分支。
+
+**2. 克隆仓库到本地**
 
 ```bash
-git clone git@github.com:oceanbase/oceanbase.github.io.git
+git clone git@github.com:$user/oceanbase.github.io.git
 ```
 
-**2. 新建分支并切换到新分支**
+**3. 新建分支并切换到新分支**
 
 ```bash
 cd oceanbase.github.io
@@ -73,9 +81,9 @@ git checkout -b new_branch
 git branch
 ```
 
-**3. 添加内容**
+**4. 添加内容**
 
-**4. 本地调试**
+**5. 本地调试**
 
 ```bash
 # 返回仓库初始目录
@@ -86,7 +94,7 @@ hugo server
 http://localhost:1313/
 ```
 
-**5. 内容提交**
+**6. 内容提交**
 
 ```bash
 # 确认当前分支
@@ -98,6 +106,12 @@ git commit -m "提交内容"
 # 推送本地分支变更到远程主机
 git push origin new_branch
 ```
+
+**7. 创建 PR**
+
+1. 访问您 Fork 的仓库。
+
+2. 单击 `new_branch` 分支旁的 `Compare & pull request` 按钮。
 
 至此，提交完成。
 
