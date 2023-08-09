@@ -7,10 +7,10 @@ weight: 14
 大家在使用数据库的过程中，经常遇到慢sql，或者执行错误的sql，有些sql是很容易判断出来错误，以及sql运行比较慢的原因，但是有些sql就很难判断出来，如果遇到这种情况，我们该怎么处理，怎么判断SQL出错原因，以及是SQL需要优化，数据库本身配置是否设置好等，接下来我就跟大家简单介绍下，如何快速定位SQL问题。在开始之前，我们先来了解下一条SQL，在进入OceanBase数据库中执行时都经历了哪些模块。
 ## **访问路径**
 首先我们从SQL的访问路径开始介绍，一条SQL从应用发出之后，一般会经过负载均衡（根据情况选择是否需要），然后到OBProxy，然后再到OBServer。大概流程如下图所示：
-![image.png](/img/how_to_find_traceid/a.png)
+![image.png](/img/operation_maintenance/how_to_find_traceid/a.png)
 OBProxy主要起到一个路由转发的作用，以及快速解析，根据OceanBase数据库中数据副本分布情况，直接将请求快速发送到对应的OBServer上。
 SQL在进入OBServer之后，还会经历数据库内部很多模块，具体如下：
-![image.png](/img/how_to_find_traceid/b.png)
+![image.png](/img/operation_maintenance/how_to_find_traceid/b.png)
 
 SQL的在数据库内部的执行过程，这些模块具体的含义，可以参考官网文档：[SQL 请求执行流程](https://www.oceanbase.com/docs/common-oceanbase-database-1000000000033661)，在整个SQL执行过程中，会首先根据SQL的ip、port、自增序列号等信息生成一个全局唯一的trace_id，后续的sql跟踪，我们都使用这个trace_id来对sql进行定位追踪。
 
@@ -462,10 +462,10 @@ ORDER BY time DESC LIMIT 1
 
 方式四：
 如果有OCP的话，也是可以在OCP上直接查看慢SQL，进到具体的租户下面，然后进到SQL诊断中，有慢SQL页面，这里的SQL文本，都是有相同SQL_ID的SQL
-![image.png](/img/how_to_find_traceid/c.png)
+![image.png](/img/operation_maintenance/how_to_find_traceid/c.png)
 这里再解释下SQL_ID，SQL_ID是每条SQL进入数据库之后，会根据SQL字符串生成一个md5值，所以执行相同的SQL 会有相同的SQL_ID，但是trace_id是不一样的。
 想要查看某条SQL具体是哪次执行慢了，可以点击SQL文本进到下一个页面，拿到执行慢的那一次的 SQL 的trace_id。
-![image.png](/img/how_to_find_traceid/d.png)
+![image.png](/img/operation_maintenance/how_to_find_traceid/d.png)
 
 通过这几种方式，我们就可以很快获取到系统中执行的慢SQL，不过前两种方式和第四种方式只能获取到trace_id，而第三种方式可以直接获取到执行的SQL，以及SQL_ID。对于前两种方式，想要看具体的内容，还需要再进一步查询。这里又用到我们的 GV$OB_SQL_AUDIT 视图，可以根据视图中的trace_id直接定位到对应的SQL内容：
 ```sql
