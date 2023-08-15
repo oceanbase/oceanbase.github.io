@@ -18,23 +18,58 @@ weight: 2
 
 #### **操作流程**
 
-1. 新建新增节点的配置文件
+1. 新建新增集群的配置文件
 
-   新增节点配置建议跟集群配置保持一致，防止资源量以及性能跟其他节点不同，可以参照 [部署 OceanBase/配置文件](../deploy_oceanbase/configuration_file.md)。
+   新增集群配置参数建议跟原集群配置保持一致，防止资源量以及性能跟其他节点不同，注意：需要替换 server 名字以及 IP 地址。
+   
+   比如：原先为zone1（server1）、zone2（server2）、zone3（server1）。现在新增的配置里面 zone 不变，server 要变成 server4、server5、server6，并且将 IP 替换为新的 OBServer 地址。
 
-2. 使用 OBD 部署新节点
+   可以参照 [配置文件](scale_in_out/obtest2.md)。
+
+2. 使用 OBD 部署新集群
+
+   obtest2 为新集群名字
 
    ```bash
-   obd cluster deploy new_observer -c add_observer.yaml
+   obd cluster deploy obtest2 -c obtest2.yaml
    ```
 
-3. 启动节点
+3. 把新的配置文件复制到原本的配置文件中。
+
+   查看原配置文件路径。
+   ```sql
+   [admin@obtest conf]$ obd cluster list
+   +--------------------------------------------------------------+
+   |                         Cluster List                         |
+   +---------+----------------------------------+-----------------+
+   | Name    | Configuration Path               | Status (Cached) |
+   +---------+----------------------------------+-----------------+
+   | obtest  | /home/admin/.obd/cluster/obtest  | running         |
+   | obtest2 | /home/admin/.obd/cluster/obtest2 | destroyed       |
+   +---------+----------------------------------+-----------------+
+   ```
+
+   根据原配置文件路径，找到原配置文件 config.yaml , 打开原配置文件，将新配置文件的节点内容复制到原配置文件中，复制后的配置文件可参考 [配置文件](scale_in_out/obtest3.md)。
 
    ```bash
-   obd cluster start new_observer
+   vim /home/admin/.obd/cluster/obtest/config.yaml
    ```
 
-4. 将节点添加到集群
+   > **注意**
+   >
+   > 新配置一定要放在对应原配置内容下面。
+
+
+
+4. 启动集群
+
+   这里的集群为原集群，原先的 OBServer 不会受影响，只会启动新加入的节点。
+
+   ```bash
+   obd cluster start obtest
+   ```
+
+5. 将节点添加到集群
 
    使用 root 用户登录集群的 sys 租户，并执行如下命令。
 
@@ -44,17 +79,17 @@ weight: 2
    alter system add server 'xxx.xxx.x.xxx:2882' zone 'zone3';
    ```
 
-5. 确认集群节点信息
+6. 确认集群节点信息
 
    ```bash
    # 集群内通过如下 SQL 命令查询
    select * from __all_server;
    
    # OBD 查询
-   obd cluster display cluster_name
+   obd cluster display obtest
    ```
 
-6. 添加成功后，根据业务实际情况，调整租户的资源配置，即调大 UNIT_NUM。
+7. 添加成功后，根据业务实际情况，调整租户的资源配置，即调大 UNIT_NUM。
 
    ```bash
    ALTER RESOURCE TENANT tenant1 UNIT_NUM 2; 
