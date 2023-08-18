@@ -1,27 +1,25 @@
+---
+title: 配置文件事例
+weight: 1
+---
+
 ```yaml
 ## Only need to configure when remote login is required
 user:
   username: admin
-  password: xxx
+  password: xxxx
 #   key_file: your ssh-key file path if need
 #   port: your ssh port, default 22
 #   timeout: ssh connection timeout (second), default 30
 oceanbase-ce:
   servers:
-  - name: server1
+    - name: server1
       # Please don't use hostname, only IP can be supported
-    ip: x.x.x.32
-  - name: server2
-    ip: x.x.x.33
-  - name: server3
-    ip: x.x.x.34
-  - name: server4
-      # Please don't use hostname, only IP can be supported
-    ip: x.x.x.35
-  - name: server5
-    ip: x.x.x.36
-  - name: server6
-    ip: x.x.x.37
+      ip: x.x.x.32
+    - name: server2
+      ip: x.x.x.33
+    - name: server3
+      ip: x.x.x.34
   global:
     # Please set devname as the network adaptor's name whose ip is  in the setting of severs.
     # if set severs as "127.0.0.1", please set devname as "lo"
@@ -75,45 +73,15 @@ oceanbase-ce:
     # The directory for clog, ilog, and slog. The default value is the same as the data_dir value.
     redo_dir: /ob_data/log1
     zone: zone3
-  server4:
-    mysql_port: 2881 # External port for OceanBase Database. The default value is 2881. DO NOT change this value after the cluster is started.
-    rpc_port: 2882 # Internal port for OceanBase Database. The default value is 2882. DO NOT change this value after the cluster is started.
-    #  The working directory for OceanBase Database. OceanBase Database is started under this directory. This is a required field.
-    home_path: /home/admin/observer
-    # The directory for data storage. The default value is $home_path/store.
-    data_dir: /ob_data/1
-    # The directory for clog, ilog, and slog. The default value is the same as the data_dir value.
-    redo_dir: /ob_data/log1
-    zone: zone1
-  server5:
-    mysql_port: 2881 # External port for OceanBase Database. The default value is 2881. DO NOT change this value after the cluster is started.
-    rpc_port: 2882 # Internal port for OceanBase Database. The default value is 2882. DO NOT change this value after the cluster is started.
-    #  The working directory for OceanBase Database. OceanBase Database is started under this directory. This is a required field.
-    home_path: /home/admin/observer
-    # The directory for data storage. The default value is $home_path/store.
-    data_dir: /ob_data/1
-    # The directory for clog, ilog, and slog. The default value is the same as the data_dir value.
-    redo_dir: /ob_data/log1
-    zone: zone2
-  server6:
-    mysql_port: 2881 # External port for OceanBase Database. The default value is 2881. DO NOT change this value after the cluster is started.
-    rpc_port: 2882 # Internal port for OceanBase Database. The default value is 2882. DO NOT change this value after the cluster is started.
-    #  The working directory for OceanBase Database. OceanBase Database is started under this directory. This is a required field.
-    home_path: /home/admin/observer
-    # The directory for data storage. The default value is $home_path/store.
-    data_dir: /ob_data/1
-    # The directory for clog, ilog, and slog. The default value is the same as the data_dir value.
-    redo_dir: /ob_data/log1
-    zone: zone3
 obproxy-ce:
   # Set dependent components for the component.
   # When the associated configurations are not done, OBD will automatically get the these configurations from the dependent components.
   depends:
-  - oceanbase-ce
+    - oceanbase-ce
   servers:
-  - x.x.x.32
-  - x.x.x.33
-  - x.x.x.34
+    - x.x.x.32
+    - x.x.x.33
+    - x.x.x.34
   global:
     listen_port: 2883 # External port. The default value is 2883.
     prometheus_listen_port: 2884 # The Prometheus port. The default value is 2884.
