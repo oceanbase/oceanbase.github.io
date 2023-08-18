@@ -63,7 +63,7 @@ weight: 1
 ### OceanBase Clog 及存储引擎
 <a name="MNxoG"></a>
 #### 解决的故障场景
-OBServer 多数派故障需要重启；维护计划内的 OBServer 集群重启。
+&emsp;&emsp;OBServer 多数派故障需要重启；维护计划内的 OBServer 集群重启。
 <a name="a3AQc"></a>
 #### 技术原理
 &emsp;&emsp;OceanBase 数据库的存储引擎将基线数据保存在 SSTable，增量数据保存在 MemTable 中。 OceanBase Clog 是数据的 Redo Log。当有数据修改发生时，请求会到达 Leader 副本所在节点，将数据更改请求更新到 MemTable，事务进行提交，Leader 更新本地 Clog 并通过 Paxos 协议将日志同步写到其他 Follower 的副本节点上。当有多数派节点的日志写盘成功后，数据修改成功，返回客户端。Follower 副本会将 Clog 回放到本地 MemTable 上提供弱一致读服务。<br />
@@ -83,7 +83,7 @@ OBServer 多数派故障需要重启；维护计划内的 OBServer 集群重启�
 ### OceanBase 数据库主备库
 <a name="lJYQe"></a>
 #### 解决的故障场景
-机房级的故障或城市级的灾难恢复。
+&emsp;&emsp;机房级的故障或城市级的灾难恢复。
 <a name="JpYW9"></a>
 #### 技术原理
 &emsp;&emsp;OceanBase 数据库也支持传统的主备库架构。 OceanBase 集群的多副本机制可以提供丰富的容灾能力，在机器级、机房级、城市级故障情况下，可以实现自动切换，并且不丢数据，RPO = 0。<br /> 	&emsp;&emsp;OceanBase 数据库的主备库高可用架构是 OceanBase 数据库高可用能力的重要补充。当主集群出现计划内或计划外（多数派副本故障）的不可用情况时，备集群可以接管服务，并且提供无损切换（RPO = 0）和有损切换（RPO > 0）两种容灾能力，最大限度降低服务停机时间。 OceanBase 数据库支持创建、维护、管理和监控一个或多个备集群。备集群是生产库数据的热备份。管理员可以选择将资源密集型的报表操作分配到备集群，以便提高系统的性能和资源利用率。
@@ -108,7 +108,8 @@ OBServer 多数派故障需要重启；维护计划内的 OBServer 集群重启�
 &emsp;&emsp;当 observer 进程异常终止，若终止时间小于 server_permanent_offline_time，则不作处理，此时有些分区的副本数只有 2 个了（三副本情况下）；当终止时间超过 server_permanent_offline_time时，则对该 Server 做永久下线处理，OceanBase 数据库会在同个 Zone 的其他 Server 开辟区域（资源充裕的 Server），维持副本个数。当有足够的资源时就会发起 Unit 迁移。
 <a name="Gf3Nd"></a>
 ### 是否支持多机房多地区的部署方式？在部署的时候有哪些基础设施的要求？应该如何选择方案？
-&emsp;&emsp;在 OceanBase 集群的搭建中，允许将多个副本（节点）分散到多个机房、多个城市中，跨机房/跨城市实现 Paxos Group。在选择多机房、多城市集群架构时，通常也是为了获取机房级容灾甚至是城市级容灾的能力。从技术上来说，只要支撑 OceanBase 数据库不同副本节点的基础设施足够好，在合理的副本分布下，OceanBase 数据库就可以将数据分布在不同的节点上对外提供数据服务。<br />通常情况下，OceanBase 数据库&emsp;&emsp;集群对基础设施的基本要求如下：
+&emsp;&emsp;在 OceanBase 集群的搭建中，允许将多个副本（节点）分散到多个机房、多个城市中，跨机房/跨城市实现 Paxos Group。在选择多机房、多城市集群架构时，通常也是为了获取机房级容灾甚至是城市级容灾的能力。从技术上来说，只要支撑 OceanBase 数据库不同副本节点的基础设施足够好，在合理的副本分布下，OceanBase 数据库就可以将数据分布在不同的节点上对外提供数据服务。<br />
+&emsp;&emsp;通常情况下，OceanBase 数据库集群对基础设施的基本要求如下：
 
 - 节点间的网络延迟时间（单向延迟）最好保证在 50ms 以内，最差（单向延迟）也要在 100ms 以内。
 - OBServer 环境中的时钟服务应该保证时钟同步的偏差在 100ms 以内，且不能够产生 1s 及以上的时钟跳变。
