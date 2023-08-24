@@ -57,13 +57,13 @@ weight: 3
 ![image.png](/img/solutions/multi_tenant/3.png)<br />
 &emsp;&emsp;如上图，展示了一个由 6 个 Unit 组成的资源池 a_pool，该资源池具有如下重要属性：<br />
 - ZONE_LIST：描述了该资源池中的 Unit 分布在哪些 Zone，本例为 ZONE_LIST='zone1,zone2,zone3'。<br />
-- Unit_NUM：描述了 ZONE_LIST 中每个 Zone 中的 Unit 个数，本例为 Unit_NUM=2。<br />
-- Unit_CONFIG_ID：描述了该资源池关联的资源规格，从而决定该资源池中每个 Unit 的物理资源大小，包括 CPU、内存、日志盘空间、IOPS 等。<br />
+- UNIT_NUM：描述了 ZONE_LIST 中每个 Zone 中的 Unit 个数，本例为 UNIT_NUM=2。<br />
+- UNIT_CONFIG_ID：描述了该资源池关联的资源规格，从而决定该资源池中每个 Unit 的物理资源大小，包括 CPU、内存、日志盘空间、IOPS 等。<br />
 
 &emsp;&emsp;通过 Unit 的概念，我们将 OceanBase 数据库的物理概念和逻辑概念进行了关联。每个租户有若干 Unit ，分布于若干 Zone 的若干节点上。而每个节点上分布有若干个 Unit ，这些 Unit 归属于不同租户。概括的讲：集群由节点组成，节点是 Unit 的容器。租户由 Unit 组成，Unit 是数据库对象的容器。<br />
 &emsp;&emsp;创建租户时通过设置 RESOURCE_POOL_LIST，可以指定该租户关联到的资源池，从而该租户拥有指定资源池的 Unit。例如：设置租户 a 的 RESOURCE_POOL_LIST=('a_pool')，其部署图如下：<br />
 ![image.png](/img/solutions/multi_tenant/4.png)<br />
-&emsp;&emsp;该租户部署于 3 个 Zone，每个 Zone 有 2 个 Unit，可以通过调整 a_pool 的 Unit_CONFIG_ID 参数来动态调整租户的物理资源。<br />
+&emsp;&emsp;该租户部署于 3 个 Zone，每个 Zone 有 2 个 Unit，可以通过调整 a_pool 的 UNIT_CONFIG_ID：描述了该资源池关联的资源规格，从而决定该资源池中每个 UNIT_CONFIG_ID 参数来动态调整租户的物理资源。<br />
 &emsp;&emsp;还可以通过调整 Unit 在同一个 Zone 内不同节点的分布（称为 Unit 迁移），从而达到 Zone 内不同节点间的负载均衡。节点故障时通过将其上的 Unit 迁移到同 Zone 内其他节点上，从而达到自动容灾恢复的目的。通过调整 Unit 在不同 Zone 的分布（变更租户的 Locality 属性），从而调整租户的部署模式，例如 “同城三中心”、“两地三中心”、“三地五中心” 等，从而具备不同的容灾等级。
 <a name="KFJq2"></a>
 ## 体验多租户特性
