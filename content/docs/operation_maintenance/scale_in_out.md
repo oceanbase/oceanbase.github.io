@@ -107,22 +107,41 @@ weight: 2
 
 1. 添加 zone
 
-   ```bash
+   ```sql
    alter system add zone 'zone4' region 'sys_region';
    alter system start zone 'zone4';
    alter system add zone 'zone5' region 'sys_region';
    alter system start zone 'zone5';
    ```
 
-2. 通过修改租户的 Locality 来增加副本。根据 Locality 的变更规则，每次只能增加一个 Zone 内的 Locality，Locality 的变更规则相关信息请参见官网 OceanBase 数据库文档 [Locality 概述](https://www.oceanbase.com/docs/common-oceanbase-database-cn-10000000001699416)。
+2. 添加 节点 到集群
 
    ```sql
-   obclient>ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4';
-   
-   obclient>ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4,F@zone5';
+   alter system add server 'xx.xx.xx.xx:2882' zone 'zone4';
+   alter system add server 'xx.xx.xx.xx:2882' zone 'zone5';
    ```
 
-操作结束后，本次扩容完成。
+3. 修改  resource pool
+
+   ```sql
+   alter resource pool pool_1 zone_list=('zone1','zone2','zone3','zone4','zone5');
+   ```
+
+4. 通过修改租户的 Locality 来增加副本。每次只能增加一个 Zone 内的 Locality。
+
+   ```sql
+   ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4';
+   
+   ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4,F@zone5';
+   ```
+
+5. 确认当前副本信息
+
+   ```sql
+   select SVR_IP,SVR_PORT,TENANT_ID,ROLE,count(*) from CDB_OB_TABLE_LOCATIONS group by SVR_IP,SVR_PORT,TENANT_ID,ROLE;
+   ```
+
+操作结束后，本次扩容完成，等待副本迁移完成。
 
 ## **缩容**
 
@@ -204,35 +223,41 @@ weight: 2
 
    > **注意**
    >
-   > 如果要删除的节点没有任何 UNIT，那么可以跳过 2-5，直接删除。
+   > 如果要删除的节点没有任何 UNIT，那么可以跳过 2-6，直接删除。
    >
    > 由于当前版本暂不支持调小租户的 UNIT_NUM，该缩容方式仅适用于当前集群中 Unit 数量小于或等于计划删除 OBserver 节点后的单个 Zone 中的可用 OBserver 节点数量。例如，本示例中，如果租户 tenant1 的 UNIT_NUM 为 2，则删除各 Zone 中的 OBServer 时会失败。
 
+2. 临时关闭 rebalance，否则租户会自动调度均衡
 
+   ```sql
+   alter system set enable_rebalance=False;
+   ```
 
-2. 查看当前 Unit 分布，获取待迁移的 UNIT_ID。
+3. 查看当前 Unit 分布，获取待迁移的 UNIT_ID。
 
    ```sql
    SELECT * FROM OCEANBASE.__all_unit;
    ```
 
-3. 手动迁移Unit
+4. 手动迁移Unit
 
    ```sql
-   ALTER SYSTEM MIGRATE UNIT = unit_id DESTINATION = 'xxx.xxx.x.xx1:2882';
+   ALTER SYSTEM MIGRATE UNIT = unit_id DESTINATION = 'xx.xx.xx.xx:2882';
    ```
 
-4. 查看迁移状态
-
-   MIGRATE 相关字段为空/0，则为迁移完成。
+5. 确认 Unit 的迁移进度
 
    ```sql
-   SELECT * FROM  OCEANBASE.__all_unit;
+   # 查看迁移状态
+   SELECT * FROM oceanbase.DBA_OB_UNIT_JOBS WHERE JOB_TYPE = 'MIGRATE_UNIT';
+   
+   # 如果 MIGRATE_FROM_SVR_IP和MIGRATE_FROM_SVR_PORT为空，则迁移完成
+   SELECT * FROM  oceanbase.DBA_OB_UNITS WHERE SVR_IP = 'xx.xx.xx.xx';
    ```
 
-5. 多台节点迁移重复 2-4
+6. 多台节点迁移重复 3-5
 
-6. 删除各 Zone 中的 OBServer 节点。
+7. 删除各 Zone 中的 OBServer 节点。
 
    ```sql
    obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx1:2882' ZONE='z1';
@@ -240,10 +265,16 @@ weight: 2
    obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx3:2882' ZONE='z3';
    ```
 
-   删除后，可执行以下语句，确认列表中已查询不到这些 OBServer 节点则表示删除成功。
+   如果列表中已经查询不到旧节点信息，则表示删除成功。如果列表中仍然有该节点，且该节点的状态为 DELETING，则表示该节点仍然在删除状态中。
 
    ```sql
    SELECT * FROM OCEANBASE.DBA_OB_SERVERS;
+   ```
+
+8. 恢复 rebalance。
+
+   ```sql
+   alter system set enable_rebalance=True;
    ```
 
 ## **租户资源的扩缩容**
