@@ -18,23 +18,58 @@ weight: 2
 
 #### **操作流程**
 
-1. 新建新增节点的配置文件
+1. 新建新增集群的配置文件
 
-   新增节点配置建议跟集群配置保持一致，防止资源量以及性能跟其他节点不同，可以参照 [部署 OceanBase/配置文件](../deploy_oceanbase/configuration_file.md)。
+   新增集群配置参数建议跟原集群配置保持一致，防止资源量以及性能跟其他节点不同，注意：需要替换 server 名字以及 IP 地址。
+   
+   比如：原先为zone1（server1）、zone2（server2）、zone3（server3）。现在新增的配置里面 zone 不变，server 要变成 server4、server5、server6，并且将 IP 替换为新的 OBServer 地址。
 
-2. 使用 OBD 部署新节点
+   可以参照 [配置文件](../appendix/obtest_config2.md)。
+
+2. 使用 OBD 部署新集群
+
+   obtest2 为新集群名字
 
    ```bash
-   obd cluster deploy new_observer -c add_observer.yaml
+   obd cluster deploy obtest2 -c obtest2.yaml
    ```
 
-3. 启动节点
+3. 把新的配置文件复制到原本的配置文件中。
+
+   查看原配置文件路径。
+   ```sql
+   [admin@obtest conf]$ obd cluster list
+   +--------------------------------------------------------------+
+   |                         Cluster List                         |
+   +---------+----------------------------------+-----------------+
+   | Name    | Configuration Path               | Status (Cached) |
+   +---------+----------------------------------+-----------------+
+   | obtest  | /home/admin/.obd/cluster/obtest  | running         |
+   | obtest2 | /home/admin/.obd/cluster/obtest2 | destroyed       |
+   +---------+----------------------------------+-----------------+
+   ```
+
+   根据原配置文件路径，找到原配置文件 config.yaml , 打开原配置文件，将新配置文件的节点内容复制到原配置文件中，复制后的配置文件可参考 [配置文件](../appendix/obtest_config3.md)。
 
    ```bash
-   obd cluster start new_observer
+   vim /home/admin/.obd/cluster/obtest/config.yaml
    ```
 
-4. 将节点添加到集群
+   > **注意**
+   >
+   > 新配置一定要放在对应原配置内容下面。
+
+
+
+4. 启动集群
+
+   这里的集群为原集群，原先的 OBServer 不会受影响，只会启动新加入的节点。
+
+   ```bash
+   obd cluster start obtest
+   ```
+
+5. 将节点添加到集群
 
    使用 root 用户登录集群的 sys 租户，并执行如下命令。
 
@@ -44,17 +79,17 @@ weight: 2
    alter system add server 'xxx.xxx.x.xxx:2882' zone 'zone3';
    ```
 
-5. 确认集群节点信息
+6. 确认集群节点信息
 
    ```bash
    # 集群内通过如下 SQL 命令查询
    select * from __all_server;
    
    # OBD 查询
-   obd cluster display cluster_name
+   obd cluster display obtest
    ```
 
-6. 添加成功后，根据业务实际情况，调整租户的资源配置，即调大 UNIT_NUM。
+7. 添加成功后，根据业务实际情况，调整租户的资源配置，即调大 UNIT_NUM。
 
    ```bash
    ALTER RESOURCE TENANT tenant1 UNIT_NUM 2; 
@@ -72,22 +107,41 @@ weight: 2
 
 1. 添加 zone
 
-   ```bash
+   ```sql
    alter system add zone 'zone4' region 'sys_region';
    alter system start zone 'zone4';
    alter system add zone 'zone5' region 'sys_region';
    alter system start zone 'zone5';
    ```
 
-2. 通过修改租户的 Locality 来增加副本。根据 Locality 的变更规则，每次只能增加一个 Zone 内的 Locality，Locality 的变更规则相关信息请参见官网 OceanBase 数据库文档 [Locality 概述](https://www.oceanbase.com/docs/common-oceanbase-database-cn-10000000001699416)。
+2. 添加 节点 到集群
 
    ```sql
-   obclient>ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4';
-   
-   obclient>ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4,F@zone5';
+   alter system add server 'xx.xx.xx.xx:2882' zone 'zone4';
+   alter system add server 'xx.xx.xx.xx:2882' zone 'zone5';
    ```
 
-操作结束后，本次扩容完成。
+3. 修改  resource pool
+
+   ```sql
+   alter resource pool pool_1 zone_list=('zone1','zone2','zone3','zone4','zone5');
+   ```
+
+4. 通过修改租户的 Locality 来增加副本。每次只能增加一个 Zone 内的 Locality。
+
+   ```sql
+   ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4';
+   
+   ALTER TENANT tenant1 LOCALITY='F@zone1,F@zone2,F@zone3,F@zone4,F@zone5';
+   ```
+
+5. 确认当前副本信息
+
+   ```sql
+   select SVR_IP,SVR_PORT,TENANT_ID,ROLE,count(*) from CDB_OB_TABLE_LOCATIONS group by SVR_IP,SVR_PORT,TENANT_ID,ROLE;
+   ```
+
+操作结束后，本次扩容完成，等待副本迁移完成。
 
 ## **缩容**
 
@@ -103,29 +157,29 @@ weight: 2
 1. （可选）如果租户使用了 z4 或 z5 作为 Primary Zone，则需要修改该租户的 Primary Zone。
 
    ```sql
-   obclient> ALTER TENANT tenant_name PRIMARY_ZONE='z1,z2,z3';
+   ALTER TENANT tenant_name PRIMARY_ZONE='z1,z2,z3';
    ```
 
 2. 通过修改租户 tenant1 的 Locality 来删除副本。根据 Locality 的变更规则，每次只能删除一个 Zone 内的 Locality，Locality 的变更规则相关信息请参见官网 OceanBase 数据库文档 [Locality 概述](https://www.oceanbase.com/docs/common-oceanbase-database-cn-10000000001699416)。
 
    ```sql
-   obclient>ALTER TENANT tenant1 LOCALITY='F@z1,F@z2,F@z3,F@z4';
+   ALTER TENANT tenant1 LOCALITY='F@z1,F@z2,F@z3,F@z4';
    
-   obclient>ALTER TENANT tenant1 LOCALITY='F@z1,F@z2,F@z3';
+   ALTER TENANT tenant1 LOCALITY='F@z1,F@z2,F@z3';
    ```
 
 3. 执行以下命令，停止 z4、z5。
 
    ```sql
-   obclient> ALTER SYSTEM STOP ZONE z4;
+   ALTER SYSTEM STOP ZONE z4;
    
-   obclient> ALTER SYSTEM STOP ZONE z5;
+   ALTER SYSTEM STOP ZONE z5;
    ```
 
 4. 缩小资源池 pool1 的 ZONE_LIST 范围，从而将 z4、z5 从资源池中移出。
 
    ```sql
-   obclient> ALTER RESOURCE POOL pool1 ZONE_LIST=('z1','z2','z3');
+   ALTER RESOURCE POOL pool1 ZONE_LIST=('z1','z2','z3');
    ```
 
 5. 执行以下语句，从集群中删除 Zone 中的 OBServer 节点。
@@ -135,23 +189,23 @@ weight: 2
    > 本示例中，仅租户 tenant1 使用了 z4、z5 上的资源，在实际场景中，如果有其他租户也使用了 z4 或 z5，则还需要对这些租户也执   行一遍前面的步骤（步骤 2 ~ 步骤 5）。
 
    ```sql
-   obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx4:2882';
+   ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx4:2882';
    
-   obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx5:2882';
+   ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx5:2882';
    ```
 
    删除后，可以执行以下语句，确认列表中已查询不到这些 OBServer 节点，则表示删除成功。
 
    ```sql
-   obclient> SELECT * FROM oceanbase.DBA_OB_SERVERS;
+   SELECT * FROM oceanbase.DBA_OB_SERVERS;
    ```
 
 6. 确认 OBServer 节点删除成功后，执行以下语句，从集群中删除 Zone。
 
    ```sql
-   obclient> ALTER SYSTEM DELETE ZONE z4;
+   ALTER SYSTEM DELETE ZONE z4;
    
-   obclient> ALTER SYSTEM DELETE ZONE z5;
+   ALTER SYSTEM DELETE ZONE z5;
    ```
 
    删除后，可以执行如下语句，确认列表中已查询不到这些 Zone，则表示删除成功。结束后，本次缩容完成。
@@ -167,24 +221,60 @@ weight: 2
 
 1. 使用 root 用户登录集群的 sys 租户。
 
-2. 执行以下命令，从集群中删除各 Zone 中的 OBServer 节点。
-
    > **注意**
+   >
+   > 如果要删除的节点没有任何 UNIT，那么可以跳过 2-6，直接删除。
    >
    > 由于当前版本暂不支持调小租户的 UNIT_NUM，该缩容方式仅适用于当前集群中 Unit 数量小于或等于计划删除 OBserver 节点后的单个 Zone 中的可用 OBserver 节点数量。例如，本示例中，如果租户 tenant1 的 UNIT_NUM 为 2，则删除各 Zone 中的 OBServer 时会失败。
 
-   xxx.xxx.x.xx1、xxx.xxx.x.xx2、xxx.xxx.x.xx3 分别表示待删除的节点的 IP 地址。
+2. 临时关闭 rebalance，否则租户会自动调度均衡
 
    ```sql
-   obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx1:2882' ZONE='z1';
-   obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx2:2882' ZONE='z2';
-   obclient> ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx3:2882' ZONE='z3';
+   alter system set enable_rebalance=False;
    ```
 
-   删除后，可执行以下语句，确认列表中已查询不到这些 OBServer 节点则表示删除成功。
+3. 查看当前 Unit 分布，获取待迁移的 UNIT_ID。
 
    ```sql
-   obclient> SELECT * FROM oceanbase.DBA_OB_SERVERS;
+   SELECT * FROM OCEANBASE.__all_unit;
+   ```
+
+4. 手动迁移Unit
+
+   ```sql
+   ALTER SYSTEM MIGRATE UNIT = unit_id DESTINATION = 'xx.xx.xx.xx:2882';
+   ```
+
+5. 确认 Unit 的迁移进度
+
+   ```sql
+   # 查看迁移状态
+   SELECT * FROM oceanbase.DBA_OB_UNIT_JOBS WHERE JOB_TYPE = 'MIGRATE_UNIT';
+   
+   # 如果 MIGRATE_FROM_SVR_IP和MIGRATE_FROM_SVR_PORT为空，则迁移完成
+   SELECT * FROM  oceanbase.DBA_OB_UNITS WHERE SVR_IP = 'xx.xx.xx.xx';
+   ```
+
+6. 多台节点迁移重复 3-5
+
+7. 删除各 Zone 中的 OBServer 节点。
+
+   ```sql
+   ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx1:2882' ZONE='z1';
+   ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx2:2882' ZONE='z2';
+   ALTER SYSTEM DELETE SERVER 'xxx.xxx.x.xx3:2882' ZONE='z3';
+   ```
+
+   如果列表中已经查询不到旧节点信息，则表示删除成功。如果列表中仍然有该节点，且该节点的状态为 DELETING，则表示该节点仍然在删除状态中。
+
+   ```sql
+   SELECT * FROM OCEANBASE.DBA_OB_SERVERS;
+   ```
+
+8. 恢复 rebalance。
+
+   ```sql
+   alter system set enable_rebalance=True;
    ```
 
 ## **租户资源的扩缩容**
@@ -216,7 +306,7 @@ weight: 2
 2. 执行以下语句，获取待操作的租户所属的资源配置 ID。
 
    ```sql
-   obclient> SELECT a.TENANT_NAME, b.UNIT_CONFIG_ID  FROM oceanbase.DBA_OB_TENANTS a,oceanbase.   DBA_OB_RESOURCE_POOLS b WHERE b.TENANT_ID=a.TENANT_ID;
+   SELECT a.TENANT_NAME, b.UNIT_CONFIG_ID  FROM oceanbase.DBA_OB_TENANTS a,oceanbase.   DBA_OB_RESOURCE_POOLS b WHERE b.TENANT_ID=a.TENANT_ID;
    +-------------+----------------+
    | TENANT_NAME | UNIT_CONFIG_ID |
    +-------------+----------------+
@@ -249,11 +339,11 @@ Sum(log_disk_size) <= LOG_DISK_CAPACITY;  // 日志盘总的容量
 假设当前集群中共包含 3 个可用区 z1、z2、z3，每个 Zone 内包含 3 台 OBServer。集群中有一个普通租户 tenant1，其资源分配情况如下：
 
 ```sql
-obclient> CREATE RESOURCE UNIT unit1 MAX_CPU 6, MIN_CPU 6, MEMORY_SIZE '36G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT=0, LOG_DISK_SIZE = '4G';
+CREATE RESOURCE UNIT unit1 MAX_CPU 6, MIN_CPU 6, MEMORY_SIZE '36G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT=0, LOG_DISK_SIZE = '4G';
 
-obclient> CREATE RESOURCE POOL pool1 UNIT 'unit1', UNIT_NUM 2, ZONE_LIST ('z1','z2','z3');
+CREATE RESOURCE POOL pool1 UNIT 'unit1', UNIT_NUM 2, ZONE_LIST ('z1','z2','z3');
 
-obclient>CREATE TENANT tenant1 resource_pool_list=('pool1');
+CREATE TENANT tenant1 resource_pool_list=('pool1');
 ```
 
 #### **租户配置了独立的资源单元配置的场景**
@@ -264,13 +354,13 @@ obclient>CREATE TENANT tenant1 resource_pool_list=('pool1');
 1. 进入 oceanbase 数据库。
 
    ```sql
-   obclient>USE oceanbase;
+   USE oceanbase;
    ```
 
 2. 执行以下语句，获取待操作的租户所使用的资源配置 ID。
 
    ```sql
-   obclient> SELECT a.TENANT_NAME, b.UNIT_CONFIG_ID  FROM oceanbase.DBA_OB_TENANTS a,oceanbase.   DBA_OB_RESOURCE_POOLS b WHERE b.TENANT_ID=a.TENANT_ID;
+   SELECT a.TENANT_NAME, b.UNIT_CONFIG_ID  FROM oceanbase.DBA_OB_TENANTS a,oceanbase.   DBA_OB_RESOURCE_POOLS b WHERE b.TENANT_ID=a.TENANT_ID;
    +-------------+----------------+
    | TENANT_NAME | UNIT_CONFIG_ID |
    +-------------+----------------+
@@ -284,7 +374,7 @@ obclient>CREATE TENANT tenant1 resource_pool_list=('pool1');
 3. 执行以下语句，获取待操作租户的资源配置详细信息。
 
    ```sql
-   obclient> SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS WHERE UNIT_CONFIG_ID='1001';
+   SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS WHERE UNIT_CONFIG_ID='1001';
    +----------------+-------+---------+---------+-------------+---------------+----------+----------+-------------+
    | UNIT_CONFIG_ID | NAME  | MAX_CPU | MIN_CPU | MEMORY_SIZE | LOG_DISK_SIZE | MAX_IOPS | MIN_IOPS | IOPS_WEIGHT |
    +----------------+-------+---------+---------+-------------+---------------+----------+----------+-------------+
@@ -298,13 +388,13 @@ obclient>CREATE TENANT tenant1 resource_pool_list=('pool1');
    - 调大 unit1 的配置
 
      ```sql
-     obclient> ALTER RESOURCE UNIT unit1 MAX_CPU 8, MIN_CPU 8, MEMORY_SIZE '40G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '6G';
+     ALTER RESOURCE UNIT unit1 MAX_CPU 8, MIN_CPU 8, MEMORY_SIZE '40G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '6G';
      ```
 
    - 调小 unit1 的配置
 
      ```sql
-     obclient> ALTER RESOURCE UNIT unit1 MAX_CPU 5, MIN_CPU 5, MEMORY_SIZE '5G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '2G';
+     ALTER RESOURCE UNIT unit1 MAX_CPU 5, MIN_CPU 5, MEMORY_SIZE '5G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '2G';
      ```
 
 #### **多个租户使用了相同的资源单元配置的场景**
@@ -322,21 +412,21 @@ obclient>CREATE TENANT tenant1 resource_pool_list=('pool1');
    - 创建比当前资源单元配置高的 unit2
   
      ```sql
-     obclient> CREATE RESOURCE UNIT unit2 MAX_CPU 8, MIN_CPU 8, MEMORY_SIZE '20G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '6G';
+     CREATE RESOURCE UNIT unit2 MAX_CPU 8, MIN_CPU 8, MEMORY_SIZE '20G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '6G';
      ```
 
    - 创建比当前资源单元配置低的 unit3
 
      ```sql
-     obclient> CREATE RESOURCE UNIT unit3 MAX_CPU 5, MIN_CPU 5, MEMORY_SIZE '5G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '2G';
+     CREATE RESOURCE UNIT unit3 MAX_CPU 5, MIN_CPU 5, MEMORY_SIZE '5G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT 0, LOG_DISK_SIZE '2G';
      ```
 
 4. 修改租户的资源池，将资源池的资源单元配置替换为刚刚新创建的 Unit。其中，unit2 和 unit3 为刚刚新创建的 Unit。
 
    ```sql
-   obclient> ALTER RESOURCE POOL pool1 unit='unit2';
+   ALTER RESOURCE POOL pool1 unit='unit2';
 
-   obclient> ALTER RESOURCE POOL pool1 unit='unit3';
+   ALTER RESOURCE POOL pool1 unit='unit3';
    ```
 
 #### **后续处理**
@@ -344,7 +434,7 @@ obclient>CREATE TENANT tenant1 resource_pool_list=('pool1');
 操作结束后，您可以通过 oceanbase.DBA_OB_UNIT_CONFIGS 视图，确认当前租户的 unit_config 是否修改成功。
 
 ```sql
-obclient> SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS;
+SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS;
 ```
 
 更多 DBA_OB_UNIT_CONFIGS 视图的字段及说明信息请参见官网 OceanBase 数据库文档 [DBA_OB_UNIT_CONFIGS](https://www.oceanbase.com/docs/common-oceanbase-database-cn-10000000001699272)。
@@ -374,11 +464,11 @@ obclient> SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS;
 假设当前集群中共包含 3 个可用区 z1、z2、z3，每个 Zone 内包含 3 个 OBServer 节点。在集群中创建一个普通租户 MySQL，其资源分配情况如下：
 
 ```sql
-obclient> CREATE RESOURCE UNIT unit1 MAX_CPU 6, MIN_CPU 6, MEMORY_SIZE '36G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT=0, LOG_DISK_SIZE '2G';
+CREATE RESOURCE UNIT unit1 MAX_CPU 6, MIN_CPU 6, MEMORY_SIZE '36G', MAX_IOPS 1024, MIN_IOPS 1024, IOPS_WEIGHT=0, LOG_DISK_SIZE '2G';
 
-obclient> CREATE RESOURCE POOL pool1 UNIT 'unit1', UNIT_NUM 1, ZONE_LIST ('z1','z2','z3');
+CREATE RESOURCE POOL pool1 UNIT 'unit1', UNIT_NUM 1, ZONE_LIST ('z1','z2','z3');
 
-obclient> CREATE TENANT MySQL resource_pool_list=('pool1');
+CREATE TENANT MySQL resource_pool_list=('pool1');
 ```
 
 #### **调大 UNIT_NUM**
@@ -390,13 +480,13 @@ obclient> CREATE TENANT MySQL resource_pool_list=('pool1');
 2. 进入 oceanbase 数据库。
 
    ```sql
-   obclient>USE oceanbase;
+   USE oceanbase;
    ```
 
 3. 执行以下语句，获取当前租户的资源配置信息。
 
    ```sql
-   obclient> SELECT a.TENANT_NAME, b.RESOURCE_POOL_ID,b.NAME resource_pool_name,b.UNIT_CONFIG_ID,b. UNIT_COUNT FROM oceanbase.DBA_OB_TENANTS a,oceanbase.DBA_OB_RESOURCE_POOLS b WHERE b.TENANT_ID=a.TENANT_ID;
+   SELECT a.TENANT_NAME, b.RESOURCE_POOL_ID,b.NAME resource_pool_name,b.UNIT_CONFIG_ID,b. UNIT_COUNT FROM oceanbase.DBA_OB_TENANTS a,oceanbase.DBA_OB_RESOURCE_POOLS b WHERE b.TENANT_ID=a.TENANT_ID;
    +-------------+------------------+--------------------+----------------+------------+
    | TENANT_NAME | RESOURCE_POOL_ID | resource_pool_name | UNIT_CONFIG_ID | UNIT_COUNT |
    +-------------+------------------+--------------------+----------------+------------+
@@ -406,7 +496,7 @@ obclient> CREATE TENANT MySQL resource_pool_list=('pool1');
    +-------------+------------------+--------------------+----------------+------------+
    3 rows in set
    
-   obclient> SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS WHERE UNIT_CONFIG_ID='1001';
+   SELECT * FROM oceanbase.DBA_OB_UNIT_CONFIGS WHERE UNIT_CONFIG_ID='1001';
    +----------------+-------+---------+---------+-------------+---------------+----------+----------+-------------+
    | UNIT_CONFIG_ID | NAME  | MAX_CPU | MIN_CPU | MEMORY_SIZE | LOG_DISK_SIZE | MAX_IOPS | MIN_IOPS | IOPS_WEIGHT |
    +----------------+-------+---------+---------+-------------+---------------+----------+----------+-------------+
@@ -424,7 +514,7 @@ obclient> CREATE TENANT MySQL resource_pool_list=('pool1');
    > 不支持通过指定 unit_id 的方式调大 UNIT_NUM 的数量。
 
    ```sql
-   obclient>ALTER RESOURCE TENANT MySQL UNIT_NUM = 2;
+   ALTER RESOURCE TENANT MySQL UNIT_NUM = 2;
    ```
 
    语句执行后，系统会直接在每个 Zone 内添加一个 Unit。

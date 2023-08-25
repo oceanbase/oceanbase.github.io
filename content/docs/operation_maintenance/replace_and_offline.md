@@ -6,112 +6,178 @@ weight: 4
 
 ## **OBServer**
 
-### **添加节点**
+OBServer 替换将提供三种场景：
+  - 场景一：OBServer 所在服务器故障，需要重新安装系统，但是没有空闲的机器补充，后续初始化完需要将这台机器加入到集群，补齐副本。
+  - 场景二：OBServer 所在服务器故障，可以补充空闲的机器；
+  - 场景三：BServer 所在服务器存在已知问题（此时还未故障），需要用正常的机器替换掉。
 
-1. 新建新增节点的配置文件
+> **注意**
+>
+> 新增节点操作可以参照 [扩缩容](./scale_in_out.md)，节点数量按需添加。如果IP、配置不变，那么部署完成后直接启动就可以了。
+>
+> 如果可以使用 OCP 来接管，推荐使用 OCP 直接进行添加/替换节点操作。
+>
+> 如下操作都是在 sys 租户下进行。
 
-   新增节点配置建议跟集群配置保持一致，防止资源量以及性能跟其他节点不同，可以参照 [部署 OceanBase/配置文件](../deploy_oceanbase/configuration_file.md)。
 
-2. OBD 部署新节点
+### **场景一：服务器故障并且后续需要复用&补齐副本**
 
-   ```bash
-   obd cluster deploy new_observer -c add_observer.yaml
-   ```
-
-3. 启动节点
-
-   ```bash
-   obd cluster start new_observer
-   ```
-
-4. 将节点添加到集群
-
-   通过系统租户登录到集群，并执行如下命令
+1. 缩短永久下线时间，让集群主动将节点永久下线（这时候如果有可用的 OBServer 会自动补齐副本，该场景默认不会有）
 
    ```sql
-   alter system add server 'xxx.xxx.xxx.xxx:2882' zone 'zone1';
+   alter system set server_permanent_offline_time='20s';
    ```
-
-5. 确认集群节点信息
+2. 确认节点已经永久下线
 
    ```sql
-   # 集群内
-   select * from __all_server;
-   
-   # OBD查询
-   obd cluster display cluster_name
+   select * from DBA_OB_ROOTSERVICE_EVENT_HISTORY where event like "%permanent_offline%" order by 1 desc limit 10;
    ```
 
-### **Unit 迁移**
-
-将旧节点上的 Unit 迁移到新节点。更多关于 Unit 迁移的操作及说明，请参见 [Unit 迁移](https://www.oceanbase.com/docs/enterprise-oceanbase-database-cn-10000000001700597)。
-
-1. 查询 oceanbase.DBA_OB_SERVERS 视图获取待替换节点的相关信息。查询示例如下：
+3. 观察日志流和副本是否已经没有该节点的信息
 
    ```sql
-   obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_SERVERS;
+   select SVR_IP,ROLE,count(*) from CDB_OB_TABLE_LOCATIONS group by SVR_IP,ROLE;
+
+   select SVR_IP,ROLE,count(*) from CDB_OB_LS_LOCATIONS group by SVR_IP,ROLE;
    ```
 
-2. 根据节点 IP 查询待替换的节点的 Unit 列表。语句如下：
+4. 等待机器维护完成，并完成前置工作（admin用户、目录、授权等）
+
+5. 重新部署 OBserver 并加入到集群
+
+6. 登录集群观察副本情况，正常情况下副本会自动补齐。
 
    ```sql
-   obclient [(none)]> SELECT  unit_id FROM  oceanbase.DBA_OB_UNITS WHERE SVR_IP = 'svr_ip';
+   select SVR_IP,ROLE,count(*) from CDB_OB_TABLE_LOCATIONS group by SVR_IP,ROLE;
+
+   select SVR_IP,ROLE,count(*) from CDB_OB_LS_LOCATIONS group by SVR_IP,ROLE;
+   ```
+
+7. 将 server_permanent_offline_time 恢复
+
+   ```sql
+   alter system set server_permanent_offline_time='3600s';
+   ```
+
+### **场景二：服务器故障并且补充新的节点**
+
+1. 缩短永久下线时间，让集群主动将节点永久下线（这时候如果有可用的observer会自动补齐副本，该场景默认不会有）
+
+   ```sql
+   alter system set server_permanent_offline_time='20s';
+   ```
+
+2. 确认节点已经永久下线
+
+   ```sql
+   select * from DBA_OB_ROOTSERVICE_EVENT_HISTORY where event like "%permanent_offline%" order by 1 desc limit 10;
+   ```
+
+3. 观察日志流和副本是否已经没有该节点的信息
+
+   ```sql
+   select SVR_IP,ROLE,count(*) from CDB_OB_TABLE_LOCATIONS group by SVR_IP,ROLE;
+
+   select SVR_IP,ROLE,count(*) from CDB_OB_LS_LOCATIONS group by SVR_IP,ROLE;
+   ```
+
+4. 新增节点并启动服务
+
+5. 将节点添加到集群中
+
+   ```sql
+   alter system add server 'xx.xx.xx.xx:2882' zone 'zone1';
+   ```
+
+6. 登录集群观察副本情况，确认已经没有故障节点，并且新节点已经在补齐副本和日志流
+
+   ```sql
+   select SVR_IP,ROLE,count(*) from CDB_OB_TABLE_LOCATIONS group by SVR_IP,ROLE;
+
+   select SVR_IP,ROLE,count(*) from CDB_OB_LS_LOCATIONS group by SVR_IP,ROLE;
+   ```
+
+7. 删除旧的节点
+
+   ```sql
+   alter system delete server 'xx.xx.xx.xx:2882';
+   ```
+
+8. 将 server_permanent_offline_time 恢复
+
+   ```sql
+   alter system set server_permanent_offline_time='3600s';
+   ```
+
+### **场景三：服务器存在已知问题（此时还未故障），用正常的机器替换**
+
+1. 新增节点并启动服务
+
+2. 将节点加到集群
+
+   ```sql
+   alter system add server 'xx.xx.xx.xx:2882' zone 'zone1';
+   ```
+
+3. 确认集群节点信息
+
+   ```sql
+   SELECT * FROM oceanbase.DBA_OB_SERVERS;
+   ```
+
+4. 临时关闭 rebalance，否则租户会自动调度均衡
+
+   ```sql
+   alter system set enable_rebalance=False;
+   ```
+
+5. 根据节点 IP 查询待替换的节点的 Unit 列表。语句如下：
+
+   ```sql
+   SELECT  unit_id FROM  oceanbase.DBA_OB_UNITS WHERE SVR_IP = 'xx.xx.xx.xx';
    ```
 
    其中，svr_ip 需要根据实际情况填写待替换节点的 IP 地址。
 
-3. 提交 Unit 迁移任务，将旧节点上的 Unit 迁移到同 Zone 的其他节点上。语句如下：
+6. 提交 Unit 迁移任务，将旧节点上的 Unit 迁移到新增的同 Zone 其他节点上。
 
    ```sql
-   obclient [(none)]> ALTER SYSTEM MIGRATE UNIT unit_id DESTINATION 'svr_ip:svr_port';
+   ALTER SYSTEM MIGRATE UNIT unit_id DESTINATION 'xx.xx.xx.xx:2882';
    ```
 
-   相关参数说明如下：
-
-   - unit_id：待迁移的 Unit 的 unit_id。
-
-   - svr_ip:svr_port：新节点的 IP 地址和 RPC 端口号，端口号默认为 2882。
+   其中，svr_ip 为新增节点的 IP 地址。
 
    每条命令仅支持迁移一个 Unit，多个 Unit 需要执行多次该命令。
 
-4. 查询 oceanbase.DBA_OB_UNIT_JOBS 视图，确认 Unit 的迁移进度。
+7. 确认 Unit 的迁移进度
 
    ```sql
-   obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_UNIT_JOBS WHERE JOB_TYPE = 'MIGRATE_UNIT';
-   +--------+--------------+------------+-------------+----------+----------------------------   +----------------------------+-----------+---------+----------+------------+------------+-------------+
-   | JOB_ID | JOB_TYPE     | JOB_STATUS | RESULT_CODE | PROGRESS | START_TIME                 |    MODIFY_TIME                | TENANT_ID | UNIT_ID | SQL_TEXT | EXTRA_INFO | RS_SVR_IP  | RS_SVR_PORT |
-   +--------+--------------+------------+-------------+----------+----------------------------   +----------------------------+-----------+---------+----------+------------+------------+-------------+
-   |      4 | MIGRATE_UNIT | INPROGRESS |        NULL |        0 | 2023-01-04 17:22:02.208219 | 2023-01-04 17:22:02.   208219 |      1004 |    1006 | NULL     | NULL       | x.x.x.x    |        2882 |
-   +--------+--------------+------------+-------------+----------+----------------------------   +----------------------------+-----------+---------+----------+------------+------------+-------------+
+   # 查看迁移状态
+   SELECT * FROM oceanbase.DBA_OB_UNIT_JOBS WHERE JOB_TYPE = 'MIGRATE_UNIT';
+   
+   # 如果 MIGRATE_FROM_SVR_IP和MIGRATE_FROM_SVR_PORT为空，则迁移完成
+   SELECT * FROM  oceanbase.DBA_OB_UNITS WHERE SVR_IP = 'xx.xx.xx.xx';
    ```
 
-   如果查询结果为空，则表示 Unit 迁移完成。
-
-## **删除旧节点**
-
-等待旧节点上的所有 Unit 迁移完成后，将旧节点删除。具体操作如下：
-
-1. 执行以下命令，删除旧节点。语句如下：
+8. 删除旧节点
 
    ```sql
-   obclient [(none)]> ALTER SYSTEM DELETE SERVER 'svr_ip:svr_port' [,'svr_ip:svr_port'...] [ZONE [=] 'zone_name']
+   ALTER SYSTEM DELETE SERVER 'xx.xx.xx.xx:2882' ZONE = 'zone1';
    ```
 
-   相关参数说明如下：
-
-   - svr_ip：表示待删除的旧节点的 IP。
-
-   - port：表示待删除的旧节点的 RPC 端口，默认为 2882。
-
-   - zone_name：待删除的旧节点所属的 Zone。
-
-2. 待操作结束后，查询 oceanbase.DBA_OB_SERVERS 视图，确认旧节点是否删除成功。
+9. 确认旧节点是否删除成功。
 
    ```sql
-   obclient [(none)]> SELECT * FROM oceanbase.DBA_OB_SERVERS;
+   SELECT * FROM oceanbase.DBA_OB_SERVERS;
    ```
 
    如果列表中已经查询不到旧节点信息，则表示删除成功。如果列表中仍然有该节点，且该节点的状态为 DELETING，则表示该节点仍然在删除状态中。
+
+10. 恢复 rebalance。
+
+      ```sql
+      alter system set enable_rebalance=True;
+      ```
 
 ## **Prometheus**
 
