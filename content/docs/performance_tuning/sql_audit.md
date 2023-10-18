@@ -1,6 +1,6 @@
 ---
 title: SQL 审计视图
-weight: 3
+weight: 2
 ---
 # **SQL 审计视图**
 
