@@ -2,6 +2,7 @@
 title: OMS
 weight: 1
 ---
+
 # **使用 OMS 进行数据迁移和数据同步**
 
 本文主要介绍使用 OMS 进行数据迁移和数据同步的适用版本和目前支持的源端/目标端，详细的操作过程请参见官网 [OMS 文档](https://www.oceanbase.com/docs/oms-cn)。

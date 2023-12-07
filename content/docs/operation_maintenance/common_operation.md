@@ -4,6 +4,126 @@ weight: 1
 ---
 # **常用操作**
 
+
+## **创建租户**
+
+**方法一：OCP 创建**
+
+1. 确认可分配资源
+
+具体可以分配多少内存，可以通过【资源管理】查看各节点的剩余资源
+![image.png](/img/operation_maintenance/common_operation/p1.png)
+2. 新建租户
+
+![image.png](/img/operation_maintenance/common_operation/p2.png)
+
+3. 填写租户信息
+
+![image.png](/img/operation_maintenance/common_operation/p3.png)
+
+zone 优先级主要是 primary_zone 设置 leader优先级，如果优先级全部相同，那么 leader 会打散到所有节点上。
+
+**方法二：手动创建**
+
+1. 确认可分配资源
+
+新租户可以分配的内存大小为 memory_limit - system_memory - sys 租户内存，CPU 数量为 cpu_count - sys 租户 cpu。
+```
+# 查询参数
+show parameters where name in ('memory_limit','system_memory','cpu_count');
+# 查询 sys 租户资源
+select * from DBA_OB_UNIT_CONFIGS;
+```
+
+2. 创建租户
+```
+# 创建资源规格，5C14G，日志40G，IOPS 10000000。
+create resource unit unit_1 max_cpu 5, min_cpu 5, memory_size '15G', log_disk_size '50G', max_iops 10000000;
+# 创建资源池，指定 资源规格以及 zone_list。
+create resource pool pool_1 unit = 'unit_1', unit_num = 1, zone_list = ('zone1','zone2','zone3');
+# 创建租户，指定副本数量3，primary_zone，以及资源池和白名单。
+create tenant perf replica_num = 3,primary_zone='RANDOM', resource_pool_list=('pool_1') set ob_tcp_invited_nodes='%';
+```
+
+3. 修改 root 用户密码
+
+创建完租户，默认的 root 密码为空，如果需要可以修改密码。
+```
+# 租户的 root 用户登陆后执行修改 sql
+set password for root=password('xxx');
+```
+
+## **连接数据库**
+
+主要有两种连接方式：
+
+1. 通过 OBServer 直连（默认端口 2881）
+```
+mysql -h xxx.xxx.xxx.xxx -uroot@sys -P2881 -p -c -A oceanbase
+```
+
+2. 通过 OBProxy 连接（默认端口2883）
+```
+mysql -h xxx.xxx.xxx.xxx -uroot@sys#obdemo -P2883 -p -c -A oceanbase
+```
+
+使用 OBProxy 连接时，用户信息需要包括【用户名@租户名#集群名】；如果是 OBServer 连接，那么只需要包括【用户名@租户名】。
+
+## **参数和变量**
+
+**区别：**
+
+参数（parameter）可以控制集群的负载均衡、合并时间、合并方式、资源分配和模块开关等功能，主要针对集群、Zone、OBServer 和 租户级别进行配置。
+
+变量（variable）可以控制数据库系统的各种行为，如缓存大小、并发连接数等，主要是针对租户级别内 Global 和 Session 级别进行设置。
+
+
+**查看参数和变量**
+
+OBServer 参数 ：
+
+```
+# 方法一
+show parameters like '%enable_rebalance%';
+# 方法二
+show parameters where name in ('memstore_limit_percentage','freeze_trigger_percentage','writing_throttling_trigger_percentage');
+# 方法三
+select * from oceanbase.GV$OB_PARAMETERS where NAME in ('memstore_limit_percentage','freeze_trigger_percentage','writing_throttling_trigger_percentage');
+```
+
+OBProxy 参数：
+```
+show proxyconfig like '%query_digest_time_threshold%';
+```
+
+查看变量
+```shell
+show variables like '%timeout%';
+```
+
+
+**修改参数和变量**
+
+要注意，这里的参数修改会自动变更到安装目录的 etc 下的配置文件，但是如果是 OBD 创建的集群，不会自动同步到 OBD 的配置文件中，如果后续需要使用 OBD 重启，那么需要手动修改 OBD 的配置，防止启动后配置有差异影响业务。
+
+OBServer 参数 ：
+```
+alter system set enable_rebalance=False;
+```
+
+OBProxy 参数：
+```
+alter proxyconfig set query_digest_time_threshold='101ms';
+```
+
+修改变量：
+```
+# 设置全局级别变量，当前 session 不生效，新 session 生效。
+set global ob_query_timeout=10000000;
+# 设置会话级别变量，当前 session 生效，其他 session 不生效。
+set session ob_query_timeout=10000000;
+```
+
 ## **RootService 切主**
 
 ```sql
