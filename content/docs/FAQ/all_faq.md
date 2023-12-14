@@ -331,17 +331,6 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 > ![image.png](/img/FAQ/all_faq/1669531503193-3103f39a-b2c1-44e9-8a01-b71323c6f235.png)
 > - OBD 部署时可执行 `obd cluster edit-config 部署名称` 命令查看配置文件中的密码信息。
 
-> 问：OCP 怎么关联 OMS 的告警信息？  
-> 答：
-> - OMS 上添加关联 OCP
-> ![image.png](/img/FAQ/all_faq/1683343829395-a9f15b52-9680-46d7-8471-d70e0d48b7bd.png)
-> - OMS 上新建告警通道
-> ![image.png](/img/FAQ/all_faq/1683343840763-a278804a-401f-4658-a0d0-8ecbedc4f42c.png)
-> - OMS 告警信息如下
-> ![image.png](/img/FAQ/all_faq/1683343850716-fb9c077a-2501-4a08-9804-9e4cd536da27.png)
-> - ocp 同样能收到告警
-> ![image.png](/img/FAQ/all_faq/1683343869507-e28028c5-c9ec-4180-8762-20b596d1a425.png)
-
 ### **性能调优**
 
 > 问：explain 预估耗时不准，有具体过程执行耗时吗？  
@@ -551,20 +540,6 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 
 ---
 
-> **问题现象**
->
-> 使用 OBD 部署 OceanBase 数据库 V3.1.4 失败，报错：`Cluster bootstrap x`。
-> ![image.png](/img/FAQ/all_faq/1670656607163-a8cc5851-fedd-402c-ba24-5c27462718c3.png)
->
-> **可能原因**
->
-> 可能因为 IP 检测失败。
->
-> **解决方案**
->
-> 示例中是双网卡环境导致，改成静态固定 IP，将网卡文件 BOOTPROTO=dhcp 改成 static 后重启网络解决。
-
----
 
 > **问题现象**
 >
@@ -600,21 +575,7 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 > - 非公网环境，使用了在线安装方式：执行 `obd mirror disable remote` 命令关闭远程仓库拉取安装包，采用离线安装。
 > - 本地磁盘满：下载包较大，磁盘满下载将失败。
 
----
 
-> **问题现象**
->
-> 使用 OBD V2.1.0 白屏部署，报错 ping 不通：OBD-2007：xx.xx.xx.xx lo fail to ping xx.xx.xx.xx. Please check configuration `devname`
->
-> ![image.png](/img/FAQ/all_faq/1686579787732-99c9006b-a46e-4bb2-913e-1bae8a4300b9.png)
->
-> **可能原因**
->
-> 部署时默认使用 lo 网卡，对应 IP 是本地 127.0.0.1。后续版本会考虑优化。
->
-> **解决方案**
->
-> 返回 `集群配置` 页面，在 `更多配置` 中将 `devname` 设置为自定义，填写 IP 对应的网卡名称即可。
 
 ---
 
@@ -1196,20 +1157,7 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 > /home/admin/oceanbase/etc/observer.config.bin.history
 > ```
 
----
 
-> **问题现象**
->
-> OceanBase 数据库 V4.0.0 使用 MySQL 驱动，连接报错 `java.lang.ClassNotFoundException: com.mysql.jdbc.Driver`。
-> ![image.png](/img/FAQ/all_faq/1673165722440-5addaf82-c034-4e37-82cd-8c5f3842c84c.png)
->
-> **可能原因**
->
-> MySQL 驱动写 MySQL 的信息格式为 `jdbc:mysql`，如果是 OceanBase 驱动需要写 OceanBase 信息格式为 `jdbc:oceanbase`。
->
-> **解决方案**
->
-> 修改驱动连接为 `jdbc:mysql`。
 
 ---
 
@@ -1568,20 +1516,7 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 > rpm -qa|grep dpkg , rpm -e --nodeps $dpkg
 > ```
 
----
 
-> **问题现象**
->
-> 使用 OCP 部署 OBProxy V4.1 后，使用 OBProxy 连接 OceanBase 数据库报错密码错误，查看 OBProxy 日志显示 `fail to get cluster name(ret=-4018)`。
-> ![image.png](/img/FAQ/all_faq/1683272882395-d8607cdb-3ef2-4e33-a783-2ef2d69cd1ee.png)
->
-> **可能原因**
->
-> OCP 部署的 OBProxy 虽然关联了 OceanBase 集群，但是 OBProxy 可能关联了多个 OceanBase 集群，需要增加集群名称进行区分。
->
-> **解决方案**
->
-> 使用 OBProxy 连接 OceanBase 数据库时 `-u` 参数写完整，需带上待连接的 OceanBase 集群名称，即 `-uroot@sys#集群名称` 格式。
 
 ---
 
@@ -1755,21 +1690,7 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 >
 > 按 OCP V3.3.0 的配置模版文件改写。
 
----
 
-> **问题现象**
->
-> OCP 从 V3.1.1 升级至 V3.3.0 失败，使用 OBProxy 配置测试可以连接，但升级报错连接不上 `metadb：Can't connect to MySQL server on xx.xx.xx.xx:2883(-2 Name or server not know)`。
->
-> ![image.png](/img/FAQ/all_faq/1665308205549-d0ee5e92-5853-4024-b003-8fd9b28ff3bb.png)
->
-> **可能原因**
->
-> 本示例中 107 机器是 OBProxy 的地址，非 metadb 地址，程序的这一步是要 ssh 到 OCP 节点 IP，运行 OCP 的 Docker 命令指向的地址是该 IP，但 107 机器非 OCP 元数据库也非 OCP 地址，所以报错连不上，因此不能使用非 metadb 本机的 OBProxy 地址。当然这里的版本升级也不建议使用 OBProxy 代理方式连接。
->
-> **解决方案**
-> 
-> 该版本未支持采用 OBProxy 方式连接 metadb，配置改为使用直连方式。
 
 ---
 
