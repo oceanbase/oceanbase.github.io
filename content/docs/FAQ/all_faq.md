@@ -1241,20 +1241,6 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 >
 > 配置文件 create_metadb_cluster 设置为 true，默认安装个 metadb 数据库。
 
----
-
-> **问题现象**
->
-> OCP V4.0.0 部署中报错 `PermissionError: [Errno 13] Permission denied: '/root/installer/config.yaml'`。  
-> ![image.png](/img/FAQ/all_faq/1670572772711-54b3f21a-e127-4cd9-9e35-e977d8d429be.png)
->
-> **可能原因**
->
-> selinux 会影响程序的访问文件，影响程序的服务程序功能，影响服务所使用的资源，部署前需要关闭。
->
-> **解决方案**
->
-> 关闭 selinux。
 
 ---
 
@@ -1271,35 +1257,8 @@ OceanBase 数据库 4.x 版本可通过 SQL 审计视图 gv$ob_sql_audit 查看�
 >
 > 检查 `/tmp` 目录下是否有 `precheck-*.sh` 文件（-*是当时生成的 uuid），如果有，删除即可。
 
----
 
-> **问题现象**
->
-> OCP V3.3.0 部署时 metadb 初始化阶段报错 `Access denied for user 'meta_user'@'xxx.xxx.xxx.xxx`。
-> ![image.png](/img/FAQ/all_faq/1670846524338-9faab5d8-3ce6-4b85-bf50-7e128b4b28c4.png)
->
-> **可能原因**
->
-> 示例中仅仅只有 5G 内存，此处报错不一定是连接密码问题，可能是启动容器失败，还未到连接抛出异常。
->
-> **解决方案**
->
-> 若是由内存不足导致，可增加内存。
 
----
-
-> **问题现象**
->
-> OCP V4.0.0 安装过程中报错 `/bin/sh: sudo: command not found`，最终导致 failed to load docker image。
-> ![image.png](/img/FAQ/all_faq/1671331216078-9b93aeea-70a6-43dc-8997-8ae5ee4453d7.png)
->
-> **可能原因**
->
-> 暂未复现，用户配置环境问题影响较大。
->
-> **解决方案**
->
-> 可在 OCP 的 config.yaml 文件中 ssh 模块配置上密码信息。
 
 ## **OCP 使用问题**
 
