@@ -299,7 +299,7 @@ obclient [test]> select SVR_IP,SVR_PORT,TRACE_ID,,TENANT_NAME,SQL_ID,QUERY_SQL
     ->     from oceanbase.gv$ob_sql_audit
     ->     where query_sql like "%right(tb.a_time,5)%"\G;
 *************************** 1. row ***************************
-                         SVR_IP: 172.24.255.17
+                         SVR_IP: 172.xx.xx.17
                        SVR_PORT: 2882
                        TRACE_ID: YB42AC18FF11-0005FE3D398CC982-0-0
                     TENANT_NAME: obtest
@@ -317,11 +317,11 @@ alter system set enable_rich_error_msg=true;
 ```sql
 obclient [test]> insert into t2 select a_id, a_name,cast(concat('2022-10-10 ', right(tb.a_time,5), ':00') as datetime) from t1 tb;
 ERROR 1292 (22007): Incorrect value
-[172.24.255.17:2882] [2023-08-03 20:42:36.361996] [YB42AC18FF11-0005FE3D398CC986-0-0]
+[172.xx.xx.17:2882] [2023-08-03 20:42:36.361996] [YB42AC18FF11-0005FE3D398CC986-0-0]
 ```
 
 以上三种方式，我们一般会采用第二种方式，方式一只能获取到trace_id，但是获取不到OBServer的IP信息，因为OceanBase为分布式数据库，一套集群一般会有多个OBServer节点，如果没有IP信息，我们很难得知这条SQL是在哪个OBServer节点上执行的。所以是需要这个IP信息方便我们拿着trace_id直接去机器上过滤日志。方式三需要开启集群级别的参数，有的租户并不一定需要这个，并且展示信息相对较少。
-通过获取到的trace_id，以及SVR_IP信息，我们直接到172.24.255.17这台机器的/home/admin/oceanbase/log目录下，过滤observer.log，得到如下日志：
+通过获取到的trace_id，以及SVR_IP信息，我们直接到172.xx.xx.17这台机器的/home/admin/oceanbase/log目录下，过滤observer.log，得到如下日志：
 
 ```markdown
 [root@ob1 log]# grep "YB42AC18FF11-0005FE3D398CC982-0-0" observer.log
@@ -397,9 +397,9 @@ OceanBase中有一个参数 trace_log_slow_query_watermark 用来设置慢SQL的
 在OBProxy的日志目录里，专门有一个 obproxy_slow.log 的日志，这个日志也会记录所有的慢SQL信息，我们可以直接查看这个日志，发现执行慢的SQL
 
 ```markdown
-2023-08-01 17:44:51.779606,odp,,,,obcluster:obtest:oceanbase,OB_MYSQL,,,OB_MYSQL_COM_QUERY,SELECT,success,,select /*+ ob_querytimeout(10000000000) */ sleep(5),5000864us,120us,0us,5000571us,Y0-00007FCC9D7BC3A0,YB42AC18FF13-0005FE3D2CBF2C76-0-0,,,0,172.24.255.19:2881
-2023-08-03 14:30:47.370874,odp,,,,obcluster:obtest:test,OB_MYSQL,,,OB_MYSQL_COM_QUERY,SELECT,success,,select sleep(1),1011179us,86us,0us,1010966us,Y0-00007FCC9DBBD320,YB42AC18FF13-0005FE3D2CBF2CE3-0-0,,,0,172.24.255.19:2881
-2023-08-03 16:41:08.255751,odp,,,,obcluster:obtest:test,OB_MYSQL,,,OB_MYSQL_COM_QUERY,DROP,success,,drop table chat_req_records,620960us,113us,0us,620687us,Y0-00007FCC9D7BD3E0,,,,0,172.24.255.19:2881
+2023-08-01 17:44:51.779606,odp,,,,obcluster:obtest:oceanbase,OB_MYSQL,,,OB_MYSQL_COM_QUERY,SELECT,success,,select /*+ ob_querytimeout(10000000000) */ sleep(5),5000864us,120us,0us,5000571us,Y0-00007FCC9D7BC3A0,YB42AC18FF13-0005FE3D2CBF2C76-0-0,,,0,172.xx.xx.19:2881
+2023-08-03 14:30:47.370874,odp,,,,obcluster:obtest:test,OB_MYSQL,,,OB_MYSQL_COM_QUERY,SELECT,success,,select sleep(1),1011179us,86us,0us,1010966us,Y0-00007FCC9DBBD320,YB42AC18FF13-0005FE3D2CBF2CE3-0-0,,,0,172.xx.xx.19:2881
+2023-08-03 16:41:08.255751,odp,,,,obcluster:obtest:test,OB_MYSQL,,,OB_MYSQL_COM_QUERY,DROP,success,,drop table chat_req_records,620960us,113us,0us,620687us,Y0-00007FCC9D7BD3E0,,,,0,172.xx.xx.19:2881
 ```
 
 obproxy的慢SQL日志中总共有24个字段，根据这些字段，我们也可以获取到一些信息，有些字段为暂时留空，这些字段依次是
@@ -432,7 +432,7 @@ obproxy的慢SQL日志中总共有24个字段，根据这些字段，我们也�
 | DBKey 名称 | 
  |
 | 是否使用 BeyondTrust（version>= 2.0.20 1 是，0 否） | 0 |
-| 后端 Server IP | 172.24.255.19:2881 |
+| 后端 Server IP | 172.xx.xx.19:2881 |
 
 方式三：
 如果系统当前时段就很慢，可以查询正在执行的比较慢的SQL，通过视图 __all_virtual_processlist 根据 time 字段排序，获取当前系统中，正在执行的慢SQL。
@@ -455,7 +455,7 @@ ORDER BY time DESC LIMIT 1
 +------+--------+----------------------------------+------+---------------------------------------------------+---------------+----------+-----------------------------------+
 | USER | tenant | sql_id                           | time | info                                              | svr_ip        | svr_port | trace_id                          |
 +------+--------+----------------------------------+------+---------------------------------------------------+---------------+----------+-----------------------------------+
-| root | obtest | DE47F6BC20D6E36C14AA4D90BDE3B083 | 2s   | select /*+ query_timeout(100000000) */ sleep(100) | 172.24.255.19 |     2882 | YB42AC18FF13-0005FE3D2CBF2D57-0-0 |
+| root | obtest | DE47F6BC20D6E36C14AA4D90BDE3B083 | 2s   | select /*+ query_timeout(100000000) */ sleep(100) | 172.xx.xx.19 |     2882 | YB42AC18FF13-0005FE3D2CBF2D57-0-0 |
 +------+--------+----------------------------------+------+---------------------------------------------------+---------------+----------+-----------------------------------+
 1 row in set (0.003 sec)
 ```
@@ -473,7 +473,7 @@ obclient [oceanbase]> select SVR_IP,SVR_PORT,TRACE_ID,TENANT_NAME,SQL_ID,QUERY_S
     ->     from gv$ob_sql_audit 
     ->     where trace_id = "YB42AC18FF13-0005FE3D2CBF2D57-0-0"\G;
 *************************** 1. row ***************************
-                         SVR_IP: 172.24.255.19
+                         SVR_IP: 172.xx.xx.19
                        SVR_PORT: 2882
                        TRACE_ID: YB42AC18FF13-0005FE3D2CBF2D57-0-0
                     TENANT_NAME: obtest
@@ -497,11 +497,11 @@ obclient [oceanbase]> SELECT tenant_id,
     -> FROM GV$OB_PLAN_CACHE_PLAN_STAT
     -> WHERE TENANT_ID = 1012
     -> AND SQL_ID = 'DE47F6BC20D6E36C14AA4D90BDE3B083'
-    -> AND SVR_IP = '172.24.255.19'
+    -> AND SVR_IP = '172.xx.xx.19'
     -> AND SVR_PORT = 2882;
 *************************** 1. row ***************************
        tenant_id: 1012
-          svr_ip: 172.24.255.19
+          svr_ip: 172.xx.xx.19
         svr_port: 2882
           sql_id: DE47F6BC20D6E36C14AA4D90BDE3B083
          plan_id: 2518
@@ -517,7 +517,7 @@ last_active_time: 2023-08-04 11:42:47.834366
 ```sql
 obclient [oceanbase]> SELECT OPERATOR, NAME, ROWS, COST FROM GV$OB_PLAN_CACHE_PLAN_EXPLAIN
     ->     WHERE TENANT_ID = 1012 AND
-    ->     SVR_IP = '172.24.255.19' AND
+    ->     SVR_IP = '172.xx.xx.19' AND
     ->     SVR_PORT = 2882 AND
     ->     PLAN_ID = 2518;
 +-----------------+------+------+------+
