@@ -1,0 +1,62 @@
+{
+  "version.label": {
+    "message": "下一篇",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
+    "message": "教程 - 基础",
+    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
+    "message": " 5 分钟了解 Docusaurus 的重要概念",
+    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
+    "message": "教程 - 拓展",
+    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.ob-operator-user-guide": {
+    "message": " ob-operator 用户手册",
+    "description": "The label for category ob-operator-user-guide in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.cluster-management-of-ob-operator": {
+    "message": "集群管理",
+    "description": "The label for category cluster-management-of-ob-operator in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.zone-management": {
+    "message": "Zone 管理",
+    "description": "The label for category zone-management in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.server-management": {
+    "message": "Server 管理",
+    "description": "The label for category server-management in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.tenant-management-of-ob-operator": {
+    "message": "租户管理",
+    "description": "The label for category tenant-management-of-ob-operator in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.modify-tenant-of-ob-operator": {
+    "message": "修改租户",
+    "description": "The label for category modify-tenant-of-ob-operator in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.high-availability": {
+    "message": "高可用",
+    "description": "The label for category high-availability in sidebar oboperatorSidebar"
+  },
+  "sidebar.oboperatorSidebar.category.appendix": {
+    "message": "附录",
+    "description": "The label for category appendix in sidebar oboperatorSidebar"
+  },
+  "sidebar.obdSidebar.category.user-guide": {
+    "message": "用户手册",
+    "description": "The label for category user-guide in sidebar obdSidebar"
+  },
+  "sidebar.obdSidebar.category.obd-command": {
+    "message": "obd 命令",
+    "description": "The label for category obd-command in sidebar obdSidebar"
+  },
+  "sidebar.obdSidebar.category.faq": {
+    "message": "FAQ",
+    "description": "The label for category faq in sidebar obdSidebar"
+  }
+}

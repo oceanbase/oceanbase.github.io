@@ -1,0 +1,8 @@
+500.ob-operator-user-guide=使用指南
+  100.cluster-management-of-ob-operator=集群管理
+    300.zone-management=Zone 管理
+    400.server-management=节点管理
+  200.tenant-management-of-ob-operator=租户管理
+    200.modify-tenant-of-ob-operator=修改租户
+  300.high-availability=高可用
+900.appendix=附录

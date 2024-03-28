@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "OceanBase",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "OceanBase Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Documentations": {
+    "message": "文档",
+    "description": "Navbar item with label Documentations"
+  },
+  "item.label.Blog": {
+    "message": "博客",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.obd": {
+    "message": "obd",
+    "description": "Navbar item with label obd"
+  },
+  "item.label.ob-operator": {
+    "message": "ob-operator",
+    "description": "Navbar item with label ob-operator"
+  },
+  "item.label.Tutorial": {
+    "message": "教程",
+    "description": "Navbar item with label Tutorial"
+  },
+  "item.label.API Reference": {
+    "message": "API 参考",
+    "description": "Navbar item with label API Reference"
+  }
+}
