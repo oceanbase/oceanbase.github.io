@@ -34,5 +34,9 @@
   "item.label.API Reference": {
     "message": "API 参考",
     "description": "Navbar item with label API Reference"
+  },
+  "item.label.Users": {
+    "message": "用户列表",
+    "description": "Navbar item with label Users"
   }
 }
