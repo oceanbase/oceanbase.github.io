@@ -22,21 +22,17 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className="button button--secondary"
             to="docs/tutorial/intro"
           >
             <Translate>Learn about</Translate> OceanBase
           </Link>
-          <span className="margin-left--md">
-            <a href="https://github.com/oceanbase/oceanbase">
-              <img alt="stars" src="https://img.shields.io/badge/dynamic/json?color=white&label=stars&query=stargazers_count&url=https%3A%2F%2Fapi.github.com%2Frepos%2Foceanbase%2Foceanbase" />
-            </a>
-          </span>
-          <span className='margin-left--md'>
-            <a href="https://github.com/oceanbase/oceanbase">
-              <img alt="forks" src="https://img.shields.io/badge/dynamic/json?color=white&label=forks&query=forks_count&url=https%3A%2F%2Fapi.github.com%2Frepos%2Foceanbase%2Foceanbase" />
-            </a>
-          </span> 
+          <a href="https://github.com/oceanbase/oceanbase" className="margin-left--md" style={{display: 'inline-flex', alignItems: 'center'}}>
+            <img alt="stars" src="https://img.shields.io/badge/dynamic/json?color=white&label=stars&query=stargazers_count&url=https%3A%2F%2Fapi.github.com%2Frepos%2Foceanbase%2Foceanbase" />
+          </a>
+          <a href="https://github.com/oceanbase/oceanbase" className='margin-left--md' style={{display: 'inline-flex', alignItems: 'center'}}>
+            <img alt="forks" src="https://img.shields.io/badge/dynamic/json?color=white&label=forks&query=forks_count&url=https%3A%2F%2Fapi.github.com%2Frepos%2Foceanbase%2Foceanbase" />
+          </a>
         </div>
       </div>
     </header>
