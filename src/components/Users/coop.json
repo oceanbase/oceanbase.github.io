@@ -1,0 +1,50 @@
+[
+  {
+    "name": "CEC",
+    "logoPath": "/img/partners/coop/cec.png"
+  },
+  {
+    "name": "sugon",
+    "logoPath": "/img/partners/coop/sugon.png"
+  },
+  {
+    "name": "inspur",
+    "logoPath": "/img/partners/coop/inspur.png"
+  },
+  {
+    "name": "lenovo",
+    "logoPath": "/img/partners/coop/lenovo.png"
+  },
+  {
+    "name": "紫光恒越",
+    "logoPath": "/img/partners/coop/ziguanghengyue.png"
+  },
+  {
+    "name": "apusic",
+    "logoPath": "/img/partners/coop/apusic.png"
+  },
+  {
+    "name": "tongtech",
+    "logoPath": "/img/partners/coop/tongtech.png"
+  },
+  {
+    "name": "primeton",
+    "logoPath": "/img/partners/coop/primeton.png"
+  },
+  {
+    "name": "bes",
+    "logoPath": "/img/partners/coop/bes.png"
+  },
+  {
+    "name": "kunpeng",
+    "logoPath": "/img/partners/coop/kunpeng.png"
+  },
+  {
+    "name": "phytium",
+    "logoPath": "/img/partners/coop/phytium.png"
+  },
+  {
+    "name": "zhaoxin",
+    "logoPath": "/img/partners/coop/zhaoxin.png"
+  }
+]

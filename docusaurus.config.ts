@@ -5,22 +5,19 @@ import type * as Preset from '@docusaurus/preset-classic'
 const docs = [
   {
     label: 'obd',
-    type: 'docSidebar',
-    sidebarId: 'obdSidebar',
+    href: "https://github.com/oceanbase/obd"
   },
   {
     label: 'ob-operator',
-    type: 'docSidebar',
-    sidebarId: 'oboperatorSidebar',
+    href: "https://oceanbase.github.io/ob-operator/"
   },
   {
-    label: 'Tutorial',
-    type: 'docSidebar',
-    sidebarId: 'tutorialSidebar',
+    label: "Developer",
+    href: "https://oceanbase.github.io/oceanbase/"
   },
   {
     label: "API Reference",
-    href: "https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000000639796",
+    href: "https://en.oceanbase.com/docs/common-oceanbase-database-10000000001228248",
   },
 ]
 
@@ -93,13 +90,25 @@ const config: Config = {
       },
       items: [
         {
+          position: 'left',
+          label: 'Quick Start',
+          to: '/docs/tutorial/intro',
+        },
+        {
+          position: "left",
+          label: "Blogs",
+          to: "/blog"
+        },
+        {
           type: 'dropdown',
           label: 'Documentations',
           position: 'left',
           items: docs,
         },
         {
-          to: '/users', label: 'Users', position: 'left',
+          label: 'Downloads',
+          position: 'left',
+          href: "https://open.oceanbase.com/developer"
         },
         {
           type: 'localeDropdown',

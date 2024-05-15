@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import Heading from '@theme/Heading'
 import styles from './styles.module.css'
 import Translate, { translate } from '@docusaurus/Translate'
+import Link from '@docusaurus/Link'
 
 type FeatureItem = {
   title: string
@@ -39,7 +40,7 @@ const FeatureList: FeatureItem[] = [
     )
   },
   {
-    title: translate({ message: 'A New Generation Data Architecture for Multi-tenancy' }),
+    title: translate({ message: 'Data Architecture for Multi-tenancy' }),
     imgSrc: require('@site/static/img/tenancy.png').default,
     description: (
       <Translate>
@@ -48,7 +49,7 @@ const FeatureList: FeatureItem[] = [
     )
   },
   {
-    title: translate({ message: 'Transparent High-Ratio Data Compression' }),
+    title: translate({ message: 'Transparent High-Ratio Compression' }),
     imgSrc: require('@site/static/img/compression.png').default,
     description: (
       <Translate>
@@ -76,7 +77,7 @@ function Feature({ title, Svg, description, imgSrc: Img }: FeatureItem) {
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <p style={{ color: 'gray' }}>{description}</p>
       </div>
     </div>
   )
@@ -84,14 +85,21 @@ function Feature({ title, Svg, description, imgSrc: Img }: FeatureItem) {
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+    <div>
+      <div className="hero">
+        <div className="container" style={{ alignItems: "center", textAlign: "center" }}>
+          <h1 className="hero__title"><Translate>Outstanding Features Enabling Your Business</Translate></h1>
         </div>
       </div>
-    </section>
+      <section className={styles.features}>
+        <div className="container">
+          <div className="row">
+            {FeatureList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
