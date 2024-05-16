@@ -4,10 +4,10 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 3rem 0;
   position: relative;
   overflow: hidden;
-  height: 20rem;
+  height: 25rem;
 }
 
 @media screen and (max-width: 996px) {
@@ -19,4 +19,22 @@
 .buttons {
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 468px) {
+  :root {
+    min-width: 323px;
+  }
+  .heroBanner {
+    text-align: center;
+    padding: 0;
+  }
+  .hero__title {
+    white-space: nowrap;
+    word-wrap: unset;
+  }
+  .buttons {
+    flex-direction: column;
+    box-sizing: border-box;
+  }
 }
