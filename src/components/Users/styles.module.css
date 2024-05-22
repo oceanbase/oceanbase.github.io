@@ -1,0 +1,7 @@
+.containerScroll {
+  max-height: 300px;
+  overflow-y: auto;
+  /* hide scroll bar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
