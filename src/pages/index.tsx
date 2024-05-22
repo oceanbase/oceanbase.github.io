@@ -9,6 +9,7 @@ import Translate, { translate } from "@docusaurus/Translate"
 import styles from "./index.module.css"
 import { UsersComp } from '@site/src/components/Users'
 import { GetStarted } from '../components/GetStarted'
+import { Blogs } from '../components/Blogs'
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext()
@@ -49,7 +50,7 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext()
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title} Blog`}
       description="OceanBase is an enterprise distributed relational database."
     >
       <HomepageHeader />
@@ -57,6 +58,7 @@ export default function Home(): JSX.Element {
         <HomepageFeatures />
         <UsersComp />
         <GetStarted />
+        <Blogs />
       </main>
     </Layout>
   )

@@ -88,7 +88,8 @@ export default function HomepageFeatures(): JSX.Element {
     <div>
       <div className="hero">
         <div className="container" style={{ alignItems: "center", textAlign: "center" }}>
-          <h1 className="hero__title"><span className={styles.highlight}>Outstanding Features</span> <Translate>Empowering Your Business</Translate></h1>
+          <h1 className="hero__title"><span className={styles.highlight}>Outstanding Features</span></h1>
+          <p className="hero__subtitle"><Translate>Open Source Database Empowering Your Business</Translate></p>
         </div>
       </div>
       <section className={styles.features}>
