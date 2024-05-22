@@ -1,0 +1,20 @@
+.hyphens {
+  white-space: pre-wrap;
+  -webkit-hyphens: auto; /* Safari 5.1+ */
+  -moz-hyphens: auto;    /* Firefox 6+ */
+  -ms-hyphens: auto;     /* Internet Explorer 10+ */
+  hyphens: auto;
+}
+
+.video {
+  display: block;
+  margin: 0 auto;
+  width: calc(560px*1.5);
+  height: calc(315px*1.5);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.tabsCenter {
+  text-align: center;
+  justify-content: center;
+}

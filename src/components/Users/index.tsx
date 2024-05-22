@@ -49,7 +49,7 @@ function Logos(props: { partners: Partner[] }) {
 }
 
 export function UsersComp(): JSX.Element {
-  return <div style={{ marginBottom: 100 }}>
+  return <div>
     <div className="hero" style={{ paddingBottom: 0 }}>
       <div className="container" style={{ alignItems: "center", textAlign: "center" }}>
         <h1 className="hero__title"><Translate>Who is using</Translate> <span>OceanBase</span></h1>

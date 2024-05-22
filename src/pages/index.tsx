@@ -8,6 +8,7 @@ import Translate, { translate } from "@docusaurus/Translate"
 
 import styles from "./index.module.css"
 import { UsersComp } from '@site/src/components/Users'
+import { GetStarted } from '../components/GetStarted'
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext()
@@ -55,6 +56,7 @@ export default function Home(): JSX.Element {
       <main>
         <HomepageFeatures />
         <UsersComp />
+        <GetStarted />
       </main>
     </Layout>
   )
