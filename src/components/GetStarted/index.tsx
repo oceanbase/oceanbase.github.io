@@ -15,7 +15,7 @@ export const GetStarted = (): JSX.Element => {
         </div>
       </div>
       <div style={{ padding: 64 }}>
-        <Tabs className={styles.tabsCenter}>
+        <Tabs className={styles.tabsCenter} lazy>
           <TabItem value="youtube" label="Youtube" >
             <iframe
               className={styles.video}
