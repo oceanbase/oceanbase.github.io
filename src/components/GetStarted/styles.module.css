@@ -18,3 +18,10 @@
   text-align: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 996px) {
+  .video {
+    width: 90vw;
+    height: calc((90vw / 16) * 9);
+  }
+}
