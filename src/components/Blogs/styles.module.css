@@ -5,4 +5,35 @@
 
 .card {
   border: 1px solid #eaeaea;
+  display: block;
+  text-decoration: none;
+  color: unset;
+}
+
+.card:hover {
+  color: unset;
+}
+
+.cardImage {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.truncateMultiline {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navArrow {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.card:hover .navArrow {
+  color: var(--ifm-color-primary);
 }
