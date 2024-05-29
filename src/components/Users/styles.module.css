@@ -5,3 +5,21 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+@media screen and (min-width: 997px) {
+  .swipeCardDesktop {
+    display: block;
+  }
+  .swipeCardMobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .swipeCardMobile {
+    display: block;
+  }
+  .swipeCardDesktop {
+    display: none;
+  }
+}

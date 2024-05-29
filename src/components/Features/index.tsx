@@ -88,12 +88,12 @@ export default function HomepageFeatures(): JSX.Element {
     <div>
       <div className="hero">
         <div className="container" style={{ alignItems: "center", textAlign: "center" }}>
-          <h1 className="hero__title"><span className={styles.highlight}>Outstanding Features</span></h1>
+          <h1 className="hero__title"><span className={styles.mark}>Outstanding Features</span></h1>
           <p className="hero__subtitle"><Translate>Open Source Database Empowering Your Business</Translate></p>
         </div>
       </div>
       <section className={styles.features}>
-        <div className="container">
+        <div className="container" style={{ paddingTop: 32, paddingBottom: 32 }}>
           <div className="row">
             {FeatureList.map((props, idx) => (
               <Feature key={idx} {...props} />

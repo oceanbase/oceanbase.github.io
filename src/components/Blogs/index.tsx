@@ -50,13 +50,13 @@ const posts: BlogPost[] = [
 export const Blogs = (): JSX.Element => {
   return (
     <div>
-      <div className="hero" style={{ marginBottom: 64 }}>
+      <div className="hero" style={{ marginBottom: 32 }}>
         <div className="container" style={{ alignItems: "center", textAlign: "center" }}>
           <h1 className="hero__title">Blogs</h1>
           <p className="hero__subtitle">A place where you can find updates, best practices, and inspiration about OceanBase and distributed database.</p>
         </div>
       </div>
-      <div className="container" style={{ marginBottom: 64 }}>
+      <div className="container" style={{ paddingTop: 32, paddingBottom: 32 }}>
         <div className={"row"}>
           {posts.map((post, index) => <div className={"col col--4"} key={index}>
             <a className={clsx("card", styles.card)} style={{ cursor: "pointer", marginBottom: 32 }} href={post.link} target="_blank">
