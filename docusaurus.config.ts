@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic'
 const docs = [
   {
     label: 'obd',
-    href: "https://github.com/oceanbase/obd"
+    href: "https://github.com/oceanbase/obdeploy"
   },
   {
     label: 'ob-operator',
@@ -57,14 +57,16 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/powerfooi/docs-playground/tree/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/powerfooi/docs-playground/tree/main/',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'All posts',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -108,7 +110,7 @@ const config: Config = {
         {
           label: 'Downloads',
           position: 'left',
-          href: "https://open.oceanbase.com/developer"
+          href: "https://en.oceanbase.com/softwarecenter"
         },
         {
           type: 'localeDropdown',
