@@ -1,6 +1,6 @@
 ---
 slug: distributed-push-down
-title: Distributed Push down
+title: 'OceanBase Distributed Pushdown Technology'
 ---
 
 > I have been studying the book "An Interpretation of OceanBase Database Source Code" and noticed that it contains very little content about the SQL executor. Therefore, I want to write some blog posts about the SQL executor as a supplement to this book. In my last post [Adaptive Techniques in the OceanBase Database Execution Engine](https://open.oceanbase.com/blog/5250647552), I introduced some representative adaptive techniques in the executor, based on the assumption that you have a basic understanding of the two-phase pushdown technique for HASH GROUP BY. If you are unfamiliar with the multi-phase pushdown technique of the executor, you are welcome to read this post to learn about common adaptive distributed pushdown techniques in OceanBase Database.

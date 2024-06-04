@@ -1,6 +1,6 @@
 ---
 slug: refine-performance
-title: Refine Performance
+title: "How We Approach Improving Distributed Query Performance"
 ---
 
 > **Wang Guoping | Senior Technical Expert of OceanBase**

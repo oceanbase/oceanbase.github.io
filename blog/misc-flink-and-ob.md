@@ -1,6 +1,6 @@
 ---
 slug: flink-and-ob
-title: Flink CDC + OceanBase Database Data Integration Solution
+title: "Flink CDC + OceanBase integration solution for full and incremental synchronization"
 ---
 
 ## Introduction

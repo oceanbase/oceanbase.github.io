@@ -1,6 +1,6 @@
 ---
 slug: io-isolation
-title: IO Isolation in OceanBase Database
+title: 'OceanBase provides users with sufficiently flexible and simple I/O resource isolation experiences.'
 ---
 
 **Sun Jianyun, an OceanBase technical expert**

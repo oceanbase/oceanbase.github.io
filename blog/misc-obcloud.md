@@ -1,6 +1,6 @@
 ---
 slug: obcloud
-title: OceanBase Cloud
+title: 'How OB Cloud Achieves Cost Reduction and Efficiency Improvement in Replacing MySQL Scenarios ？'
 ---
 
 Cost reduction and efficiency improvement seem an eternal topic for any enterprises that are seeking sustainable development and profit. However, hasty rigid cost reduction measures tend to cause uncontrollable impact, leading to inefficient operation and slow business growth. By promoting cost reduction, we should aim at improving productivity while cutting operation costs.

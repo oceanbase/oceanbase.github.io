@@ -1,6 +1,6 @@
 ---
 slug: ob-430
-title: "OceanBase 4.3 - Milestone release for real-time AP analysis"
+title: 'OceanBase 4.3 - Milestone release for real-time AP analysis'
 ---
 
 ![1713848983](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2024-04/1713848982839.png)

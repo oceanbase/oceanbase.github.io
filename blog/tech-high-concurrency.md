@@ -1,6 +1,6 @@
 ---
 slug: high-concurrency
-title: High Concurrency of OceanBase
+title: 'OceanBase Technical Insights for High-Concurrency Scenarios'
 ---
 
 As large-scale promotions become the norm, it is a severe challenge for enterprises to ensure a smooth shopping experience for users during peak times, apart from annual shopping festivals such as "Double 11" and "618", by designing their application architecture and database architecture effectively to handle traffic surges. Based on its 10 years of experience in supporting "Double 11" as well as its features of online scaling, high concurrency, and low latency, OceanBase Database can quickly respond to business load changes without affecting the business, thereby improving system throughput during flash sales.

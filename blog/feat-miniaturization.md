@@ -1,9 +1,9 @@
 ---
 slug: miniaturization
-title: "OceanBase 4.0 interpretation: Reduce the threshold of distributed database use, talk about our thinking on small specifications"
+title: 'OceanBase 4.0 interpretation: Reduce the threshold of distributed database use, talk about our thinking on small specifications'
 ---
 
-> ** Author | Zhao Yuzhong, a senior technical expert of OceanBase.** He joined Alipay in 2010 to help with the R&D of the distributed transaction framework, and has engaged in the R&D of storage engines as an OceanBaser since 2013.
+> **Author | Zhao Yuzhong, a senior technical expert of OceanBase.** He joined Alipay in 2010 to help with the R&D of the distributed transaction framework, and has engaged in the R&D of storage engines as an OceanBaser since 2013.
 
 With the emergence of more scenarios and the growth of data volume in recent years, distributed databases have rapidly spread across a variety of sectors, providing great solutions for data-intensive and high-concurrency applications with their technical capabilities such as data consistency, high availability, and elastic scaling. A distributed database is often deployed on multiple servers to ensure high availability and performance. Therefore, to handle small-scale simple scenarios in the early days of their business, users tend to deploy a centralized database that costs less and exhibits higher performance if small specifications. The problem is, sooner or later, the centralized database will be bottlenecked as the business size grows, and adjustments or restructuring of the database architecture by then can be extremely challenging and costly.
 
@@ -34,7 +34,7 @@ As user business grows, OceanBase Database V4.0 can be scaled out to support cha
 - When its business expands to certain size and data becomes more important, the user can simply upgrade to the three-replica architecture, which ensures high availability with three servers and supports automatic disaster recovery. When a server fails, the three-replica architecture of OceanBase Database V4.0 guarantees business recovery in 8s with zero data loss. In other words, the recovery time objective (RTO) is less than 8s and the recovery point objective (RPO) is 0.
 - When user business experiences even greater growth and each server has been upgraded to the highest configurations, the user has to deal with this "happy trouble" as Taobao and Alipay did. In this case, the transparent distributed scalability of OceanBase Database allows the user to scale its cluster out from 3 to 6, 9 or even thousands of servers.
 
-![](https://gw.alipayobjects.com/zos/oceanbase/0c60f73d-d30c-48af-95fe-3755574942b8/image/2023-01-11/295d4719-fc9d-4c62-a95e-9d0e23727a70.png)
+![](https://cdn.nlark.com/yuque/0/2024/png/44196172/1717404942591-ca742562-3485-453b-aecc-b46f967bc77e.png?x-oss-process=image%2Fformat%2Cwebp)
 
 Figure 1 Deployment evolution: OceanBase Database vs conventional databases
 
@@ -84,7 +84,7 @@ With dynamic log stream control, OceanBase Database V4.0 greatly reduces the CPU
 
 The second challenge that OceanBase Database V4.0 needs to take in building a small database is to optimize memory usage. For the sake of performance, OceanBase Database of versions earlier than V4.0 stored some metadata in memory. The memory usage of this portion of metadata was not high if the total memory size was large, but unacceptable for a small-specification server. To support ultimate performance at small specifications, we have achieved dynamic loading of all metadata in OceanBase Database V4.0.
 
-![](https://gw.alipayobjects.com/zos/oceanbase/2eab23cb-2523-4374-8e25-015e62b65f7e/image/2023-01-11/2573623f-47c0-4293-b209-1d02abac7360.png)
+![](https://cdn.nlark.com/yuque/0/2024/png/44196172/1717405467851-d2e42e46-a2a4-48fa-9f7d-010e22355384.png?x-oss-process=image%2Fformat%2Cwebp)
 
 Figure 4 SSTable hierarchical storage
 
@@ -104,7 +104,7 @@ We also compared the two at specifications of 8C32G, 16C64G, and 32C128G, which 
 
 Figure 6 Throughput performance test results of OceanBase Database Community Edition V4.0 and RDS for MySQL 8.0 on Sysbench
 
-![](https://gw.alipayobjects.com/zos/oceanbase/e9b024bf-2078-405a-8b8b-4492b73e227c/image/2023-01-11/ca4e4ba7-3312-470a-9176-080ae7005b77.png)
+![](https://cdn.nlark.com/yuque/0/2024/png/44196172/1717406357524-9c945b06-ee7f-4193-809a-87f02c94c80a.png?x-oss-process=image%2Fformat%2Cwebp%2Fresize%2Cw_1500%2Climit_0)
 
 Table 1 Performance (throughput and response time) test results of OceanBase Database Community Edition V4.0 and RDS for MySQL 8.0 on Sysbench
 

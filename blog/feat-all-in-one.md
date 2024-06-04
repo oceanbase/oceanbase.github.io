@@ -1,6 +1,9 @@
 ---
 slug: all-in-one
 title: 'Work with developers to create an all-in-one database'
+tags:
+  - Release
+  - OceanBase
 ---
 
 ![1713958543](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2024-04/1713958543012.png)

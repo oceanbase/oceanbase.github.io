@@ -1,6 +1,6 @@
 ---
 slug: hello-oceanbase
-title: Hello OceanBase
+title: "Hello OceanBase! The first lesson for becoming an OceanBase contributor"
 ---
 
 > About the author: Xia Ke, a contributor of OceanBase Community, has engaged in the design and development of financial core systems for years. He is now working on the investigation of China-made databases in a subsidiary of a stock exchange, and has recently obtained OceanBase Certified Associate (OBCA) and PingCAP Certified TiDB Associate (PCTA) certificates.

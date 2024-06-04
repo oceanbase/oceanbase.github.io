@@ -1,6 +1,6 @@
 ---
 slug: resource-isolation
-title: Resource Isolation
+title: "Why is resource isolation important for HTAP?"
 ---
 
 > About the author: Xi Huafeng, an OceanBase technical expert, has been dedicated to optimizing the high availability and scalability of databases for 11 years. He helped with the implementation of the Paxos protocol in OceanBase Database and was a member of the OceanBase TPC-C project team. He is now a member of the OceanBase system group, dedicated to building HTAP infrastructure and working on isolation of resources for AP and TP tasks.
