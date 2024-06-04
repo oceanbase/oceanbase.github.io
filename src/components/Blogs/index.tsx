@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import styles from "./styles.module.css"
+import Link from '@docusaurus/Link'
 
 type BlogPost = {
   title: string
@@ -10,40 +11,40 @@ type BlogPost = {
 
 const posts: BlogPost[] = [
   {
-    title: "7 Key Technologies to Ensure High Availability in OceanBase Database",
+    title: "Data Compression Technology Explained Balance between Costs & Performance",
     image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/d105da79260f4d6a8a03571e4a2b17091682305027576.jpg",
-    description: "This article describes the high-availability technologies used in OceanBase Database and answers the some questions about OceanBase Database.",
-    link: "https://en.oceanbase.com/blog/2615184384",
+    description: "With more and more data being generated, storage and maintenance costs are increasing accordingly. Data compression seems to be a natural choice to reduce storage costs.",
+    link: "/blog/compression-ratio",
   },
   {
-    title: "How Alipay Handles Traffic Surge during Double 11 with OceanBase",
-    image: "https://images.unsplash.com/photo-1506624183912-c602f4a21ca7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    description: "Alipay was born in the “IOE” age when the conventional combination of IBM midrange computers, Oracle databases, and EMC storage devices was preferred by companies. The original database system of Alipay used a centralized architecture without sharding that unsurprisingly drowned in the traffic of the first Double 11 shopping festival.",
-    link: "https://en.oceanbase.com/blog/2596694784",
+    title: "Implementing a Vectorized Engine in a Distributed Database",
+    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/d105da79260f4d6a8a03571e4a2b17091682306489558.jpg",
+    description: "When talking to customers, we found that many users want to perform OLAP tasks such as JOIN queries and aggregate analysis while they are processing online transactions. The SQL execution engine of a database must be highly productive in order to deal with OLAP tasks, which often involve the processing of massive data and complicated computing and queries, and are therefore time-consuming.",
+    link: "/blog/vectorized-engine",
   },
   {
-    title: "Using OceanBase to build a real-time user analytics pipeline",
-    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/434994947c5a4ee3a710cd277357c7c51694138540756.png",
-    description: "In the digital era we live in, data is everywhere — it’s collected from sources like web and mobile applications, IoT devices, social media interactions, and CRM systems. As a SaaS product owner myself, I’ve seen how this vast array of data sources can become overwhelming when it comes to user behavior analysis and visualization. The challenge is not just in collecting the data, but also in managing and making sense of it.",
-    link: "https://en.oceanbase.com/blog/5862202624",
+    title: "Flink CDC + OceanBase integration solution for full and incremental synchronization",
+    image: "https://yqintl.alicdn.com/5e631659fe9e02433a696c628bb56f63ddaa6ad2.png",
+    description: "OceanBase is a distributed database developed by Ant Group. The project was established in 2010 and developed iteratively. Its earliest application is to Taobao's favorites. In 2014, the OceanBase R&D Team moved from Taobao to Ant Group, mainly responsible for Alipay's internal de-IOE work. It means replacing the Oracle database used by Alipay. Currently, all the data in Ant Group databases have been migrated to OceanBase. On June 1, 2021, OceanBase was officially opened source to the public, and a MySQL-compatible version was launched.",
+    link: "/blog/flink-cdc",
   },
   {
-    title: "Three Papers from OceanBase Accepted at ICDE 2024",
-    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/434994947c5a4ee3a710cd277357c7c51716519214943.png",
-    description: "From May 13 to 18, 2024, the annual IEEE International Conference on Data Engineering (ICDE 2024) was held in Utrecht, the Netherlands. Three papers co-authored by research teams from colleges, OceanBase, and other partners were accepted and presented at the conference.",
-    link: "https://en.oceanbase.com/blog/11614155520",
+    title: "Integrated Architecture of OceanBase Database",
+    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/d105da79260f4d6a8a03571e4a2b17091682302303091.jpg",
+    description: "The architecture of OceanBase Database V4.0 allows you to deploy a distributed database or a MySQL-like standalone database in the same way that you are familiar with. If you deploy a standalone OceanBase database or a single-container tenant in an OceanBase cluster, the database provides the same efficiency and performance as a conventional standalone database does.",
+    link: "/blog/integrated-architecture",
   },
   {
-    title: "Haidilao’s 6-step recipe for successful digital transformation with OceanBase",
-    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/434994947c5a4ee3a710cd277357c7c51693806847104.png",
-    description: "In 2018, Haidilao moved to a digital system for its memberships. However, as the company expanded into more markets and its member numbers increased, it found that its existing database system couldn’t handle the load.",
-    link: "https://en.oceanbase.com/blog/5800118528",
+    title: "Integrated SQL Engine in OceanBase Database",
+    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/d105da79260f4d6a8a03571e4a2b17091682302303091.jpg",
+    description: "In serial execution, if the table or partition involved is located on the local server, the execution process is exactly the same as that of an SQL statement on a local or standalone server. If the required data is stored on another server, OceanBase Database either fetches the remote data and processes it on the local server or performs remote execution. In remote execution, if all data required in a transaction is located on another server, OceanBase Database forwards the transaction to that server, which will access the storage, process the data, commit the transaction, and then return the results.",
+    link: "/blog/integrated-sql-engine",
   },
   {
-    title: "Create a Langchain alternative from scratch using OceanBase",
-    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/d105da79260f4d6a8a03571e4a2b17091691996101186.png",
-    description: "In this blog post, I will share the journey of bringing this idea to life. From integrating AI with OceanBase to training the model and creating a chatbot, we will explore the challenges, the solutions, and the insights gained along the way. Whether you’re an AI enthusiast, a database professional, or simply interested in the intersection of these two fields, I invite you to join me on this exciting exploration.",
-    link: "https://en.oceanbase.com/blog/5337315328",
+    title: "The architectural evolution of OceanBase Database",
+    image: "https://obportal.s3.ap-southeast-1.amazonaws.com/obc-blog/img/d105da79260f4d6a8a03571e4a2b17091682302303091.jpg",
+    description: "The development of the OceanBase Database started in 2010. The first version, OceanBase Database V0.5, consists of a storage layer and a computing layer, as shown in the figure below. The computing layer, which is stateless, provides SQL services, and the storage layer is a storage cluster of two types of servers.",
+    link: "/blog/architectural-evolution",
   },
 ]
 
@@ -59,8 +60,8 @@ export const Blogs = (): JSX.Element => {
       <div className="container" style={{ paddingTop: 32, paddingBottom: 32 }}>
         <div className={"row"}>
           {posts.map((post, index) => <div className={"col col--4"} key={index}>
-            <a className={clsx("card", styles.card)} style={{ cursor: "pointer", marginBottom: 32 }} href={post.link} target="_blank">
-              <div className="card__header">
+            <Link className={clsx("card", styles.card)} style={{ cursor: "pointer", marginBottom: 32 }} to={post.link}>
+              <div className="card__header" style={{minHeight: 90}}>
                 {/* <h2>{index + 1}</h2> */}
                 <h3>{post.title}</h3>
               </div>
@@ -80,7 +81,7 @@ export const Blogs = (): JSX.Element => {
                   &gt;&gt;
                 </div>
               </div>
-            </a>
+            </Link>
           </div>)}
         </div>
       </div>
