@@ -6,7 +6,7 @@ import TabItem from '@theme/TabItem'
 
 export const GetStarted = (): JSX.Element => {
   return (
-    <div >
+    <div>
       <div className="hero">
         <div className="container" style={{ alignItems: "center", textAlign: "center" }}>
           <h1 className="hero__title"><Translate>Get started with OceanBase Database</Translate></h1>

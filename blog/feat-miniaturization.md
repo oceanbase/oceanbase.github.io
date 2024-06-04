@@ -34,7 +34,7 @@ As user business grows, OceanBase Database V4.0 can be scaled out to support cha
 - When its business expands to certain size and data becomes more important, the user can simply upgrade to the three-replica architecture, which ensures high availability with three servers and supports automatic disaster recovery. When a server fails, the three-replica architecture of OceanBase Database V4.0 guarantees business recovery in 8s with zero data loss. In other words, the recovery time objective (RTO) is less than 8s and the recovery point objective (RPO) is 0.
 - When user business experiences even greater growth and each server has been upgraded to the highest configurations, the user has to deal with this "happy trouble" as Taobao and Alipay did. In this case, the transparent distributed scalability of OceanBase Database allows the user to scale its cluster out from 3 to 6, 9 or even thousands of servers.
 
-![](https://cdn.nlark.com/yuque/0/2024/png/44196172/1717404942591-ca742562-3485-453b-aecc-b46f967bc77e.png?x-oss-process=image%2Fformat%2Cwebp)
+![image.png](https://s2.loli.net/2024/06/04/gLRmXzs5VMCBT1A.webp)
 
 Figure 1 Deployment evolution: OceanBase Database vs conventional databases
 
@@ -84,7 +84,7 @@ With dynamic log stream control, OceanBase Database V4.0 greatly reduces the CPU
 
 The second challenge that OceanBase Database V4.0 needs to take in building a small database is to optimize memory usage. For the sake of performance, OceanBase Database of versions earlier than V4.0 stored some metadata in memory. The memory usage of this portion of metadata was not high if the total memory size was large, but unacceptable for a small-specification server. To support ultimate performance at small specifications, we have achieved dynamic loading of all metadata in OceanBase Database V4.0.
 
-![](https://cdn.nlark.com/yuque/0/2024/png/44196172/1717405467851-d2e42e46-a2a4-48fa-9f7d-010e22355384.png?x-oss-process=image%2Fformat%2Cwebp)
+![5D9183AF-7D02-40D3-8EAE-2173F2025126.png](https://s2.loli.net/2024/06/04/q4N9U5Vz2GAQHTM.png)
 
 Figure 4 SSTable hierarchical storage
 
@@ -104,7 +104,7 @@ We also compared the two at specifications of 8C32G, 16C64G, and 32C128G, which 
 
 Figure 6 Throughput performance test results of OceanBase Database Community Edition V4.0 and RDS for MySQL 8.0 on Sysbench
 
-![](https://cdn.nlark.com/yuque/0/2024/png/44196172/1717406357524-9c945b06-ee7f-4193-809a-87f02c94c80a.png?x-oss-process=image%2Fformat%2Cwebp%2Fresize%2Cw_1500%2Climit_0)
+![lQLPJyDF79Hqr-3NBTjNDHCwRri-CRupihMGSPeKlXwaAA_3184_1336.png](https://s2.loli.net/2024/06/04/vLwU6FWcVfNKy7M.png)
 
 Table 1 Performance (throughput and response time) test results of OceanBase Database Community Edition V4.0 and RDS for MySQL 8.0 on Sysbench
 
