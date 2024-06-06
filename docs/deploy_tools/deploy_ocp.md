@@ -50,7 +50,7 @@ please open http://172.xx.xx.xx:8680
 
 填写 MetaDB 集群部署的信息，包括主机（可以多台）、部署用户、路径等。等待配置检查完成。
 
-<div style="color: red">注意：root@sys 密码一定要保存好，后续登陆 sys 租户需要用这个密码，并且没办法修改和找回。</div>
+<div style={{color: "red"}}>注意：root@sys 密码一定要保存好，后续登陆 sys 租户需要用这个密码，并且没办法修改和找回。</div>
 
 ![image.png](/img/deploy_tools/deploy_ocp/p3.png)
 
@@ -97,7 +97,7 @@ please open http://172.xx.xx.xx:8680
 
 访问地址为页面展示的地址。
 
-<div style="color: red">管理员密码一定要记住，否则将没办法登录 OCP 平台。</div>
+<div style={{color: "red"}}>管理员密码一定要记住，否则将没办法登录 OCP 平台。</div>
 
 ![image.png](/img/deploy_tools/deploy_ocp/p10.png)
 

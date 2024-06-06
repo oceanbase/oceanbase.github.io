@@ -40,7 +40,7 @@ weight: 2
   
   > **说明**
   >
-  > - 如果没有指定 kernel.core_pattern，默认会在 OceanBase 数据库的 `home_path` 路径下生成 core.${ob_pid} 的文件。
+  > - 如果没有指定 kernel.core_pattern，默认会在 OceanBase 数据库的 `home_path` 路径下生成 `core.${ob_pid}` 的文件。
   >
   > - 可以通过 ulimit -a 或者 ulimit -c 查看当前资源的限制，如果设置为 0 或者很小则会在发生节点 core 时无法生产 core 文件的情况。
 

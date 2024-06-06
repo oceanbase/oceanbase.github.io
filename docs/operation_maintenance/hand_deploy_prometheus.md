@@ -51,7 +51,8 @@ curl -H "Content-Type: application/json" -X GET  --user admin:root  http://ip:80
 ```
 
 **日志**
-${ocp.agent.home.path}/log**/\***
+
+`${ocp.agent.home.path}/log**/\***`
 
 ## Prometheus 安装部署
 

@@ -217,7 +217,7 @@ obce-single reload
 
 前面说到 OBD 在启动集群节点进程 observer 时，会在命令行下通过 -o 指定参数。对于运维来说，如果某个节点的进程 observer 因为某种原因退出，启动进程是当务之急。可能需要调整某个参数再启动一次，通过 OBD 工具会导致效率低下。所以，掌握 OceanBase 集群节点进程 observer 的启动方法是很有必要的。
 
-首先进入到工作目录。必须在上一次启动 observer 进程的工作目录（假设它是正确的）下再次尝试。前面分析过，工作目录在 OBD 集群部署配置文件中指定 home_path。本教程里工作目录都默认是 /home/admin/oceanbase-ce。进程 observer 启动后会在这个目录找目录 etc，找默认的参数文件 observer.config.bin。启动后的日志会默认写到 log/{observer.log, rootservice.log, election.log}。所以，工作目录不能错，目录的权限也不能错。
+首先进入到工作目录。必须在上一次启动 observer 进程的工作目录（假设它是正确的）下再次尝试。前面分析过，工作目录在 OBD 集群部署配置文件中指定 home_path。本教程里工作目录都默认是 /home/admin/oceanbase-ce。进程 observer 启动后会在这个目录找目录 etc，找默认的参数文件 observer.config.bin。启动后的日志会默认写到 `log/{observer.log, rootservice.log, election.log}`。所以，工作目录不能错，目录的权限也不能错。
 
 示例：不带参数启动进程 observer 。为了模拟故障，先强行杀掉进程 observer。
 

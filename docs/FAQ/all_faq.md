@@ -4265,4 +4265,4 @@ from __all_virtual_disk_stat ;`
 >
 > **解决方案**
 >
-> 执行 sh run.sh config_sys ${username} ${password} 自动配置或者 ./bin/logproxy -x ${username} 得到加密字符串后手动配置。
+> 执行 `sh run.sh config_sys ${username} ${password}` 自动配置或者 `./bin/logproxy -x ${username}` 得到加密字符串后手动配置。
