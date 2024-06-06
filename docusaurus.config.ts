@@ -27,15 +27,15 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://powerfooi.github.io',
+  url: 'https://oceanbase.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/docs-playground',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'powerfooi', // Usually your GitHub org/user name.
-  projectName: 'docs-playground', // Usually your repo name.
+  organizationName: 'oceanbase', // Usually your GitHub org/user name.
+  projectName: 'oceanbase.github.io', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -57,14 +57,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/powerfooi/docs-playground/tree/main/',
+            'https://github.com/oceanbase/oceanbase.github.io/tree/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/powerfooi/docs-playground/tree/main/',
+            'https://github.com/oceanbase/oceanbase.github.io/tree/main/',
           blogSidebarCount: 'ALL',
           blogSidebarTitle: 'All posts',
         },
