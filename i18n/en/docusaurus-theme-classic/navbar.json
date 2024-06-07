@@ -1,0 +1,46 @@
+{
+  "title": {
+    "message": "OceanBase",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "OceanBase Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Blogs": {
+    "message": "Blogs",
+    "description": "Navbar item with label Blogs"
+  },
+  "item.label.Documentations": {
+    "message": "Documentations",
+    "description": "Navbar item with label Documentations"
+  },
+  "item.label.Downloads": {
+    "message": "Downloads",
+    "description": "Navbar item with label Downloads"
+  },
+  "item.label.Legacy": {
+    "message": "Legacy",
+    "description": "Navbar item with label Legacy"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.obd": {
+    "message": "obd",
+    "description": "Navbar item with label obd"
+  },
+  "item.label.ob-operator": {
+    "message": "ob-operator",
+    "description": "Navbar item with label ob-operator"
+  },
+  "item.label.Developer": {
+    "message": "Developer",
+    "description": "Navbar item with label Developer"
+  },
+  "item.label.API Reference": {
+    "message": "API Reference",
+    "description": "Navbar item with label API Reference"
+  }
+}

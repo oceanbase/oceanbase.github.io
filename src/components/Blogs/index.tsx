@@ -24,7 +24,7 @@ const posts: BlogPost[] = [
   },
   {
     title: "Flink CDC + OceanBase integration solution for full and incremental synchronization",
-    image: "https://yqintl.alicdn.com/5e631659fe9e02433a696c628bb56f63ddaa6ad2.png",
+    image: "/img/ob-history.png",
     description: "OceanBase is a distributed database developed by Ant Group. The project was established in 2010 and developed iteratively. Its earliest application is to Taobao's favorites. In 2014, the OceanBase R&D Team moved from Taobao to Ant Group, mainly responsible for Alipay's internal de-IOE work. It means replacing the Oracle database used by Alipay. Currently, all the data in Ant Group databases have been migrated to OceanBase. On June 1, 2021, OceanBase was officially opened source to the public, and a MySQL-compatible version was launched.",
     link: "/blog/flink-cdc",
   },

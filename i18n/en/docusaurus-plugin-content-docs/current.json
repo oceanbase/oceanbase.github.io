@@ -1,0 +1,70 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
+    "message": "Tutorial - Basics",
+    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
+    "message": "Tutorial - Extras",
+    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  },
+  "sidebar.legacySidebar.category.About OceanBase": {
+    "message": "About OceanBase",
+    "description": "The label for category About OceanBase in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Deploy Oceanbase": {
+    "message": "Deploy Oceanbase",
+    "description": "The label for category Deploy Oceanbase in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Deploy Tools": {
+    "message": "Deploy Tools",
+    "description": "The label for category Deploy Tools in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Data Migration": {
+    "message": "Data Migration",
+    "description": "The label for category Data Migration in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.oms": {
+    "message": "oms",
+    "description": "The label for category oms in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Operation Maintenance": {
+    "message": "Operation Maintenance",
+    "description": "The label for category Operation Maintenance in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.common_sql": {
+    "message": "common_sql",
+    "description": "The label for category common_sql in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Performance Tuning": {
+    "message": "Performance Tuning",
+    "description": "The label for category Performance Tuning in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Trouble Shooting": {
+    "message": "Trouble Shooting",
+    "description": "The label for category Trouble Shooting in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Development Practice": {
+    "message": "Development Practice",
+    "description": "The label for category Development Practice in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Solutions": {
+    "message": "Solutions",
+    "description": "The label for category Solutions in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar legacySidebar"
+  },
+  "sidebar.legacySidebar.category.Appendix": {
+    "message": "Appendix",
+    "description": "The label for category Appendix in sidebar legacySidebar"
+  }
+}

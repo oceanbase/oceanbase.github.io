@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic'
 const docs = [
   {
     label: 'obd',
-    href: "https://github.com/oceanbase/obdeploy"
+    href: "https://en.oceanbase.com/docs/community-obd-en-10000000001181553"
   },
   {
     label: 'ob-operator',
@@ -91,11 +91,11 @@ const config: Config = {
         src: 'img/logo.png',
       },
       items: [
-        {
-          position: 'left',
-          label: 'Quick Start',
-          to: '/docs/tutorial/intro',
-        },
+        // {
+        //   position: 'left',
+        //   label: 'Quick Start',
+        //   to: '/docs/tutorial/intro',
+        // },
         {
           position: "left",
           label: "Blogs",
@@ -111,6 +111,11 @@ const config: Config = {
           label: 'Downloads',
           position: 'left',
           href: "https://en.oceanbase.com/softwarecenter"
+        },
+        {
+          label: 'Legacy',
+          position: 'left',
+          to: '/docs/about_oceanbase/overview',
         },
         {
           type: 'localeDropdown',
@@ -131,15 +136,15 @@ const config: Config = {
           items: [
             {
               label: 'obd',
-              to: 'docs/obd/what-is-obd',
+              href: 'https://en.oceanbase.com/docs/community-obd-en-10000000001181553',
             },
             {
               label: 'ob-operator',
-              to: 'docs/ob-operator/what-is-ob-operator',
+              href: 'https://oceanbase.github.io/ob-operator/',
             },
             {
-              label: 'Tutorial',
-              to: 'docs/tutorial/intro',
+              label: 'Developer',
+              href: 'https://oceanbase.github.io/oceanbase/',
             },
           ],
         },
