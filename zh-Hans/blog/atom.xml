@@ -128,7 +128,7 @@
 <li>The Future Outlook of Flink CDC OceanBase Connector</li>
 </ol>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-an-introduction-to-oceanbase">1. An Introduction to OceanBase<a href="https://oceanbase.github.io/zh-Hans/blog/flink-cdc#1-an-introduction-to-oceanbase" class="hash-link" aria-label="1. An Introduction to OceanBase的直接链接" title="1. An Introduction to OceanBase的直接链接">​</a></h2>
-<p><img decoding="async" loading="lazy" src="https://yqintl.alicdn.com/5e631659fe9e02433a696c628bb56f63ddaa6ad2.png" alt="" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://oceanbase.github.io/zh-Hans/assets/images/ob-history-57a56856ceaf728f1bc12868cdc347f6.png" width="1280" height="720" class="img_ev3q"></p>
 <p>OceanBase is a distributed database developed by Ant Group. The project was established in 2010 and developed iteratively. Its earliest application is to Taobao's favorites. In 2014, the OceanBase R&amp;D Team moved from Taobao to Ant Group, mainly responsible for Alipay's internal de-IOE work. It means replacing the Oracle database used by Alipay. Currently, all the data in Ant Group databases have been migrated to OceanBase. On June 1, 2021, OceanBase was officially opened source to the public, and a MySQL-compatible version was launched.</p>
 <p>OceanBase has undergone three generations of architecture upgrades, including a distributed storage system initially applied to e-commerce companies, a general-purpose distributed database, and an enterprise-level distributed database.</p>
 <p><img decoding="async" loading="lazy" src="https://yqintl.alicdn.com/2551bf4e7b277e5a3af59a91d93ec311b2bb5253.png" alt="" class="img_ev3q"></p>
