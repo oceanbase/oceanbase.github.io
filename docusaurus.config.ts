@@ -81,7 +81,8 @@ const config: Config = {
       appId: '6JQM9QDU5V',
       apiKey: '75f5591a502e47777a08a02b96bc09a1',
       indexName: 'oceanbaseio',
-      contextualSearch: true
+      contextualSearch: false,
+      searchPagePath: false,
     },
     // Replace with your project's social card
     navbar: {
