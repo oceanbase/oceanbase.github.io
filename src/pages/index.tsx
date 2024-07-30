@@ -26,7 +26,7 @@ function HomepageHeader() {
           <div className={clsx(styles.buttons)}>
             <Link
               className="button button--secondary margin-vert--md"
-              to="docs/tutorial/intro"
+              to="docs/user_manual/user_best_practices/tutorial/quickstart"
             >
               <Translate>Try it yourself</Translate>
             </Link>

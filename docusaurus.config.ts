@@ -20,7 +20,7 @@ const prod_docs = [
 const user_manual = [
   {
     label: "User Best Practices",
-    to: '/docs/about_oceanbase/overview'
+    to: '/docs/user_manual/user_best_practices/about_oceanbase/overview'
   },
 ]
     
