@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs_website=self.webpackChunkmy_docs_website||[]).push([[2004],{6810:s=>{s.exports=JSON.parse('{"label":"User Case","permalink":"/zh-Hans/blog/tags/user-case","allTagsPath":"/zh-Hans/blog/tags","count":5,"unlisted":false}')}}]);
