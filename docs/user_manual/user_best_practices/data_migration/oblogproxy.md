@@ -270,7 +270,7 @@ Starting taskexecutor daemon on host obtest004.
     'connector' ='oceanbase-cdc',
     'scan.startup.mode' = 'initial',
     'username' = 'cdc@flink_cdc_1',
-    'password' = 'testcdc123',
+    'password' = '**********',
     'tenant-name' = 'flink_cdc_1',
     'database-name' = 'cdc_test1',
     'table-name' = 'test1',
@@ -358,7 +358,7 @@ Starting taskexecutor daemon on host obtest004.
         'connector' ='jdbc',
         'url' = 'jdbc:mysql://xxx.xxx.xxx.xxx:2883/cdc_test2',
         'username' = 'cdc@flink_cdc_2',
-        'password' = 'testcdc123',
+        'password' = '**********',
         'table-name' = 'test2'
        );
    ```
@@ -423,7 +423,7 @@ Starting taskexecutor daemon on host obtest004.
     'connector' ='oceanbase-cdc',
     'scan.startup.mode' = 'initial',
     'username' = 'cdc@flink_cdc_1',
-    'password' = 'testcdc123',
+    'password' = '**********',
     'tenant-name' = 'flink_cdc_1',
     'database-name' = 'cdc_test1',
     'table-name' = 'test1',
@@ -443,7 +443,7 @@ Starting taskexecutor daemon on host obtest004.
     'connector' ='jdbc',
     'url' = 'jdbc:mysql://xxx.xxx.xxx.xxx:2883/cdc_test2',
     'username' = 'cdc@flink_cdc_2',
-    'password' = 'testcdc123',
+    'password' = '**********',
     'table-name' = 'test2'
     );
    ```
@@ -680,7 +680,7 @@ Starting taskexecutor daemon on host obtest004.
    'connector' ='oceanbase-cdc',
    'scan.startup.mode' = 'initial',
    'username' = 'cdc@flink_cdc_1',
-   'password' = 'testcdc123',
+   'password' = '**********',
    'tenant-name' = 'flink_cdc_1',
    'database-name' = 'cdc_test1',
    'table-name' = 'flinkcdc1',
@@ -701,7 +701,7 @@ Starting taskexecutor daemon on host obtest004.
    'connector' ='oceanbase-cdc',
    'scan.startup.mode' = 'initial',
    'username' = 'cdc@flink_cdc_2',
-   'password' = 'testcdc123',
+   'password' = '**********',
    'tenant-name' = 'flink_cdc_2',
    'database-name' = 'cdc_test2',
    'table-name' = 'flinkcdc2',
@@ -724,7 +724,7 @@ Starting taskexecutor daemon on host obtest004.
      'connector' ='jdbc',
      'url' = 'jdbc:mysql://xxx.xxx.xxx.xxx:2883/cdc_test3',
      'username' = 'cdc@flink_cdc_3',
-     'password' = 'testcdc123',
+     'password' = '**********',
      'table-name' = 'flinkcdc3'
      );
 
