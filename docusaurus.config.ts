@@ -19,6 +19,14 @@ const docs = [
     label: "API Reference",
     href: "https://en.oceanbase.com/docs/common-oceanbase-database-10000000001228248",
   },
+  {
+    label: "User Best Practices",
+    to: '/docs/about_oceanbase/overview',
+  },
+  {
+    label: "MiniOB ",
+    href: "https://oceanbase.github.io/miniob",
+  },
 ]
 
 const config: Config = {
@@ -45,7 +53,7 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh-Hans'],
+    locales: ['en'],
   },
 
   presets: [
@@ -64,7 +72,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/oceanbase/oceanbase.github.io/tree/main/',
+            'https://github.com/oceanbase/oceanbase.github.io/tree/main/blog',
           blogSidebarCount: 'ALL',
           blogSidebarTitle: 'All posts',
         },
@@ -114,15 +122,6 @@ const config: Config = {
           href: "https://en.oceanbase.com/softwarecenter"
         },
         {
-          label: 'Legacy',
-          position: 'left',
-          to: '/docs/about_oceanbase/overview',
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
-        {
           href: 'https://github.com/oceanbase',
           label: 'GitHub',
           position: 'right',
@@ -153,12 +152,16 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/oceanbase',
+              label: 'GitHub Discussion',
+              href: 'http://github.com/oceanbase/oceanbase/discussions',
             },
             {
               label: 'Slack',
-              href: 'https://oceanbase.slack.com/',
+              href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
+            },
+            {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/oceanbase',
             },
             {
               label: 'Forum (in Chinese)',
