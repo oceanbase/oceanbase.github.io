@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs_website=self.webpackChunkmy_docs_website||[]).push([[9267],{8289:e=>{e.exports=JSON.parse('[{"label":"User Case","permalink":"/blog/tags/user-case","count":5},{"label":"Release","permalink":"/blog/tags/release","count":1},{"label":"OceanBase","permalink":"/blog/tags/ocean-base","count":1}]')}}]);

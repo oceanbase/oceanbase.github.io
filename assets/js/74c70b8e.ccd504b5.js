@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs_website=self.webpackChunkmy_docs_website||[]).push([[1439],{8384:e=>{e.exports=JSON.parse('{"label":"OceanBase","permalink":"/blog/tags/ocean-base","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
