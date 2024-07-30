@@ -11,6 +11,14 @@
     "message": "5 minutes to learn the most important Docusaurus concepts.",
     "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.obdiag": {
+    "message": "obdiag",
+    "description": "obdiag SIG"
+  },
+  "sidebar.tutorialSidebar.category.obdiag.link.generated-index.description": {
+    "message": "obdiag SIG",
+    "description": "The generated-index page description for category obdiag SIG in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Tutorial - Extras": {
     "message": "Tutorial - Extras",
     "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"

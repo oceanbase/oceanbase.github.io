@@ -71,3 +71,147 @@
     var(--ifm-color-emphasis-100) 100%
   );
 }
+
+/* css/custom.css */
+.team-members-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  overflow-x: auto; /* Add horizontal scroll for smaller screens */
+  font-family: 'Arial', sans-serif;
+}
+
+.team-members-table,
+.team-members-table th,
+.team-members-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.team-members-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+.team-members-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.team-members-table img {
+  max-width: 80px; /* Increase the size */
+  height: auto;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-members-table a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.team-members-table a:hover {
+  text-decoration: underline;
+}
+
+/* Additional styling */
+.team-members-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.team-members-table tbody tr:first-child {
+  background-color: #fff;
+}
+
+.team-members-table tbody tr:last-child {
+  border-bottom: 2px solid #ddd;
+}
+
+.team-members-table .name-column {
+  font-size: 1.1em;
+  font-weight: 600;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.team-members-table .company-column {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.team-members-table .github-id-column {
+  color: #007bff;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.team-members-table .email-column {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.team-members-table .community-role-column {
+  font-style: italic;
+}
+
+/* Add some hover effects */
+.team-members-table tbody tr:hover td {
+  background-color: #f2f2f2;
+}
+
+.team-members-table tbody tr:hover .avatar-column img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Add shadows and transitions */
+.team-members-table {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.team-members-table th,
+.team-members-table td {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add a little bit of animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.team-members-table {
+  animation: fadeIn 1s ease;
+}
+
+/* Adjust table layout to fill available space */
+.team-members-table {
+  display: table;
+  width: 100%;
+}
+
+.team-members-table th,
+.team-members-table td {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.team-members-table .avatar-column {
+  width: 10%; /* Adjust the width to fit the larger images */
+}
+
+.team-members-table .name-column,
+.team-members-table .company-column,
+.team-members-table .github-id-column,
+.team-members-table .email-column,
+.team-members-table .community-role-column {
+  width: 18%; /* Adjust the width to fit the columns */
+}

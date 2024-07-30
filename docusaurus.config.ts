@@ -21,6 +21,33 @@ const docs = [
   },
 ]
 
+const sigs = [
+  {
+    label: 'obdiag',
+    to: "/docs/sig/obdiag/sig_intro"
+  },
+  {
+    label: "artificial-intelligence",
+    to: "/docs/sig/artificial-intelligence/sig_intro"
+  },
+  {
+    label: 'cloud-native',
+    to: "/docs/sig/cloud-native/sig_intro"
+  },
+  {
+    label: "develop-tools",
+    to: "/docs/sig/develop-tools/sig_intro"
+  },
+  {
+    label: "miniob",
+    to: "/docs/sig/miniob/sig_intro"
+  },
+  {
+    label: "operation-management",
+    to: "/docs/sig/operation-management/sig_intro"
+  },
+]
+
 const config: Config = {
   title: 'OceanBase',
   tagline: 'OceanBase is an enterprise distributed relational database management system developed by Ant Group.',
@@ -98,30 +125,37 @@ const config: Config = {
         //   to: '/docs/tutorial/intro',
         // },
         {
-          position: "left",
-          label: "Blogs",
-          to: "/blog"
-        },
-        {
           type: 'dropdown',
           label: 'Documentations',
           position: 'left',
           items: docs,
         },
         {
+          type: 'dropdown',
+          label: 'Special Interest Group(SIG)',
+          position: 'left',
+          items: sigs,
+          // to: "/docs/sig/obdiag/intro"
+        },
+        {
+          position: "left",
+          label: "Blogs",
+          to: "/blog"
+        },
+        {
           label: 'Downloads',
           position: 'left',
-          href: "https://en.oceanbase.com/softwarecenter"
+          href: "https://www.oceanbase.com/softwarecenter"
         },
         {
           label: 'Legacy',
           position: 'left',
           to: '/docs/about_oceanbase/overview',
         },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
+        // {
+        //   type: 'localeDropdown',
+        //   position: 'right',
+        // },
         {
           href: 'https://github.com/oceanbase',
           label: 'GitHub',
@@ -148,6 +182,10 @@ const config: Config = {
               href: 'https://oceanbase.github.io/oceanbase/',
             },
           ],
+        },
+        {
+          title: 'SIG',
+          items: sigs,
         },
         {
           title: 'Community',
