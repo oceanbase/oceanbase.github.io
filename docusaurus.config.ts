@@ -2,32 +2,40 @@ import { themes as prismThemes } from 'prism-react-renderer'
 import type { Config } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
 
-const docs = [
+const prod_docs = [
   {
-    label: 'obd',
+    label: "OceanBase Documents",
+    href: "https://en.oceanbase.com/docs"
+  },
+  {
+    label: 'OBDeployer',
     href: "https://en.oceanbase.com/docs/community-obd-en-10000000001181553"
   },
   {
     label: 'ob-operator',
     href: "https://oceanbase.github.io/ob-operator/"
   },
+]
+    
+const user_manual = [
   {
-    label: "Developer",
+    label: "User Best Practices",
+    to: '/docs/about_oceanbase/overview'
+  },
+]
+    
+
+const dev_manual = [
+  {
+    label: "OceanBase Developer Guide",
     href: "https://oceanbase.github.io/oceanbase/"
   },
   {
-    label: "API Reference",
-    href: "https://en.oceanbase.com/docs/common-oceanbase-database-10000000001228248",
-  },
-  {
-    label: "User Best Practices",
-    to: '/docs/about_oceanbase/overview',
-  },
-  {
-    label: "MiniOB ",
+    label: "MiniOB Developer Guide",
     href: "https://oceanbase.github.io/miniob",
-  },
+  }
 ]
+
 
 const config: Config = {
   title: 'OceanBase',
@@ -112,9 +120,21 @@ const config: Config = {
         },
         {
           type: 'dropdown',
-          label: 'Documentations',
+          label: 'Product Docs',
           position: 'left',
-          items: docs,
+          items: prod_docs,
+        },
+        {
+          type: 'dropdown',
+          label: 'User Manual',
+          position: 'left',
+          items: user_manual,
+        },
+        {
+          type: 'dropdown',
+          label: 'Developer Manual',
+          position: 'left',
+          items: dev_manual,
         },
         {
           label: 'Downloads',
@@ -131,23 +151,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'obd',
-              href: 'https://en.oceanbase.com/docs/community-obd-en-10000000001181553',
-            },
-            {
-              label: 'ob-operator',
-              href: 'https://oceanbase.github.io/ob-operator/',
-            },
-            {
-              label: 'Developer',
-              href: 'https://oceanbase.github.io/oceanbase/',
-            },
-          ],
-        },
         {
           title: 'Community',
           items: [
@@ -172,6 +175,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
+            {
+              label: 'About OceanBase',
+              href: 'https://en.oceanbase.com/about',
+            },
             {
               label: 'Blog',
               to: '/blog',
