@@ -24,7 +24,6 @@ const user_manual = [
   },
 ]
 
-
 const dev_manual = [
   {
     label: "OceanBase Developer Guide",
@@ -35,6 +34,7 @@ const dev_manual = [
     href: "https://oceanbase.github.io/miniob",
   }
 ]
+
 
 const sigs = [
   {
@@ -60,8 +60,9 @@ const sigs = [
   {
     label: "operation-management",
     to: "/docs/sig/operation-management/sig_intro"
-  },
+  }
 ]
+
 
 const config: Config = {
   title: 'OceanBase',
@@ -134,33 +135,10 @@ const config: Config = {
         src: 'img/logo.png',
       },
       items: [
-        // {
-        //   position: 'left',
-        //   label: 'Quick Start',
-        //   to: '/docs/tutorial/intro',
-        // },
-        {
-          type: 'dropdown',
-          label: 'Documentations',
-          position: 'left',
-          items: docs,
-        },
-        {
-          type: 'dropdown',
-          label: 'Special Interest Group(SIG)',
-          position: 'left',
-          items: sigs,
-          // to: "/docs/sig/obdiag/intro"
-        },
         {
           position: "left",
           label: "Blogs",
           to: "/blog"
-        },
-        {
-          label: 'Downloads',
-          position: 'left',
-          href: "https://www.oceanbase.com/softwarecenter"
         },
         {
           type: 'dropdown',
@@ -181,14 +159,17 @@ const config: Config = {
           items: dev_manual,
         },
         {
-          label: 'Legacy',
+          type: 'dropdown',
+          label: 'Special Interest Group(SIG)',
           position: 'left',
-          to: '/docs/about_oceanbase/overview',
+          items: sigs,
+          // to: "/docs/sig/obdiag/intro"
         },
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
+        {
+          label: 'Downloads',
+          position: 'left',
+          href: "https://en.oceanbase.com/softwarecenter"
+        },
         {
           href: 'https://github.com/oceanbase',
           label: 'GitHub',
@@ -200,19 +181,15 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Community',
           items: [
             {
-              label: 'obd',
-              href: 'https://en.oceanbase.com/docs/community-obd-en-10000000001181553',
+              label: 'GitHub Discussion',
+              href: 'http://github.com/oceanbase/oceanbase/discussions',
             },
             {
-              label: 'ob-operator',
-              href: 'https://oceanbase.github.io/ob-operator/',
-            },
-            {
-              label: 'Developer',
-              href: 'https://oceanbase.github.io/oceanbase/',
+              label: 'Slack',
+              href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
             },
           ],
         },
