@@ -7,7 +7,7 @@ weight: 1
 ## Only need to configure when remote login is required
 user:
   username: admin
-  password: xxxx
+  password: ****
 #   key_file: your ssh-key file path if need
 #   port: your ssh port, default 22
 #   timeout: ssh connection timeout (second), default 30
@@ -38,9 +38,9 @@ oceanbase-ce:
     # observer cluster name, consistent with obproxy's cluster_name
     appname: obtest
     # root_password: # root user password, can be empty
-    root_password: xxx
+    root_password: ****
     # proxyro_password: # proxyro user pasword, consistent with obproxy's observer_sys_password, can be empty
-    proxyro_password: xxx
+    proxyro_password: ****
   # In this example , support multiple ob process in single node, so different process use different ports.
   # If deploy ob cluster in multiple nodes, the port and path setting can be same.
   server1:
@@ -95,7 +95,7 @@ obproxy-ce:
     skip_proxy_sys_private_check: true
     enable_strict_kernel_release: false
     # obproxy_sys_password: # obproxy sys user password, can be empty. When a depends exists, OBD gets this value from the oceanbase-ce of the depends.
-    obproxy_sys_password: xxx
+    obproxy_sys_password: ****
     # observer_sys_password: # proxyro user pasword, consistent with oceanbase-ce's proxyro_password, can be empty. When a depends exists, OBD gets this value from the oceanbase-ce of the depends.
-    observer_sys_password: xxx
+    observer_sys_password: ****
     ```

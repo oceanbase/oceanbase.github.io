@@ -311,9 +311,9 @@ oceanbase-ce:
     # observer cluster name, consistent with obproxy's cluster_name
     appname: obtest
     # root_password: # root user password, can be empty
-    root_password: password01
+    root_password: *********
     # proxyro_password: # proxyro user pasword, consistent with obproxy's observer_sys_password, can be empty
-    proxyro_password: password01
+    proxyro_password: *********
   # In this example , support multiple ob process in single node, so different process use different ports.
   # If deploy ob cluster in multiple nodes, the port and path setting can be same.
   server1:
@@ -368,9 +368,9 @@ obproxy-ce:
     skip_proxy_sys_private_check: true
     enable_strict_kernel_release: false
     # obproxy_sys_password: # obproxy sys user password, can be empty. When a depends exists, OBD gets this value from the oceanbase-ce of the depends.
-    obproxy_sys_password: password01
+    obproxy_sys_password: *********
     # observer_sys_password: # proxyro user pasword, consistent with oceanbase-ce's proxyro_password, can be empty. When a depends exists, OBD gets this value from the oceanbase-ce of the depends.
-    observer_sys_password: password01
+    observer_sys_password: *********
 ```
 
 需要关注的配置项：
@@ -427,10 +427,10 @@ obd cluster display obtest
 通过 obd cluster display obtest 可以查询到 sys 租户 root 用户的连接串
 ```
 # 通过 OBServer 连接到集群
-mysql -h192.168.1.2 -P2881 -uroot@sys -p'password01' -Doceanbase -A
+mysql -h192.168.1.2 -P2881 -uroot@sys -p'*********' -Doceanbase -A
 
 # 通过 OBProxy 连接到集群
-mysql -h192.168.1.2 -P2883 -uroot@sys#obtest -p'password01' -Doceanbase -A
+mysql -h192.168.1.2 -P2883 -uroot@sys#obtest -p'*********' -Doceanbase -A
 ```
 
 至此，集群创建完成。

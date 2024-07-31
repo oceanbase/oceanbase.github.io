@@ -2969,13 +2969,13 @@ from __all_virtual_disk_stat ;`
 > **解决方式**
 >
 > - 方案 1：
->   可执行 `obd cluster edit-config 部署名称` 命令修改 proxyro_password 和 observer_sys_password 一致为 `3u^0kCdpE`，保存修改后再执行 `obd cluster reload 部署名称` 命令即可。
+>   可执行 `obd cluster edit-config 部署名称` 命令修改 proxyro_password 和 observer_sys_password 一致为 `*********`，保存修改后再执行 `obd cluster reload 部署名称` 命令即可。
 > - 方案 2：
 >
 > 1. proxy 里面改（2883 端口，root@proxysys）
->    `alter proxyconfig set observer_sys_password = '3u^0kCdpE';`
+>    `alter proxyconfig set observer_sys_password = '*********';`
 > 2. 直连 observer，sys 租户改 proxyro 用户的密码跟上面一致
->    `set password for proxyro=password('3u^0kCdpE ');`
+>    `set password for proxyro=password('********* ');`
 
 ---
 

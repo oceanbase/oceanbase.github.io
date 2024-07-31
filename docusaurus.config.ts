@@ -16,14 +16,13 @@ const prod_docs = [
     href: "https://oceanbase.github.io/ob-operator/"
   },
 ]
-    
+
 const user_manual = [
   {
     label: "User Best Practices",
     to: '/docs/user_manual/user_best_practices/about_oceanbase/overview'
   },
 ]
-    
 
 const dev_manual = [
   {
@@ -33,6 +32,34 @@ const dev_manual = [
   {
     label: "MiniOB Developer Guide",
     href: "https://oceanbase.github.io/miniob",
+  }
+]
+
+
+const sigs = [
+  {
+    label: 'obdiag',
+    to: "/docs/sig/obdiag/sig_intro"
+  },
+  {
+    label: "artificial-intelligence",
+    to: "/docs/sig/artificial-intelligence/sig_intro"
+  },
+  {
+    label: 'cloud-native',
+    to: "/docs/sig/cloud-native/sig_intro"
+  },
+  {
+    label: "develop-tools",
+    to: "/docs/sig/develop-tools/sig_intro"
+  },
+  {
+    label: "miniob",
+    to: "/docs/sig/miniob/sig_intro"
+  },
+  {
+    label: "operation-management",
+    to: "/docs/sig/operation-management/sig_intro"
   }
 ]
 
@@ -108,11 +135,6 @@ const config: Config = {
         src: 'img/logo.png',
       },
       items: [
-        // {
-        //   position: 'left',
-        //   label: 'Quick Start',
-        //   to: '/docs/tutorial/intro',
-        // },
         {
           position: "left",
           label: "Blogs",
@@ -137,6 +159,13 @@ const config: Config = {
           items: dev_manual,
         },
         {
+          type: 'dropdown',
+          label: 'Special Interest Group(SIG)',
+          position: 'left',
+          items: sigs,
+          // to: "/docs/sig/obdiag/intro"
+        },
+        {
           label: 'Downloads',
           position: 'left',
           href: "https://en.oceanbase.com/softwarecenter"
@@ -151,6 +180,23 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
+        {
+          title: 'Community',
+          items: [
+            {
+              label: 'GitHub Discussion',
+              href: 'http://github.com/oceanbase/oceanbase/discussions',
+            },
+            {
+              label: 'Slack',
+              href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
+            },
+          ],
+        },
+        {
+          title: 'SIG',
+          items: sigs,
+        },
         {
           title: 'Community',
           items: [

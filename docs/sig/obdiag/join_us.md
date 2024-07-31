@@ -1,0 +1,15 @@
+---
+title: 加入我们
+sidebar: sigobdiagSidebar
+sidebar_position: 4
+---
+
+obdiag SIG为广大开发者提供开放、透明的obdiag交流共建平台，诚邀志同道合的伙伴加入我们的行列。在这里，您能够：
+- 直接接触并参与贡献业界领先的分布式数据库诊断技术，将实战中累积的宝贵诊断经验通过obdiag工具落地实现，加速个人技术能力和视野的提升。
+- 加入充满活力的技术社群，与顶尖技术专家们并肩作战，借助社区力量提升诊断技能，成为OceanBase数据库诊断领域的专家。
+- 您的每一份贡献都将直接或间接地帮助全球范围内的OceanBase用户，解决他们面临的诊断问题。
+让我们共同参与obdiag项目建设，共同定义obdiag的发展方向，深度交流、协作创新，携手打造一款深入人心的OceanBase敏捷诊断工具。
+
+## 加入方式
+请扫描如下微信二维码，添加 [OB社区开发者小助手] 并备注“obdiag SIG”，工作人员会联系并指引您加入SIG的相关事宜。
+<img src="/img/sig/sig_helper_wechat.png" alt="wechat" width="200" height="auto" />
