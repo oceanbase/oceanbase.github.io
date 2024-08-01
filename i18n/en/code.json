@@ -2,8 +2,8 @@
   "OceanBase is an enterprise-grade open source distributed SQL database. Unlimited scalable distributed database for data-intensive transactional and real-time operational analytics workloads, with ultra-fast performance that has once achieved world records in the TPC-C benchmark test. OceanBase has served over 1000 customers across the globe and has been supporting all mission critical systems in Alipay.": {
     "message": "OceanBase is an enterprise-grade open source distributed SQL database. Unlimited scalable distributed database for data-intensive transactional and real-time operational analytics workloads, with ultra-fast performance that has once achieved world records in the TPC-C benchmark test. OceanBase has served over 1000 customers across the globe and has been supporting all mission critical systems in Alipay."
   },
-  "Try it yourself": {
-    "message": "Try it yourself"
+  "Get Started": {
+    "message": "Get Started"
   },
   "Highly Compatible with MySQL": {
     "message": "Highly Compatible with MySQL"

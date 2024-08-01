@@ -28,7 +28,7 @@ function HomepageHeader() {
               className="button button--secondary margin-vert--md"
               to="docs/user_manual/user_best_practices/tutorial/quickstart"
             >
-              <Translate>Try it yourself</Translate>
+              <Translate>Get Started</Translate>
             </Link>
             <span style={{display: 'inline-flex', alignItems: 'center'}}>
               <a href="https://github.com/oceanbase/oceanbase" className="margin-horiz--sm" style={{display: 'inline-flex', alignItems: 'center'}}>
