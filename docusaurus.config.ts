@@ -2,6 +2,8 @@ import { themes as prismThemes } from 'prism-react-renderer'
 import type { Config } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
 
+
+
 const prod_docs = [
   {
     label: "OceanBase Documents",
@@ -35,6 +37,23 @@ const dev_manual = [
   }
 ]
 
+const docs = [
+  {
+    label: 'Product Docs',
+    href: "https://en.oceanbase.com/docs",
+    dropdownItems: prod_docs,
+  },
+  {
+    label: 'User Manual',
+    to: '/docs/user_manual/user_best_practices/about_oceanbase/overview',
+    dropdownItems: user_manual,
+  },
+  {
+    label: 'Developer Manual',
+    href: "https://oceanbase.github.io/oceanbase/",
+    dropdownItems: dev_manual,
+  },
+]
 
 const sigs = [
   {
@@ -63,6 +82,29 @@ const sigs = [
   }
 ]
 
+const community = [
+  {
+    label: 'Special Interest Group(SIG)',
+    href: "https://github.com/oceanbase",
+    dropdownItems: sigs,
+  },
+  {
+    label: 'GitHub Discussion',
+    href: 'http://github.com/oceanbase/oceanbase/discussions',
+  },
+  {
+    label: 'Slack',
+    href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
+  },
+  {
+    label: 'Forum (in Chinese)',
+    href: 'https://ask.oceanbase.com/',
+  },
+  {
+    label: 'Stack Overflow',
+    href: 'https://stackoverflow.com/questions/tagged/oceanbase',
+  },
+]
 
 const config: Config = {
   title: 'OceanBase',
@@ -142,27 +184,15 @@ const config: Config = {
         },
         {
           type: 'dropdown',
-          label: 'Product Docs',
+          label: 'Docs',
           position: 'left',
-          items: prod_docs,
+          items: docs,
         },
         {
           type: 'dropdown',
-          label: 'User Manual',
+          label: 'Community',
           position: 'left',
-          items: user_manual,
-        },
-        {
-          type: 'dropdown',
-          label: 'Developer Manual',
-          position: 'left',
-          items: dev_manual,
-        },
-        {
-          type: 'dropdown',
-          label: 'Special Interest Group(SIG)',
-          position: 'left',
-          items: sigs,
+          items: community,
           // to: "/docs/sig/obdiag/intro"
         },
         {
@@ -191,23 +221,6 @@ const config: Config = {
               label: 'Slack',
               href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
             },
-          ],
-        },
-        {
-          title: 'SIG',
-          items: sigs,
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'GitHub Discussion',
-              href: 'http://github.com/oceanbase/oceanbase/discussions',
-            },
-            {
-              label: 'Slack',
-              href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
-            },
             {
               label: 'Stack Overflow',
               href: 'https://stackoverflow.com/questions/tagged/oceanbase',
@@ -217,6 +230,10 @@ const config: Config = {
               href: 'https://ask.oceanbase.com/',
             },
           ],
+        },
+        {
+          title: 'SIG',
+          items: sigs,
         },
         {
           title: 'More',
@@ -231,7 +248,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/oceanbase',
+              href: 'https://github.com/oceanbase/oceanbase',
             },
           ],
         },

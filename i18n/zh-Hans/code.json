@@ -2,6 +2,9 @@
   "Learn about": {
     "message": "了解"
   },
+  "Get Started": {
+    "message": "快速上手"
+  },
   "Docusaurus was designed from the ground up to be easily installed and used to get your website up and running quickly.": {
     "message": "Docusaurus 从一开始就被设计成易于安装和使用，以快速搭建和运行你的网站。"
   },
