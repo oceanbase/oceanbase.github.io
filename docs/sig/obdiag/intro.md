@@ -8,7 +8,7 @@ OceanBase Diagnostic Tool (obdiag) 是一款专门OceanBase打造的敏捷诊断
 ## 项目价值
 OceanBase是原生分布式数据库系统，故障根因分析通常是比较繁琐的，因为涉及的因素可能有很多，如机器环境、配置参数、运行负载等等。专家在排查问题的时候需要获取大量的信息来分析故障，如何高效的获取故障场景下分散在各个节点的信息，挖掘出其中的关联性，帮助用户自助诊断问题便是obdiag的价值。
 
-[img](/img/sig/obdiag/value.png)
+![img](/img/sig/obdiag/value.png)
 
 ## 特性
 ### 产品特性
