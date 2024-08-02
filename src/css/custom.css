@@ -77,7 +77,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 2rem;
-  overflow-x: auto; /* Add horizontal scroll for smaller screens */
+  overflow-x: auto; 
   font-family: 'Arial', sans-serif;
 }
 
