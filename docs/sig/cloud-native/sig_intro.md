@@ -5,8 +5,8 @@ sidebar_position: 2
 
 ## 目标/使命
 
-目标：使OceanBase更好地融入云原生环境，支持容器化部署。
-使命：通过Kubernetes集成、服务网格适配等技术，实现OceanBase在云原生架构下的高效运行。
+- 目标：使OceanBase更好地融入云原生环境，支持容器化部署。
+- 使命：通过Kubernetes集成、服务网格适配等技术，实现OceanBase在云原生架构下的高效运行。
 
 ## 工作范畴
 

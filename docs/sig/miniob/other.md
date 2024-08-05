@@ -6,4 +6,4 @@ sidebar_position: 4
 
 ## 语雀文档
 
-https://oceanbase.yuque.com/org-wiki-obtech-vh7w9r/miniob
+[语雀文档链接](https://oceanbase.yuque.com/org-wiki-obtech-vh7w9r/miniob)
