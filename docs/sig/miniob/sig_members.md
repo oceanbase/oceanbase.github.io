@@ -20,7 +20,6 @@ sidebar: sigobdiagSidebar
 
 虚位以待
 
-## Contributors
 
 ## Contributors
 

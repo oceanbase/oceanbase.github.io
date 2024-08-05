@@ -18,8 +18,20 @@ sidebar: sigobdiagSidebar
 
 ## Committers
 
-虚位以待
+<div class="team-members-table">
+
+| 成员照片 | 姓名 | 公司 | GitHub ID |简介|
+|:----:|:----:|:---------:|:----:|:----:|
+|![李洋(宴晖)](/img/sig/cloud-native/member/yanhui.png "李洋(宴晖)") | <span class="name-column">李洋(宴晖)</span> | <span class="company-column">OceanBase</span> | <span class="github-id-column"><a href="https://github.com/yang1666204" target="_blank">yang1666204</a></span> |OceanBase 管控工具的研发|
+
+</div>
 
 ## Contributors
 
-[加入我们](./join_us.md)
+说明：以姓名拼音首字母顺序排序
+<div class="team-members-table">
+| 姓名 | 公司 | 
+|:----:|:---------:|
+| <span class="name-column">李子毅</span> | <span class="company-column">武汉大学</span> |
+
+</div>
