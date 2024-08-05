@@ -57,10 +57,6 @@ const docs = [
 
 const sigs = [
   {
-    label: 'obdiag',
-    to: "/docs/sig/obdiag/sig_intro"
-  },
-  {
     label: "AI",
     to: "/docs/sig/AI/sig_intro"
   },
@@ -75,6 +71,10 @@ const sigs = [
   {
     label: "miniob",
     to: "/docs/sig/miniob/sig_intro"
+  },
+  {
+    label: 'obdiag',
+    to: "/docs/sig/obdiag/sig_intro"
   },
   {
     label: "operation",
