@@ -8,7 +8,7 @@ sidebar: sigobdiagSidebar
 
 <div class="team-members-table">
 
-| 成员照片 | 姓名 | 公司 | GitHub ID |简介|
+| 成员照片 | 姓名 | 单位 | GitHub ID |简介|
 |:----:|:----:|:---------:|:----:|:----:|
 |![傅榕锋(玉楼)](/img/sig/obdiag/member/yulou.png "傅榕锋(玉楼)") | <span class="name-column">傅榕锋(玉楼)</span> | <span class="company-column">OceanBase</span> | <span class="github-id-column"><a href="https://github.com/frf12" target="_blank">frf12</a></span> |OceanBase 技术专家，专注于 OceanBase 管控工具的研发。OceanBase 敏捷诊断工具 obdiag 的设计参与者，初创成员之一。|
 |![汤庆(靖顺)](/img/sig/obdiag/member/jingshun.png "汤庆(靖顺)") | <span class="name-column">汤庆(靖顺)</span> | <span class="company-column">OceanBase</span> | <span class="github-id-column"><a href="https://github.com/teingi" target="_blank">teingi</a></span> |OceanBase 高级开发工程师，专注于 OceanBase 数据库故障诊断、根因分析与性能调优。OceanBase 敏捷诊断工具 obdiag 的设计者，初创成员之一。|
@@ -20,7 +20,7 @@ sidebar: sigobdiagSidebar
 说明：以姓名拼音首字母顺序排序
 <div class="team-members-table">
 
-| 成员照片 | 姓名 | 公司 | GitHub ID |简介|
+| 成员照片 | 姓名 | 单位 | GitHub ID |简介|
 |:----:|:----:|:---------:|:----:|:----:|
 |![王煦焱(渠磊)](/img/sig/obdiag/member/qulei.png "王煦焱(渠磊)") | <span class="name-column">王煦焱(渠磊)</span> | <span class="company-column">OceanBase</span> | <span class="github-id-column"><a href="https://github.com/wayyoungboy" target="_blank">wayyoungboy</a></span> |OceanBase 高级开发工程师，专注于 OceanBase 数据库故障诊断、根因分析。OceanBase 敏捷诊断工具 obdiag 核心开发者。|
 
@@ -29,7 +29,7 @@ sidebar: sigobdiagSidebar
 ## Contributors
 说明：以姓名拼音首字母顺序排序
 <div class="team-members-table">
-| 姓名 | 公司 | 姓名 | 公司 | 姓名 | 公司 | 姓名 | 公司 | 
+| 姓名 | 单位 | 姓名 | 单位 | 姓名 | 单位 | 姓名 | 单位 | 
 |:----:|:---------:|:----:|:---------:|:----:|:---------:|:----:|:---------:|
 | <span class="name-column">阿超</span> | <span class="company-column">dromara</span> | <span class="name-column">陈海英</span> | <span class="company-column">新疆网商互联</span> | <span class="name-column">陈家宇</span> | <span class="company-column">CATL</span> |  <span class="name-column">杜振鹏 </span> | <span class="company-column">联通研究院</span> |
 | <span class="name-column">樊伟</span> | <span class="company-column">云和恩墨</span> | <span class="name-column">黄尖</span> | <span class="company-column">百丽</span> | <span class="name-column">洪云飞</span> | <span class="company-column">重庆三十七度</span> | <span class="name-column">纪晓冬</span> |<span class="company-column">北控水务</span> | 
