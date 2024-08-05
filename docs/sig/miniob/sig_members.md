@@ -22,4 +22,12 @@ sidebar: sigobdiagSidebar
 
 ## Contributors
 
-[加入我们](./join_us.md)
+## Contributors
+
+说明：以姓名拼音首字母顺序排序
+<div class="team-members-table">
+| 姓名 | 公司 | 姓名 | 公司 |  
+|:----:|:---------:|:----:|:---------:|
+| <span class="name-column">刘一</span> | <span class="company-column">香港城市大学</span> | <span class="name-column">Wenbin1002</span> | <span class="company-column">--</span> |
+
+</div>
