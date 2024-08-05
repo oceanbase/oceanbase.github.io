@@ -1,5 +1,5 @@
 ---
-title: SIG 成员
+title: obdiag SIG 成员
 sidebar_position: 3
 sidebar: sigobdiagSidebar
 ---
