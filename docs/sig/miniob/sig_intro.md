@@ -1,5 +1,5 @@
 ---
-title: SIG 介绍
+title: miniob SIG 介绍
 sidebar_position: 2
 ---
 

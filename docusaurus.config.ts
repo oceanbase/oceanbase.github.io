@@ -57,12 +57,8 @@ const docs = [
 
 const sigs = [
   {
-    label: 'obdiag',
-    to: "/docs/sig/obdiag/sig_intro"
-  },
-  {
-    label: "artificial-intelligence",
-    to: "/docs/sig/artificial-intelligence/sig_intro"
+    label: "AI",
+    to: "/docs/sig/AI/sig_intro"
   },
   {
     label: 'cloud-native',
@@ -77,8 +73,12 @@ const sigs = [
     to: "/docs/sig/miniob/sig_intro"
   },
   {
-    label: "operation-management",
-    to: "/docs/sig/operation-management/sig_intro"
+    label: 'obdiag',
+    to: "/docs/sig/obdiag/sig_intro"
+  },
+  {
+    label: "operation",
+    to: "/docs/sig/operation/sig_intro"
   }
 ]
 
