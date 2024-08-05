@@ -60,7 +60,7 @@ function SubDropdown({
                 style={{ cursor: 'pointer' }}
               >
                 <a
-                  style={{ color: 'inherit' }}
+                  style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}
                   href={item.to ?? item.href ?? undefined}
                 >
                   {item.label}
