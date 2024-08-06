@@ -74,20 +74,25 @@
 
 /* css/custom.css */
 .team-members-table {
-  width: 100%;
-  border-collapse: collapse;
   margin-top: 2rem;
   overflow-x: auto; /* Add horizontal scroll for smaller screens */
   font-family: 'Arial', sans-serif;
+  border: none;
+  display: inline-block;
 }
 
-.team-members-table,
+.team-members-table table {
+  margin-bottom: 0;
+}
+
 .team-members-table th,
 .team-members-table td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: center;
   transition: background-color 0.3s ease;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .team-members-table th {
@@ -190,18 +195,6 @@
 
 .team-members-table {
   animation: fadeIn 1s ease;
-}
-
-/* Adjust table layout to fill available space */
-.team-members-table {
-  display: table;
-  width: 100%;
-}
-
-.team-members-table th,
-.team-members-table td {
-  display: table-cell;
-  vertical-align: middle;
 }
 
 .team-members-table .avatar-column {
