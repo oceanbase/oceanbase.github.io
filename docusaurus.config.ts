@@ -69,7 +69,7 @@ const sigs = [
     to: "/docs/sig/develop-tools/sig_intro"
   },
   {
-    label: "miniob",
+    label: "MiniOB",
     to: "/docs/sig/miniob/sig_intro"
   },
   {
