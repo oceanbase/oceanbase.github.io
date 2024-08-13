@@ -30,8 +30,8 @@ sidebar: sigobdiagSidebar
 
 说明：以姓名拼音首字母顺序排序
 <div class="team-members-table">
-| 姓名 | 单位 | 
-|:----:|:---------:|
-| <span class="name-column">李子毅</span> | <span class="company-column">武汉大学</span> |
+| 姓名 | 单位 | 姓名 | 单位 |
+|:----:|:---------:|:----:|:---------:|
+| <span class="name-column">陈子鎏</span> | <span class="company-column">美的集团软件工程院</span> | <span class="name-column">李子毅</span> | <span class="company-column">武汉大学</span> | 
 
 </div>
