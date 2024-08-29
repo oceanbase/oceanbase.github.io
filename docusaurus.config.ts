@@ -26,7 +26,7 @@ const user_manual = [
   },
   {
     label: "Operation And Maintenance Manual",
-    to: '/docs/user_manual/operation_and_maintenance/test_dir/test_doc'
+    to: '/docs/user_manual/operation_and_maintenance/disaster_recovery_architecture_design/high_availability_architecture_overview'
   },
 ]
 
