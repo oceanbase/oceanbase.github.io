@@ -24,6 +24,10 @@ const user_manual = [
     label: "User Best Practices",
     to: '/docs/user_manual/user_best_practices/about_oceanbase/overview'
   },
+  {
+    label: "Operation And Maintenance Manual",
+    to: '/docs/user_manual/operation_and_maintenance/disaster_recovery_architecture_design/high_availability_architecture_overview'
+  },
 ]
 
 const dev_manual = [
