@@ -21,12 +21,16 @@ const prod_docs = [
 
 const user_manual = [
   {
-    label: "User Best Practices",
-    to: '/docs/user_manual/user_best_practices/about_oceanbase/overview'
+    label: "Quick Starts And Hands-On Practices (in English)",
+    to: '/docs/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_01_overview_of_the_oceanbase_database/introduction'
   },
   {
-    label: "Operation And Maintenance Manual",
+    label: "Operation And Maintenance Manual (in Chinese)",
     to: '/docs/user_manual/operation_and_maintenance/about_this_manual/overview'
+  },
+  {
+    label: "User Best Practices (in Chinese)",
+    to: '/docs/user_manual/user_best_practices/about_oceanbase/scenario_best_practices'
   },
 ]
 
