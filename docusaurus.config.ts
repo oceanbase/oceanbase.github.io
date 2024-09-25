@@ -30,7 +30,7 @@ const user_manual = [
   },
   {
     label: "User Best Practices (in Chinese)",
-    to: '/docs/user_manual/user_best_practices/about_oceanbase/scenario_best_practices'
+    to: '/docs/user_manual/user_best_practices/about_oceanbase/overview'
   },
 ]
 
