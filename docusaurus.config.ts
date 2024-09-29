@@ -152,15 +152,6 @@ const config: Config = {
           editUrl:
             'https://github.com/oceanbase/oceanbase.github.io/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/oceanbase/oceanbase.github.io/tree/main/blog',
-          blogSidebarCount: 'ALL',
-          blogSidebarTitle: 'All posts',
-        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -188,7 +179,7 @@ const config: Config = {
         {
           position: "left",
           label: "Blogs",
-          to: "/blog"
+          to: "docs/blogs/arch/all-in-one"
         },
         {
           type: 'dropdown',
@@ -251,8 +242,8 @@ const config: Config = {
               href: 'https://en.oceanbase.com/about',
             },
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Blogs',
+              to: 'docs/blogs/arch/all-in-one',
             },
             {
               label: 'GitHub',
