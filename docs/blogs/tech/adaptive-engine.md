@@ -1,7 +1,6 @@
 ---
 slug: adaptive-sql-execution-engine
 title: "Adaptive Techniques in the OceanBase SQL Execution Engine"
-label: "Adaptive Techniques in the OceanBase SQL Execution Engine"
 ---
 
 > I have been studying the book "An Interpretation of OceanBase Database Source Code" and noticed that it contains very little content about the SQL executor. The book focuses on parallel execution in the executor. This blog post introduces some common adaptive techniques in the executor of OceanBase Database. You can take it as a supplement to the executor part in this book.
