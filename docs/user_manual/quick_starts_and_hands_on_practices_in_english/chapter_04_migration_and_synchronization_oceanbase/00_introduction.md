@@ -7,6 +7,8 @@ weight: 1
 
 This chapter describes how to migrate and synchronize data in OceanBase Database. 
 
+## Topics
+
 * 4.1 Compatibility between OceanBase Database and MySQL
 
 * 4.2 Ecosystem components for data migration and synchronization
