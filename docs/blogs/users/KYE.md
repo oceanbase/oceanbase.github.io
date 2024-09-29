@@ -114,7 +114,7 @@ However, we must develop a custom HBase CDC service on our own, and invest more 
 
 Therefore, we have upgraded it to the real-time waybill analytics architecture 2.0 (hereinafter referred to as architecture 2.0).
 
-![1706665268](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2024-01/1706665268865.png)
+![1706665268](../../../static/img/blog_img/users/KYE/images/KYE_6.png)
 
 From the preceding figure, you may have noticed some changes in the implementation logic. In Step 1, Canal is deployed to listen for the MySQL business databases. The binlogs generated are written to Kafka. In Step 2, Flink SQL tasks are scheduled to read data from Kafka. The table fields with the same primary key from different modules are written to OceanBase Database. By now, a real-time waybill wide table is already built, and can be directly used by services of the big data platform. In Step 3, OceanBase CDC and the Flink state management feature are used to perform hierarchical calculations. Then, results are aggregated and classified, written to OceanBase Database, and provided for various services of the big data platform based on specific business requirements.
 
