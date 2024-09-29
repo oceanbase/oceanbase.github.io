@@ -11,8 +11,7 @@ About the author: Wei Yuchen, a technical expert from the OceanBase team of Ant 
 
 When we talk about SQL queries in relational databases, the query optimizer naturally comes to mind. It is undoubtedly a crucial and complex module in relational computations, responsible for determining the most efficient execution plan to achieve optimal query results. However, two equally important modules contribute to relational computations: the query scheduler and the plan executor.
 
-In the early stages of relational database development, I/O limitations overshadowed computation time for queries, diminishing the roles of the query scheduler and plan executor. Query performance primarily hinged on the execution **plan selected by the query optimizer. Nowadays, with advancements in computer hardware, the query scheduler and plan executor are gaining significant prominence. This article focuses on some milestones in the evolution of plan executors.  
-**
+In the early stages of relational database development, I/O limitations overshadowed computation time for queries, diminishing the roles of the query scheduler and plan executor. Query performance primarily hinged on the execution **plan selected by the query optimizer. Nowadays, with advancements in computer hardware, the query scheduler and plan executor are gaining significant prominence. This article focuses on some milestones in the evolution of plan executors.**
 
 **Classical Volcano Model**
 ==========
