@@ -1,4 +1,4 @@
 ---
 title: deploy oceanbase database
-weight: 2
+weight: 3
 ---
