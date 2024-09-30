@@ -38,7 +38,7 @@ i. Selection and comparison test of real-time computing engines
 
 We compared three mainstream real-time computing frameworks, namely Storm, Spark Streaming, and Flink. The figure below shows that both Storm and Flink control the data latency within milliseconds. However, Flink has the edge in terms of state management, unified batch and stream processing, data integration ecosystem, and ease of use. Therefore, Flink was our first choice for computing architecture.
 
-![1706665000](../../../static/img/blog_img/users/KYE/images/141727164473_.pic.jpg)
+![1706665000](/img/blog/users/KYE/images/141727164473_.pic.jpg)
 
 ii. Selection of database services based on business-specific custom benchmark standards
 
@@ -47,13 +47,13 @@ We started database service selection right after deciding on the computing engi
 Considering that vendors would optimize their products based on their actual business scenarios during testing, we did not rely fully on the published information. Instead, based on our specific business analysis needs, we came up with custom benchmark standards, including unified test servers and testing environment, standard data sets and standard SQL statements based on actual waybill analysis scenarios, and feature test sets based on our needs.  
 Then, we tested and compared the query performance of DB-U (a distributed HTAP database), OceanBase Database, DB-X (a real-time analytical database), Doris, and Trino. In the test, the databases were deployed on three servers, each with 32 CPU cores and an SSD of 128 GB, and the largest test table contained 100 million rows with 35 GB of data. OceanBase Database and DB-X exhibited better performance, as shown in the figure below.
 
-![1706665049](../../../static/img/blog_img/users/KYE/images/1706665049385.png)
+![1706665049](/img/blog/users/KYE/images/1706665049385.png)
 
 iii. Settling on OceanBase Database after comprehensive consideration
 
 After testing the query performance, we compared the candidate databases in terms of common features, big data ecosystem integration, and maintainability. The results are shown in the figure below. OceanBase Database supports various features except for Hive integration and federated queries. Although DB-X, Doris, and Trino performed better in big data ecosystem integration, it seems that they are not as maintainable as OceanBase Database.
 
-![1706665065](../../../static/img/blog_img/users/KYE/images/1706665065246.png)
+![1706665065](/img/blog/users/KYE/images/1706665065246.png)
 
 Then, we compared the data write performance of OceanBase Connector, Java Database Connectivity (JDBC) Connector, and DB-X Connector. With the degree of parallelism (DOP) set to 10, OceanBase Connector wrote 10 million rows of 280 fields in 10 minutes. Such write speed is roughly the same as that of DB-X Connector, but about two times faster than that of JDBC Connector. These test results further proved the advantages of OceanBase Database in terms of database connectivity and data processing performance.
 
@@ -69,7 +69,7 @@ III. Application of Flink and OceanBase Database in real-time waybill analysis
 
 The following figure shows the logic of our real-time waybill processing public layer. You can see that the business data is processed by a series of systems such as the order, tracking, load plan, scheduling, quality control, and financial systems, undergoes the aggregation of basic fields and complex join calculations, and is written in real time into the wide table in the waybill domain of the data warehouse detail (DWD) layer and stored in OceanBase Database. Then, the data can be analyzed and queried by KYE ERP through the big data platform.
 
-![1706665196](../../../static/img/blog_img/users/KYE/images/1706665196241.png)
+![1706665196](/img/blog/users/KYE/images/1706665196241.png)
 
 With the help of OceanBase Change Data Capture (CDC) and the state management feature of Flink, we perform hierarchical calculations and lightly aggregate the data at the data warehouse summary (DWS) layer to analyze the data tables of time-sensitive services in the last 15 days and the cargo volume of each route. Users can query the aggregated data by using the data access service of our big data platform.
 
@@ -92,7 +92,7 @@ We researched into real-time wide table solutions, and came up with the followin
 
 Based on the preceding real-time wide table solution, we built our real-time waybill analytics architecture 1.0 (hereinafter referred to as architecture 1.0).
 
-![1706665229](../../../static/img/blog_img/users/KYE/images/1706665229603.png)
+![1706665229](/img/blog/users/KYE/images/1706665229603.png)
 
 ii. Optimization of the real-time waybill analytics architecture
 
@@ -114,7 +114,7 @@ However, we must develop a custom HBase CDC service on our own, and invest more 
 
 Therefore, we have upgraded it to the real-time waybill analytics architecture 2.0 (hereinafter referred to as architecture 2.0).
 
-![1706665268](../../../static/img/blog_img/users/KYE/images/KYE_6.png)
+![1706665268](/img/blog/users/KYE/images/KYE_6.png)
 
 From the preceding figure, you may have noticed some changes in the implementation logic. In Step 1, Canal is deployed to listen for the MySQL business databases. The binlogs generated are written to Kafka. In Step 2, Flink SQL tasks are scheduled to read data from Kafka. The table fields with the same primary key from different modules are written to OceanBase Database. By now, a real-time waybill wide table is already built, and can be directly used by services of the big data platform. In Step 3, OceanBase CDC and the Flink state management feature are used to perform hierarchical calculations. Then, results are aggregated and classified, written to OceanBase Database, and provided for various services of the big data platform based on specific business requirements.
 
