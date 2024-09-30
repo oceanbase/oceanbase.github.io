@@ -30,7 +30,7 @@ weight: 1
 - 利用 OceanBase 的多地多副本架构，以及高效的 Paxos 一致性协议工程实现，将数据库集群进行“三地五中心”部署，数据副本分别存储在同城和异地，实现异地容灾。
 - 在“三地五中心”架构下，OceanBase 可以实现单元化部署，配合应用微服务中间件改造（例如蚂蚁分布式中间件 SOFA），实现单个业务单元发生故障后，业务影响爆炸半径最低可降至 1%，并且即使遇到城市级故障也能在 1 分钟内自动恢复，同时保证零数据丢失。
 
-![image.png](/img/solutions/high_availability_scenario/1.png)
+![image.png](/static/img/solutions/high_availability_scenario/1.png)
 <a name="frjM0"></a>
 
 ## 方案优势
@@ -167,10 +167,10 @@ weight: 1
 &emsp;&emsp;通常情况下，进行多机房/多城市的的部署方案最重要的是考虑业务和各方面产生的架构需求。因为多机房/多城市的部署方式也会直接带来整个系统成本的大幅提高（例如，跨城市的网络专线部署等）。所以不同的部署方案是一个基于成本、需求、产品能力、方案可行性等多个维度的权衡结果产出。<br />
 &emsp;&emsp;从技术上来讲，可以解决机房级容灾或者城市级容灾的集群解决方案如下：
 
-- 同城三机房在同城三机房中，三个机房能力对等，都可以承担全部（或者部分）数据的主副本（Leader）角色，同时也承担其他数据的备份副本 (Follower) 的角色。同城三机房集群架构如下图所示。![image.png](/img/solutions/high_availability_scenario/2.png)
+- 同城三机房在同城三机房中，三个机房能力对等，都可以承担全部（或者部分）数据的主副本（Leader）角色，同时也承担其他数据的备份副本 (Follower) 的角色。同城三机房集群架构如下图所示。![image.png](/static/img/solutions/high_availability_scenario/2.png)
 - 三地五中心五副本城市 1 和城市 2 能力对等，可以承担全部（或者部分）数据的主副本（Leader）角色，同时也承担其他数据的备份副本 (Follower) 的角色，城市 3 仅承担从副本角色。三地五中心五副本集群架构如下图所示。
 
-  ![image.png](/img/solutions/high_availability_scenario/3.png)<br />
+  ![image.png](/static/img/solutions/high_availability_scenario/3.png)<br />
 
 &emsp;&emsp;在实际的部署方案中，OceanBase 团队也根据客户的需求定制过同城双机房和两地三中心的方案。两种部署方案都各自解决了一部分相应场景对于系统高可用的需求，但是同时也存在一定容灾能力的短板。在一定时期有可能作为系统架构的中间态成为客户在初始部署的选择，客户也有可能与 OceanBase 数据库主备库架构搭配使用一起达到期望的容灾能力。具体的方案探讨需要考虑多个因素和方面，如果有实际具体的场景，请联系 OceanBase 数据库技术架构师进行方案讨论和对接。
 <a name="AUZ76"></a>
@@ -195,7 +195,7 @@ weight: 1
 - 采用“三地五中心”部署架构，构建异地多活，每个城市都有全量数据，通过不同数据库的读写点交叉，由多个城市共同承担用户的流量访问。
 - 凭借混合云架构、高可用等特性，通过分布式中间件、金融套件、移动开发平台集成解决方案，支撑网商银行核心系统数字化转型。
 
-![image.png](/img/solutions/high_availability_scenario/4.png)
+![image.png](/static/img/solutions/high_availability_scenario/4.png)
 <a name="XrMOg"></a>
 
 ### 用户收益
@@ -221,7 +221,7 @@ weight: 1
 - OceanBase 支持数据多副本，节点间通过 Paxos 协议同步，实现集群高可用和多地灾备。结合中国工商银行实际情况，搭建跨“两地三中心”的分布式集群，以“五副本 +主备”模式进行部署。
 - 集群统一管理调度所有服务器资源，实时动态计算，将业务负载调度到最空闲合理的服务器上运行。故障管理服务自动排查故障机器，调度事务到健康机器上执行，保证全局事务强一致性，无需人工干预。
 
-![image.png](/img/solutions/high_availability_scenario/5.png)
+![image.png](/static/img/solutions/high_availability_scenario/5.png)
 <a name="tReI7"></a>
 
 ### 用户收益
@@ -257,7 +257,7 @@ weight: 1
   - 三地六向数据同步
     - 三地六向秒级同步
 
-![image.png](/img/solutions/high_availability_scenario/6.png)
+![image.png](/static/img/solutions/high_availability_scenario/6.png)
 <a name="DfR6v"></a>
 
 ### 用户收益
