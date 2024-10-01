@@ -25,4 +25,4 @@ You can contact us in the following ways:
 
 > **Note**
 >
-> You can click [here](https://open.oceanbase.com/course/275) to learn the supporting course of this tutorial — From Beginner to Pro: A Guide for DBAs. 
+> You can click [here](https://open.oceanbase.com/course/275) to learn the supporting course of this tutorial — From Beginner to Pro: A Guide for DBAs (in Chinese). 
