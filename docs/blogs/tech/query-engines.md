@@ -65,7 +65,7 @@ The push model was initially used in stream computing. With the advent of the bi
 The preceding figure shows the different control and data flow directions of the pull and push models. As shown, the control flow of the pull model aligns more intuitively with our understanding of query execution. In this model, higher-level operators request and process data from lower-level operators on demand, which is essentially a series of nested function calls. Conversely, the push engine pushes computations from higher-level operators down to the operators that produce the data. Data producers then drive the consumption of this data by the higher-level operators.
 
 To better compare the impact of the pull and push models on code structure, we illustrate the implementation of the next() interface of each operator in the aforementioned query in pseudocode, as shown in the following figure.  
-![1679571653](/static/img/blog/tech/query_engins/1679571653397.png)
+![1679571653](/img/blog/tech/query_engins/1679571653397.png)
 
   
 
@@ -95,13 +95,13 @@ Compared to interpreted execution, compiled execution offers the following benef
 
 In OceanBase V2.0, we use the low-level virtual machine (LLVM) framework to optimize compiled execution for expression operations and Procedural Language (PL) code in the execution engine. Here we introduce the compiled execution of expressions in OceanBase.
 
-![1679571705](/static/img/blog/tech/query_engins/1679571705458.png)
+![1679571705](/img/blog/tech/query_engins/1679571705458.png)
 
 > The compilation phase involves three main steps:  
 
 > 1\. Intermediate representation (IR) code generation: Consider the expression (c1+c2)\*c1+(c1+c2)\*3, where all operands are of the BIGINT type. By analyzing the semantic tree of the expression, the LLVM CodeGen API generates IR code, as shown in Figure (a).
 
-> ![1679571741](/static/img/blog/tech/query_engins/1679571741482.png)
+> ![1679571741](/img/blog/tech/query_engins/1679571741482.png)
 
 > 2\. Code optimization: In the original code, the expression c1+c2 is computed twice. LLVM extracts it as a common subexpression. As shown in Figure (b), the optimized IR code computes c1+c2 only once, and the total number of executed instructions also decreases. If you use interpreted execution for expressions, all intermediate results are materialized in memory. Compiled code, however, allows you to store intermediate results in CPU registers for direct use in the next computation, boosting execution efficiency. LLVM also offers many similar optimizations, which we can use directly to speed up expression computation.
 
@@ -118,7 +118,7 @@ We compared the performance of several databases in the same test environment by
                     END) AS result   
     FROM lineitem;
 
-![1679571812](/static/img/blog/tech/query_engins/1679571812379.png)
+![1679571812](/img/blog/tech/query_engins/1679571812379.png)
 
 As shown in the preceding figure, compiled execution offers a significant performance advantage over interpreted execution when dealing with large data volumes. This advantage increases proportionally with the data size. However, compiled execution has its drawbacks:
 

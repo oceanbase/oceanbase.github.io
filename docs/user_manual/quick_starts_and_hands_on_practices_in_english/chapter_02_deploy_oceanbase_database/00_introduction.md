@@ -32,7 +32,6 @@ You can contact us in the following ways:
 * Forum on the official website of OceanBase Database Community Edition: [https://ask.oceanbase.com/](https://ask.oceanbase.com/)
 
 * GitHub page for reporting issues of OceanBase Database Community Edition: [https://github.com/oceanbase/oceanbase/issues](https://github.com/oceanbase/oceanbase/issues)
-* DingTalk group ID: 33254054
 
 > **Note**
 >
