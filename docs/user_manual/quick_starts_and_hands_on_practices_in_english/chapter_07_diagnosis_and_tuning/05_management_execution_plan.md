@@ -238,7 +238,7 @@ The `EXPLAIN` and `EXPLAIN EXTENDED_NOADDR` statements are most commonly used in
   | stats version | The version of statistics about the `t1` table. The value `0` indicates that no statistics are collected for the table. To ensure correct generation of a plan, statistics about the table can be automatically or manually collected. |
   | dynamic sampling level | The level of dynamic sampling. The value `0` indicates that dynamic sampling is not enabled for the table. <br></br>Dynamic sampling is an optimization tool for the optimizer. For more information, see [Dynamic sampling](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001170728). |
   | estimation method | The method for estimating the number of rows of the `t1` table. The value `DEFAULT` indicates that the number of rows is estimated based on default statistics. In this case, the estimated number of rows can be inaccurate and must be optimized by the database administrator (DBA). The value `STORAGE` indicates that the number of rows is estimated in real time based on the storage layer. The value `STATS` indicates that the number of rows is estimated based on statistics. |
-  | Plan Type | The type of the current plan. Valid values: `LOCAL`, `REMOTE`, and `DISTRIBUTED`. For more information, see the **Types of SQL execution plans** section in [7.2 Principles of ODP SQL routing](20.odp-sql-rout.md). |
+  | Plan Type | The type of the current plan. Valid values: `LOCAL`, `REMOTE`, and `DISTRIBUTED`. For more information, see the **Types of SQL execution plans** section in '7.2 Principles of ODP SQL routing'|
   | Note | The additional information for generating the plan. For example, in the preceding plan, `Degree of Parallelisim is 1 because of table property` indicates that the DOP of the current query is set to `1` because the DOP of the current table is set to `1`. |
 
 - The `EXPLAIN EXTENDED` statement further returns the data storage addresses of expressions involved in the operators in addition to the information returned by the `EXPLAIN EXTENDED_NOADDR` statement. It is usually used by OceanBase Technical Support and R&D engineers in troubleshooting. The syntax is as follows:
@@ -337,7 +337,7 @@ The operators in the plan are described as follows:
 
 ### EXCHANGE IN/EXCHANGE OUT (REMOTE)
 
-OceanBase Database supports local, remote, and distributed plans. For more information, see [7.2 Principles of ODP SQL routing](20.odp-sql-rout.md). The `EXCHANGE IN REMOTE` and `EXCHANGE OUT REMOTE` operators are used in a remote plan to pull remote data in a single partition back to the local node.
+OceanBase Database supports local, remote, and distributed plans. For more information, see '7.2 Principles of ODP SQL routing'. The `EXCHANGE IN REMOTE` and `EXCHANGE OUT REMOTE` operators are used in a remote plan to pull remote data in a single partition back to the local node.
 
 Here is an example: A cluster is created in the 1-1-1 architecture, where the cluster has three zones and each zone has one node. The three zones are denoted as `zone1`, `zone2`, and `zone3`, and the three nodes are denoted as `A`, `B`, and `C`. `primary_zone` is set to `zone1` for a tenant, and the leaders of all tables of the tenant are stored on node `A` in `zone1`.
 
