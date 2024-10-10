@@ -18,11 +18,11 @@ export default function DocPaginatorWrapper(props: Props): JSX.Element {
         {() => (
           <GitalkComponent
             options={{
-              clientID: 'Ov23li5A5dqaNIrrusQQ',
-              clientSecret: 'c76f994e086901344abf11b597afbaa3e947e714',
-              repo: 'docs-playground',
-              owner: 'powerfooI',
-              admin: ['powerfooI'],
+              clientID: 'Ov23lilna50sUJEsRr3R',
+              clientSecret: '1355fdc76c695064a8d8e4938e984e1a7b31edda',
+              owner: 'oceanbase',
+              repo: 'oceanbase.github.io',
+              admin: ['powerfooI', 'Teingi', 'liboyang0730', 'hnwyllmm'],
               id: md5(location.pathname),
             }}
           />
