@@ -309,4 +309,4 @@ OceanBase 数据库通过以下两个配置项来实现全局 CPU 资源的前�
 
 ### 后续操作
 
-尽管通过开启全局 CPU 资源的前后台隔离功能可以达到在全局层面上限制后台任务的目的，如果还希望对后台任务做进一步精细的隔离调控，则需要通过 `DBMS_RESOURCE_MANAGER` 系统包来配置租户内的资源隔离。使用`DBMS_RESOURCE_MANAGER` 系统包配置租户内资源隔离的详细操作，参见 [配置租户内资源隔离](200.resource-isolation-at-user-level-of-mysql-mode.md)。
+尽管通过开启全局 CPU 资源的前后台隔离功能可以达到在全局层面上限制后台任务的目的，如果还希望对后台任务做进一步精细的隔离调控，则需要通过 `DBMS_RESOURCE_MANAGER` 系统包来配置租户内的资源隔离。
