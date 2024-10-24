@@ -7,6 +7,8 @@ weight: 1
 
 OceanBase 数据库具备多样化的服务高可用技术，包括集群内的多副本容灾，以及集群间的物理备库容灾。
 
+> 说明：目前 DBA 进阶教程的内容暂时对应的是 OceanBase 社区版本，本小节的内容不涉及商业版独有的仲裁副本功能。社区版和商业版的能力区别详见：[官网链接](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001428510)。
+
 ## 多副本容灾
 
 ![高可用](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7726968461/p355597.jpg)
