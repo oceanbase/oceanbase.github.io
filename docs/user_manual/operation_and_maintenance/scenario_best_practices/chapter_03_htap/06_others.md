@@ -7,7 +7,7 @@ weight: 5
 
 ## AP 场景参数配置最佳实践
 
-- **<font color="red">最佳实践很简单，就是一句话：推荐直接用参数模板。</font>** 参数模板可以了却手动配置参数的烦恼，详见本教程的[《参数模板》](http://localhost:3000/docs/user_manual/operation_and_maintenance/scenario_best_practices/parameter_templates) 章节。
+- **<font color="red">最佳实践很简单，就是一句话：推荐直接用参数模板。</font>** 参数模板可以了却手动配置参数的烦恼，详见本教程的[《参数模板》](https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/scenario_best_practices/parameter_templates) 章节。
 
 - 这里顺带把 OceanBase 文档团队同学整理的各个模板下的详细参数配置，也分享给大家，供感兴趣的同学参考：
 
