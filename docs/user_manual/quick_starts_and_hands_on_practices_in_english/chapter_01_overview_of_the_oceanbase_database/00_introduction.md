@@ -5,12 +5,17 @@ weight: 1
 
 # 1.0 Introduction
 
-This chapter introduces OceanBase Database and OceanBase ecological tools. 
+This chapter introduces OceanBase Database and OceanBase ecological tools.
 
+## Topics
+
+* 1.1 OceanBase Database
+
+* 1.2 OceanBase ecological tools
 
 ## Contact us
 
-You can contact us in the following ways: 
+You can contact us in the following ways:
 
 * Forum on the official website of OceanBase Database Community Edition: [https://ask.oceanbase.com/](https://ask.oceanbase.com/)
 
@@ -20,4 +25,4 @@ You can contact us in the following ways:
 
 > **Note**
 >
-> You can click [here](https://open.oceanbase.com/course/275) to learn the supporting course of this tutorial — From Beginner to Pro: A Guide for DBAs. 
+> You can click [here](https://open.oceanbase.com/course/275) to learn the supporting course of this tutorial — From Beginner to Pro: A Guide for DBAs (in Chinese). 

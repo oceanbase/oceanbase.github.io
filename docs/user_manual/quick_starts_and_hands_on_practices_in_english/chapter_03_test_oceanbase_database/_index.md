@@ -1,4 +1,4 @@
 ---
-title: deploy oceanbase database
-weight: 2
+title: Test Oceanbase database
+weight: 3
 ---

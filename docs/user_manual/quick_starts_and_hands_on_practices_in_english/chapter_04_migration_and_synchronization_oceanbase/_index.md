@@ -1,4 +1,4 @@
 ---
-title: migration and synchronization oceanbase
+title: Migrate and synchronize data
 weight: 4
 ---
