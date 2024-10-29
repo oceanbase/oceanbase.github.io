@@ -23,10 +23,10 @@ sidebar: sigobdiagSidebar
 
 | 成员照片 | 姓名 | 单位 | GitHub ID |简介|
 |:----:|:----:|:---------:|:----:|:----:|
+|![黄尖](/img/sig/obdiag/member/huangjian.png "黄尖") | <span class="name-column">黄尖</span> | <span class="company-column">百丽</span> | <span class="github-id-column"><a href="https://github.com/RoyceHwangCN" target="_blank">RoyceHwangCN</a></span> | 领衔设计开发了obdiag 的“一键集群洞察”，成为 obdiag 五大功能之一，该功能整合了OceanBase 常用 SQL，让用户可以方便快捷的洞察集群的多种信息，插件化的设计也让“一键集群洞察”功能拥有良好的扩展性，OceanBase 敏捷诊断工具 obdiag 核心开发者。|
 |![纪晓东](/img/sig/obdiag/member/jixiaodong.png "纪晓东") | <span class="name-column">纪晓东</span> | <span class="company-column">北控水务</span> | <span class="github-id-column"><a href="https://github.com/xiaodong-ji" target="_blank">xiaodong-ji</a></span> |积极承担“一键根因分析”、“一键巡检”功能的改造优化工作，同时为了增强代码的稳定性，为 obdiag 补充了大量的单元测试，OceanBase 敏捷诊断工具 obdiag 核心开发者。|
 |![靖永栋](/img/sig/obdiag/member/jingyongdong.png "靖永栋") | <span class="name-column">靖永栋</span> | <span class="company-column">联通软件研究院</span> | <span class="github-id-column"><a href="https://github.com/jingyd66 " target="_blank">jingyd66 </a></span> |专注于 OceanBase 数据库故障诊断、根因分析，在“索引执行失败根因分析”、“DDL 问题根因分析”、“队列积压分析”中贡献突出。OceanBase 敏捷诊断工具 obdiag 核心开发者。|
-|![黄尖](/img/sig/obdiag/member/huangjian.png "黄尖") | <span class="name-column">黄尖</span> | <span class="company-column">百丽</span> | <span class="github-id-column"><a href="https://github.com/RoyceHwangCN" target="_blank">RoyceHwangCN</a></span> | 领衔设计开发了obdiag 的“一键集群洞察”，成为 obdiag 五大功能之一，该功能整合了OceanBase 常用 SQL，让用户可以方便快捷的洞察集群的多种信息，插件化的设计也让“一键集群洞察”功能拥有良好的扩展性，OceanBase 敏捷诊断工具 obdiag 核心开发者。|
-|![孙鹏](/img/sig/obdiag/member/sunpeng.png "孙鹏") | <span class="name-column">孙鹏</span> | <span class="company-column">南京基石</span> | <span class="github-id-column"><a href="https://github.com/oraclebird " target="_blank">oraclebird</a></span> | 设计开发了 obdiag 的“一键集群参数收集”、“一键集群变量收集”、“一键集群参数分析”、“一键集群变量分析”等功能，有效的解决了社区用户反馈的 OB 集群变量/参数差异信息化分析难的痛点。OceanBase 敏捷诊断工具 obdiag 核心开发者。|
+|![孙鹏](/img/sig/obdiag/member/sunpeng.png "孙鹏") | <span class="name-column">孙鹏</span> | <span class="company-column">南京基石数据</span> | <span class="github-id-column"><a href="https://github.com/oraclebird " target="_blank">oraclebird</a></span> | 设计开发了 obdiag 的“一键集群参数收集”、“一键集群变量收集”、“一键集群参数分析”、“一键集群变量分析”等功能，有效的解决了社区用户反馈的 OB 集群变量/参数差异信息化分析难的痛点。OceanBase 敏捷诊断工具 obdiag 核心开发者。|
 
 </div>
 
