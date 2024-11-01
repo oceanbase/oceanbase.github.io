@@ -24,6 +24,15 @@ weight: 1
 
 - 传统主备能力单一 ：依靠主备复制的读写分离方案，备节点仅能处理只读查询，无法进行批处理操作 ；数据实时性也强依赖同步延迟，当遇到大型事务/DDL 时无法保证实时一致性。再加上本身能力有限的 SQL 优化器，无法灵活支持跨分片的多表复杂分析。
 
+    <iframe 
+    width="900" 
+    height="505" 
+    src="https://obbusiness-private.oss-cn-shanghai.aliyuncs.com/video-center/video/video/htap%20cn_6.mp4" 
+    frameborder="0" 
+    allow="accelerometer;  autoplay;  encrypted-media;  gyroscope;  picture-in-picture" 
+    allowfullscreen 
+    ></iframe> 
+
 ## 解决方案
 
 - 通过 OMS 将异构数据库分库分表同步至 OceanBase 原生分区表（多表汇聚同步）。
