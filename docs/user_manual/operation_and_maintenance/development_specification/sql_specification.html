@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">SQL 开发规范 | OceanBase</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/development_specification/sql_specification"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="SQL 开发规范 | OceanBase"><meta data-rh="true" name="description" content="说明："><meta data-rh="true" property="og:description" content="说明："><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/development_specification/sql_specification"><link data-rh="true" rel="alternate" href="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/development_specification/sql_specification" hreflang="en"><link data-rh="true" rel="alternate" href="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/development_specification/sql_specification" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://6JQM9QDU5V-dsn.algolia.net" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.7e3a93fe.css">
-<script src="/assets/js/runtime~main.becee32f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2d92b964.js" defer="defer"></script>
 <script src="/assets/js/main.6ad17261.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -41,6 +41,9 @@
 <p>不推荐使用非同类型的列进行比较或 join，可能会因为出现隐式类型转换而导致无法利用索引的问题。如无法避免，尽量通过 cast 或者 convert 等方式进行必要的显式类型转换。</p>
 </li>
 <li>
+<p>不推荐使用 <code>where (c1,  c2) = (&#x27;abc&#x27;, &#x27;def&#x27;)</code> 这种写法。首先这不是标准 SQL 的写法，只在部分数据库中支持，可移植性差。其次即使被部分数据库支持，一般也无法利用索引，也无法利用各种优化，导致查询效率大幅降低。建议把上述过滤条件改写为：<code>where c1 = &#x27;abc&#x27; and c2 = &#x27;def&#x27; </code>。</p>
+</li>
+<li>
 <p>在设置并行度的时候，最佳并行度为表的分片数，次佳并行度为使用 auto dop 自动生产的并行度。</p>
 </li>
 <li>
@@ -55,7 +58,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dml-语句开发规范">DML 语句开发规范<a href="#dml-语句开发规范" class="hash-link" aria-label="Direct link to DML 语句开发规范" title="Direct link to DML 语句开发  规范">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dml-语句开发规范">DML 语句开发规范<a href="#dml-语句开发规范" class="hash-link" aria-label="Direct link to DML 语句开发规范" title="Direct link to DML 语句开发规范">​</a></h2>
 <ul>
 <li>
 <p>INSERT 语句推荐指定具体的字段名称（column_name），不建议写成 <code>INSERT INTO TBL VALUES(......)</code> 形式。否则在表中增减字段时，容易出现一些非预期的情况。</p>
