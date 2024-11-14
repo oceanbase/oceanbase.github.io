@@ -77,6 +77,10 @@ const sigs = [
     to: "/docs/sig/cloud-native/sig_intro"
   },
   {
+    label: 'compilation',
+    to: "/docs/sig/compilation/sig_intro"
+  },
+  {
     label: "develop-tools",
     to: "/docs/sig/develop-tools/sig_intro"
   },

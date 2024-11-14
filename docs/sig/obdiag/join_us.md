@@ -11,5 +11,5 @@ obdiag SIG为广大开发者提供开放、透明的obdiag交流共建平台，�
 让我们共同参与obdiag项目建设，共同定义obdiag的发展方向，深度交流、协作创新，携手打造一款深入人心的OceanBase敏捷诊断工具。
 
 ## 加入方式
-微信群：添加OB社区小助手(微信号：OBCE888），备注“SIG-obdiag”，等待邀请入群。
+微信群：添加OB SIG 小助手(微信号：OBCE888），备注“SIG-obdiag”，等待邀请入群。
 
