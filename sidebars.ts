@@ -36,6 +36,14 @@ const sidebars: SidebarsConfig = {
     'sig/cloud-native/meeting',
     'sig/cloud-native/other'
   ],
+  sigcompilationSidebar: [
+    'sig/compilation/sig_intro',
+    'sig/compilation/sig_members',
+    'sig/compilation/join_us',
+    'sig/compilation/intro',
+    'sig/compilation/meeting',
+    'sig/compilation/other'
+  ],
   sigdevelop_toolsSidebar: [
     'sig/develop-tools/sig_intro',
     'sig/develop-tools/sig_members',
