@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">系统响应时间不符合预期 | OceanBase</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/emergency_handbook/slow_response"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="系统响应时间不符合预期 | OceanBase"><meta data-rh="true" name="description" content="业务及数据库表现"><meta data-rh="true" property="og:description" content="业务及数据库表现"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/emergency_handbook/slow_response"><link data-rh="true" rel="alternate" href="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/emergency_handbook/slow_response" hreflang="en"><link data-rh="true" rel="alternate" href="https://oceanbase.github.io/docs/user_manual/operation_and_maintenance/emergency_handbook/slow_response" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://6JQM9QDU5V-dsn.algolia.net" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.7e3a93fe.css">
-<script src="/assets/js/runtime~main.2e18a516.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.4272b75f.js" defer="defer"></script>
 <script src="/assets/js/main.58981e08.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -12,7 +12,7 @@
 <p>业务表现：业务响应由快变慢，或者直接超时报错。</p>
 <p>数据库表现：SQL 执行时间变长，响应曲线陡升，SQL 响应延迟 (RT) 明显变高。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="排查方向和流程">排查方向和流程<a href="#排查方向和流程" class="hash-link" aria-label="Direct link to 排查方向和流程" title="Direct link to 排查方向和流程">​</a></h2>
-<p><img decoding="async" loading="lazy" alt="image" src="/assets/images/001-079c51ce26d23c68c8793f5182a5d1bd.png" width="2300" height="1334" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="image" src="/assets/images/001-14e3e1ca7000aee8af6b8461d2f7582e.png" width="2184" height="1258" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="排查硬件问题">排查硬件问题<a href="#排查硬件问题" class="hash-link" aria-label="Direct link to 排查硬件问题" title="Direct link to 排查硬件问题">​</a></h3>
 <p>首先需要排除一下是否由网络、磁盘 IO 等硬件问题导致的 SQL 响应延迟，这里不多啰嗦。</p>
 <br>
@@ -132,7 +132,7 @@
 <br>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="排查计划问题">排查计划问题<a href="#排查计划问题" class="hash-link" aria-label="Direct link to 排查计划问题" title="Direct link to 排查计划问题">​</a></h3>
 <p>如果资源问题这个分支的嫌疑被排除了，大概率就是计划问题了。</p>
-<p><img decoding="async" loading="lazy" alt="image" src="/assets/images/007-cf53844062b09fde884f9299a2fe0687.png" width="2362" height="1406" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="image" src="/assets/images/007-a7e5e4c01f495f3d61a7dd984aabbb7f.png" width="2388" height="1328" class="img_ev3q"></p>
 <p>如果 SQL 执行效率是 “由快变慢”，那么可以重点怀疑以下几个常见问题：</p>
 <ul>
 <li>
