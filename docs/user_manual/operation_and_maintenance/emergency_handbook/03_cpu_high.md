@@ -1,5 +1,5 @@
 ---
-title: CPU 负载过高
+title: CPU 负载异常
 weight: 3
 ---
 
@@ -44,10 +44,12 @@ top -p `pidof observer` -H
 
 ![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/002.png)
 
-比如下面的示例就可以通过 T1002_L0_xxxx 看出来是 1002 号租户在犯坏。
+上面的示例就可以通过 T1002_L0_xxxx 看出来是 1002 号租户在犯坏。
 
 
-然后就可以去 OCP 上去看看这个 1002 号租户在执行什么把 CPU 吃完的 SQL 了。这里就又回到了上一小节的内容，分析下为啥这条 SQL 这么慢了。
+然后就可以去 OCP 上去看看这个 1002 号租户在执行什么把 CPU 吃完的 SQL 了。
+
+这里就又回到了上一小节的内容，需要分析下为啥这条 SQL 这么特殊了。
 
 ![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/003.png)
 
