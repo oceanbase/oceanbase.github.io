@@ -58,3 +58,33 @@ top -p `pidof observer` -H
 #### 如果是后台线程的 CPU 占用大
 
 如果 top -H 看到占用 CPU 的是 T1_HBService、RootBalance、IO_GETEVENT0 这类看不懂的线程 CPU 占用高，建议去社区论坛发帖，联系在论坛中值班的技术支持同学，让他们协助你留下 obstack 或者 pstack 的堆栈信息，进一步分析原因。
+
+
+## What' more ?
+
+> 这一小节的第一版，其实到这里就结束了。后面都是再版时补充的内容。
+
+写完之后，突然想起我老大在一段时间之前好像跟我简单提过一句，说有机会的话，希望能够向用户介绍如何充分利用 OCP 的白屏监控。
+
+一直没写 OCP 监控的内容，原（jiè）因（kó）是，白屏操作太易用了，自己随意拿鼠标点一点，大概率也就玩儿明白了。大多数情况下，连官网文档都不需要。
+
+这里测试一下不看官方文档，直接通过 OCP 来分析 CPU 负载异常吧，顺便做个记录，正好向大家证明 OCP 白屏监控的易用性。
+
+- 首先在 2024/11/21 20:37 左右，给数据库加一点儿压力。
+
+- 然后在 OCP 首页的 “性能监控” 中的 “OBServer 性能” 里，就能看到对应集群 CPU 使用率一下子就快跑满了（“性能监控” 四个字就在首页，不需要到处找）。
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/004.png)
+
+- 再然后，在 “数据库性能” 里，可以看到这个集群的 SQL 响应时间也大幅上升。
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/005.png)
+
+- 再再然后，就可以去看下这个集群里各个租户的情况，发现一个叫做 mysql 的用户租户，情况比较特殊，CPU 使用率很高。
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/006.png)
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/007.png)
+
+- 点一下 “SQL 诊断”，就可以看到是这个集群里，一个叫 mysql 的租户，正在疯狂重复执行一条计算逻辑超级复杂的 SQL。
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/03_cpu_high/008.png)
+
+- 到此为止，问题定位。
+
+虽然我这个是先知道答案，再展示解题过程。不过，这里想证明的其实是，不看官网的 OCP 文档，大家也能轻松利用 OCP 的白屏监控来分析 CPU 使用率异常的问题，只要自信地去用就好了（希望别被我老大看到）~
