@@ -113,8 +113,52 @@ $ps -ef | grep observer
 - 联系社区论坛值班同学分析故障根因。
 
 
-# 参考资料
+## 参考资料
 
 - 洪波大佬的社区博客：[《OceanBase 应急三板斧》](https://open.oceanbase.com/blog/13250502949)
 - 官网文档：[《集群常见故障处理》](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001573937)
 - 官网文档：[《隔离节点》](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001573941)
+
+
+
+## 2024.12.04 补充内容
+
+这里最后多补充一句，就是：
+- 如果机器可以恢复，首先可以尝试在 OCP 中重启。
+
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/05_network_problem/001.png)
+
+
+如果在 OCP 中无法立刻重启，可以手动进入安装目录去启动 observer 进程：
+
+```
+[xiaofeng.lby@sqaobnoxdn011161204091.sa128 /home/xiaofeng.lby/oceanbase]
+$sudo su admin
+
+[admin@sqaobnoxdn011161204091.sa128 /home/xiaofeng.lby/oceanbase]
+$export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/xiaofeng.lby/oceanbase/lib
+
+[admin@sqaobnoxdn011161204091.sa128 /home/xiaofeng.lby/oceanbase]
+$./bin/observer
+./bin/observer
+```
+注意这里需要在 /oceanbase/bin 的上级目录 /oceanbase 去执行 ``./bin/observer`` 这个命令，估计是需要依赖 etc 目录里的一些配置文件。
+```
+[admin@sqaobnoxdn011161204091.sa128 /home/xiaofeng.lby/oceanbase]
+$find . -name observer.config.bin
+./etc/observer.config.bin
+```
+
+- 重启之后，在业务低峰期，可以再切回原来的主。防止 session 长期跨机房访问主副本。
+```
+ALTER TENANT tenant_name primary_zone='zone1';
+
+-- 通过查询 GV$OB_LOG_STAT 中的 ROLE 字段判断切主是否成功。
+SELECT SVR_IP, ROLE, SCN_TO_TIMESTAMP(END_SCN)
+FROM oceanbase.GV$OB_LOG_STAT 
+WHERE TENANT_ID = 1 order by LS_ID, ROLE;
+```
+
+- 如果机器无法恢复，直接在 OCP 里添加新节点，并替换发生硬件故障的节点。添加节点后会自动完成补副本的动作。
+
+- 如果没有新机器资源，在机器维修结束之前，也能够以两副本对外提供服务（但是这种方式对高可用的保障较低，存在风险，需要尽快上线新的机器资源）。
