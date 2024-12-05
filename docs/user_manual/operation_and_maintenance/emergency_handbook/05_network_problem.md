@@ -90,4 +90,17 @@ SELECT zone, status FROM oceanbase.DBA_OB_ZONES;
 
 ### 集群所有机房网络故障
 
-如果多机房均有网络故障，且网络无法短时恢复，需要切换至备集群（祭出备库）。详见：[官网文档](https://www.oceanbase.com/docs/common-ocp-1000000001740130)。
+如果多机房均有网络故障，且网络无法短时恢复，需要切换至备集群（再次祭出备库）。详见：[官网文档](https://www.oceanbase.com/docs/common-ocp-1000000001740130)。
+
+
+## 网卡负载高应急流程（2024.12.05 补充内容）
+
+可以参考这篇 [OceanBase 官网文档](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001574365)。
+
+个人感觉官网上写的备份任务、导数任务等，对网络产生的影响应该远小于对磁盘产生的影响，如果瓶颈是网络，一般不会是这些原因。
+
+不过特殊 SQL 在执行过程中，由分布式计划产生的网络 shuffle 倒是很可能会导致网络负载问题。
+
+如果遇到这种情况，可以通过 OCP 的 SQL 诊断进行确认，对 SQL 进行调优，或者直接在 OCP 上对该 SQL 进行限流。
+
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/05_network_problem/004.png)
