@@ -208,6 +208,10 @@ const config: Config = {
           href: "https://en.oceanbase.com/softwarecenter"
         },
         {
+          label: "Data + AI",
+          href: "https://oceanbase-devhub.github.io"
+        },
+        {
           href: 'https://github.com/oceanbase',
           label: 'GitHub',
           position: 'right',
