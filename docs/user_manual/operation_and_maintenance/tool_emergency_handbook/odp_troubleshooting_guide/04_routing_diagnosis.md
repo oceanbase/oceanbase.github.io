@@ -26,7 +26,7 @@ ODP 是 OceanBase 数据库的接入层和路由层，而路由是 ODP 的核心
 
 可通过 `explain route <your_sql>;` 命令获取 SQL 语句的路由状态信息，在配置项 `route_diagnosis_level` 不为 0 的情况下，该命令会展示详细的诊断信息。`<your_sql>` 语句将会在 ODP 内部进行处理，执行正常的 ODP 转发流程，但不会真正转发给 OBServer 节点。
 
-配置项 `route_diagnosis_level` 是全局配置项，可用来控制输出路由状态信息的详细程度。该配置项取值为一个整数，默认值为 2，表示输出信息可以覆盖二级诊断点，诊断点的详细介绍可参见 [诊断点排查](300.diagnosis-point-troubleshooting/100.overview-of-diagnosis-point-troubleshooting.md) 章节。
+配置项 `route_diagnosis_level` 是全局配置项，可用来控制输出路由状态信息的详细程度。该配置项取值为一个整数，默认值为 2，表示输出信息可以覆盖二级诊断点。
 
 `route_diagnosis_level` 配置项的可选值有 [0-4]，配置的值越大，展示的状态信息越详细。配置值为 0 时表示关闭该模块。关闭该模块时，不会占用 ODP 内存，也不会影响 ODP 性能。
 
@@ -94,7 +94,7 @@ Route Plan
   
   * `[WARN]`：表示路由过程中对应步骤出现异常，重点检查该步骤的信息输出
 
-* Route Plan：路由计划，展示 ODP 转发过程。其中 `SQL_PARSE`/`ROUTE_INFO`/`LOCATION_CACHE_LOOKUP` 为诊断点，诊断点之间存在同级或者父子关系，呈树状。详细信息可参见 [诊断点排查](300.diagnosis-point-troubleshooting/100.overview-of-diagnosis-point-troubleshooting.md) 章节。
+* Route Plan：路由计划，展示 ODP 转发过程。其中 `SQL_PARSE`/`ROUTE_INFO`/`LOCATION_CACHE_LOOKUP` 为诊断点，诊断点之间存在同级或者父子关系，呈树状。
 
 通过 Route Plan 中的 `FETCH_TABLE_RELATED_DATA:{table_entry:"partition information does not exist"}` 可以得知 ODP 查询该表的分区信息，但其信息不存在。
 

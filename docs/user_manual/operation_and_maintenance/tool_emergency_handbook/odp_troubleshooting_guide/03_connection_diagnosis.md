@@ -192,7 +192,7 @@ obproxy_diagnosis 日志通用内容如下：
 
 | 超时事件    |  场景   |   错误码   | 相关配置   | 解决方法  |
 |-------------|--------|---------------|------------|----------|
-| CLIENT_DELETE_CLUSTER_RESOURCE | 集群信息发生变化 | 10022 | ODP 配置项 [cluster_expire_time](../400.configuration-management/200.global-configuration-items/210.cluster-expire-time.md) | 可以通过执行 `ALTER proxyconfig SET <var_name> = <var_value>;` 命令调整 ODP 中 `cluster_expire_time` 配置项暂时规避，`cluster_expire_time` 配置项默认过期时间为一天，新的请求会重置过期时间。  |
+| CLIENT_DELETE_CLUSTER_RESOURCE | 集群信息发生变化 | 10022 | ODP 配置项 [cluster_expire_time](https://www.oceanbase.com/docs/common-odp-doc-cn-1000000001601154) | 可以通过执行 `ALTER proxyconfig SET <var_name> = <var_value>;` 命令调整 ODP 中 `cluster_expire_time` 配置项暂时规避，`cluster_expire_time` 配置项默认过期时间为一天，新的请求会重置过期时间。  |
 | CLIENT_INTERNAL_CMD_TIMEOUT | 内部请求执行超时 | 10022 | 固定时间 30s | 非预期超时，建议联系技术支持人员配合诊断。 |
 | CLIENT_CONNECT_TIMEOUT | 客户端与 ODP 建连超时 | 10022 | 固定时间 10s | 非预期超时，建议联系技术支持人员配合诊断。 |
 | CLIENT_NET_READ_TIMEOUT | ODP 等待用户请求数据超时 | 10022 | OceanBase 数据库系统变量 [net_read_timeout](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000000220757)  | 修改系统变量 `net_read_timeout`，需注意修改 Global 级别的系统变量不会对已有连接生效。 |
