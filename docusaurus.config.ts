@@ -202,6 +202,33 @@ const config: Config = {
           // to: "/docs/sig/obdiag/intro"
         },
         {
+          label: 'Data + AI',
+          type: 'dropdown',
+          position: 'left',
+          items: [
+            {
+              label: 'Devhub',
+              href: 'https://oceanbase-devhub.github.io',
+            },
+            {
+              type: "html",
+              value: '<div style="padding: 0.25rem 0.5rem; font-size: 14px; color: #4e7ff1;">AI Workshops</div>'
+            },
+            {
+              label: 'RAG Bot',
+              href: 'https://oceanbase-devhub.github.io/ai-workshop-2024',
+            },
+            {
+              label: 'Dify (MySQL Compatible)',
+              href: 'https://oceanbase-devhub.github.io/dify/dify@oceanbase-workshop',
+            },
+            {
+              label: 'DB-GPT',
+              href: 'https://oceanbase-devhub.github.io/DB-GPT/docker/compose_examples/ob_dbgpt_tutorial',
+            },
+          ],
+        },
+        {
           label: 'Downloads',
           position: 'left',
           href: "https://en.oceanbase.com/softwarecenter"
