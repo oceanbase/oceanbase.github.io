@@ -1,6 +1,6 @@
 ---
 title: 加入我们
-sidebar: sig_AI_Sidebar
+sidebar: sig_Sidebar
 sidebar_position: 3
 ---
 

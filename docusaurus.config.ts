@@ -101,7 +101,7 @@ const sigs = [
 const community = [
   {
     label: 'Special Interest Group(SIG)',
-    href: "/docs/sig/overview/map",
+    href: "/docs/sig/overview/list",
   },
   {
     label: 'GitHub Discussion',
