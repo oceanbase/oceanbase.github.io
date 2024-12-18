@@ -68,6 +68,10 @@ const sidebars: SidebarsConfig = {
     'sig/operation/meeting',
     'sig/operation/other'
   ],
+  sigsSidebar: [
+    'sig/overview/list',
+    'sig/overview/join_us'
+  ],
   quick_starts_and_hands_on_practices_in_englishSidebar: [
     {
       type: 'category',

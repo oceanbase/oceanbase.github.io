@@ -101,8 +101,7 @@ const sigs = [
 const community = [
   {
     label: 'Special Interest Group(SIG)',
-    href: "https://github.com/oceanbase",
-    dropdownItems: sigs,
+    href: "/docs/sig/overview/list",
   },
   {
     label: 'GitHub Discussion',
