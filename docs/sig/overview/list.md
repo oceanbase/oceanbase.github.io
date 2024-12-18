@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 
 | SIG 英文名称 | SIG 中文名称 | 地址 |
-|:----:|:----:|:---------:|
+|----|----|---------|
 |AI SIG|OceanBase 人工智能与大模型集成组|https://oceanbase.github.io/docs/sig/AI/sig_intro|
 |cloud-native SIG|OceanBase 云原生组|https://oceanbase.github.io/docs/sig/cloud-native/sig_intro|
 |compilation SIG|编译与兼容SIG|https://oceanbase.github.io/docs/sig/compilation/sig_intro|

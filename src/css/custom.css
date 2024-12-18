@@ -15,6 +15,7 @@
   --ifm-color-primary-lightest: #6ba0f9;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
   a {
     text-decoration: none;
   }
@@ -65,17 +66,16 @@
   --docsearch-hit-background: var(--ifm-color-emphasis-100);
   /* Footer */
   --docsearch-footer-background: var(--ifm-background-surface-color);
-  --docsearch-key-gradient: linear-gradient(
-    -26.5deg,
-    var(--ifm-color-emphasis-200) 0%,
-    var(--ifm-color-emphasis-100) 100%
-  );
+  --docsearch-key-gradient: linear-gradient(-26.5deg,
+      var(--ifm-color-emphasis-200) 0%,
+      var(--ifm-color-emphasis-100) 100%);
 }
 
 /* css/custom.css */
 .team-members-table {
   margin-top: 2rem;
-  overflow-x: auto; /* Add horizontal scroll for smaller screens */
+  overflow-x: auto;
+  /* Add horizontal scroll for smaller screens */
   font-family: 'Arial', sans-serif;
   border: none;
   display: inline-block;
@@ -107,7 +107,8 @@
 }
 
 .team-members-table img {
-  max-width: 80px; /* Increase the size */
+  max-width: 80px;
+  /* Increase the size */
   height: auto;
   border-radius: 50%;
   margin: 0 auto;
@@ -140,7 +141,8 @@
 .team-members-table .name-column {
   font-size: 1.1em;
   font-weight: 600;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
 }
 
 .team-members-table .company-column {
@@ -188,6 +190,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -198,7 +201,8 @@
 }
 
 .team-members-table .avatar-column {
-  width: 10%; /* Adjust the width to fit the larger images */
+  width: 10%;
+  /* Adjust the width to fit the larger images */
 }
 
 .team-members-table .name-column,
@@ -206,5 +210,6 @@
 .team-members-table .github-id-column,
 .team-members-table .email-column,
 .team-members-table .community-role-column {
-  width: 18%; /* Adjust the width to fit the columns */
+  width: 18%;
+  /* Adjust the width to fit the columns */
 }
