@@ -78,15 +78,7 @@ Any parallel query experiences two levels of resource control.
 
 The PX resource manager can query the `GV$OB_PX_TARGET_MONITOR` view for the thread usage information on each OBServer node of a tenant. For more information about fields in the view, see the **GV$OB_PX_TARGET_MONITOR** topic of the OceanBase Database documentation.
 
-    OceanBase(admin@oceanbase)>select  * from GV$OB_PX_TARGET_MONITOR;
-    +--------------+----------+-----------+-----------+-----------------+--------------+-----------+-------------+------------------+-------------------+------------------------------+
-    | SVR_IP       | SVR_PORT | TENANT_ID | IS_LEADER | VERSION         | PEER_IP      | PEER_PORT | PEER_TARGET | PEER_TARGET_USED | LOCAL_TARGET_USED | LOCAL_PARALLEL_SESSION_COUNT |
-    +--------------+----------+-----------+-----------+-----------------+--------------+-----------+-------------+------------------+-------------------+------------------------------+
-    | 192.168.11.2 |    19512 |      1004 | N         | 555393108309134 | 192.168.11.1 |     19510 |          10 |                6 |                 0 |                            0 |
-    | 192.168.11.2 |    19512 |      1004 | N         | 555393108309134 | 192.168.11.2 |     19512 |          10 |                0 |                 0 |                            0 |
-    | 192.168.11.1 |    19510 |      1004 | Y         | 555393108309134 | 192.168.11.1 |     19510 |          10 |                6 |                 6 |                            1 |
-    | 192.168.11.1 |    19510 |      1004 | Y         | 555393108309134 | 192.168.11.2 |     19512 |          10 |                0 |                 0 |                            1 |
-    +--------------+----------+-----------+-----------+-----------------+--------------+-----------+-------------+------------------+-------------------+------------------------------+
-    4 rows in set (0.002 sec)
+![1](/img/blogs/tech/parallel-execution-III/1.png)
+
 
 The global resource usage status queried at a specific moment may be inconsistent on different OBServer nodes. However, the global status is synchronized every 500 ms at the background. Generally, the global resource usage status queried on the OBServer nodes is basically consistent without obvious deviations.

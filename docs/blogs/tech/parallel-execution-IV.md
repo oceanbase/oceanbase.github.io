@@ -124,8 +124,8 @@ To resolve this issue, OceanBase Database V4.1 has introduced the [direct load](
 
 You can use an `APPEND` hint to enable the direct load feature. Before starting direct load, make sure that the previous transaction is committed and set `autocommit` to `1`. In OceanBase Database V4.2, direct load must be used in combination with PDML. If PDML is not enabled by using a hint or for the session, the direct load hint is automatically ignored. Here is an example:
 
-    set autocommit = 1;
-    insert /*+ append enable_parallel_dml parallel(3) */ into t1 select * from t2;
+![1](/img/blogs/tech/parallel-execution-IV/1.png)
+
 
 In later versions, you can use the direct load feature at any point within a transaction.
 
@@ -149,11 +149,7 @@ If parallel execution is not performed for a DML statement, you can execute the 
 
 When you update the partitioning key of a partitioned table, data may be migrated from one partition to another. In Oracle mode, you can execute the following statement to disable cross-partition data migration:
 
-    create table t1 (c1 int primary key, c2 int) partition by hash(c1) partitions 3;
-    alter table t1 disable row movement;
-    
-    OceanBase(TEST@TEST)>update t1 set c1 = c1 + 100000000;
-    ORA-14402: updating partition key column would cause a partition change
+![2](/img/blogs/tech/parallel-execution-IV/2.png)
 
 However, PDML will ignore the `ROW MOVEMENT` attribute of tables and always allow partitioning key updates.
 
@@ -180,7 +176,7 @@ All parallel DDL operations are completed by using specific PDML operations. For
 
 In OceanBase Database V4.2, **only the `CREATE INDEX` statement** supports enabling parallel execution by using the `PARALLEL` hint. For other DDL statements, parallel execution can be enabled only by using a session variable or the `PARALLEL` attribute of the table.
 
-    CREATE /*+ PARALLEL(3) */ INDEX IDX ON T1(C2);
+![3](/img/blogs/tech/parallel-execution-IV/3.png)
 
   
 
@@ -189,17 +185,7 @@ In OceanBase Database V4.2, **only the `CREATE INDEX` statement** supports enabl
 
 All the preceding DDL statements support specifying a DOP by using a session variable. After you specify a DOP, all DDL statements in the session are executed in parallel based on the specified DOP. The DOPs of the query part and modification part are the same.
 
-    SET _FORCE_PARALLEL_DDL_DOP = 3;
-    CREATE TABLE T1 (C1 int, C2 int, C3 int, C4 int);
-    CREATE INDEX IDX ON T1(C2);
-    
-    -- To enable parallel execution for the CREATE TABLE AS SELECT statement in OceanBase Database V4.2,
-    -- you must specify the _FORCE_PARALLEL_DML_DOP parameter
-    -- instead of the _FORCE_PARALLEL_DDL_DOP parameter.
-    -- OceanBase Database of later versions may require specifying the _FORCE_PARALLEL_DDL_DOP parameter.
-    SET _FORCE_PARALLEL_DML_DOP = 3;
-    CREATE TABLE T1 (C1 int, C2 int, C3 int, C4 int);
-    CREATE TABLE T2 AS SELECT * FROM T1;
+![4](/img/blogs/tech/parallel-execution-IV/4.png)
 
   
 
@@ -214,17 +200,7 @@ In the real-world test, the parallel execution was not performed on the example 
 
 When you want to perform DDL operations on a table that has the `PARALLEL` attribute, you can use the `SET` statement to enable parallel execution by setting the corresponding session variable. Here is an example:
 
-    SET _ENABLE_PARALLEL_DDL = 1;
-    CREATE TABLE T1 (C1 int, C2 int, C3 int, C4 int) PARALLEL = 3;
-    CREATE INDEX IDX ON T1(C2) PARALLEL = 2;
-    
-    -- To enable parallel execution for the CREATE TABLE AS SELECT statement in OceanBase Database V4.2,
-    -- you must specify the _ENABLE_PARALLEL_DML parameter
-    -- instead of the _ENABLE_PARALLEL_DDL parameter.
-    -- OceanBase Database of later versions may require specifying the _ENABLE_PARALLEL_DDL parameter.
-    SET _ENABLE_PARALLEL_DML = 1;
-    CREATE TABLE T1 (C1 int, C2 int, C3 int, C4 int) PARALLEL = 3;
-    CREATE TABLE T2 PARALLEL 2 AS SELECT * FROM T1;
+![5](/img/blogs/tech/parallel-execution-IV/5.png)
 
   
 
@@ -250,11 +226,11 @@ In OceanBase Database V4.2, the `CREATE TABLE AS SELECT` statement does not supp
 
 `LOAD DATA` is not implemented based on PDML. Specifically, the system uses multiple threads to split the CSV file into multiple `INSERT` statements and then distributes the `INSERT` statements based on the specified DOP.
 
-    LOAD DATA /*+ parallel(2) */ infile "test.csv" INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+![6](/img/blogs/tech/parallel-execution-IV/6.png)
 
 In the preceding statement, the `PARALLEL` attribute specifies the DOP for loading data. If the value of the `PARALLEL` attribute is not specified, `LOAD DATA` is executed based on the DOP of 4, which is the default value of the `PARALLEL` attribute. We recommend that you set `PARALLEL` to a value within the range from `0` to the maximum number of CPU cores of the tenant.
 
-  
+
 
 4.5 Scenarios Where Parallel Execution Is Partially Inapplicable
 -------------

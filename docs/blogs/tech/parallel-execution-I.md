@@ -2,6 +2,7 @@
 slug: parallel-execution-I
 title: 'Mastering Parallel Execution in OceanBase Database: Part 1 - Introduction'
 ---
+# Mastering Parallel Execution in OceanBase Database: Part 1 - Introduction
 
 > Message from the Author:  
 >    This is a long-expected systematic guide on parallel execution (PX).  
@@ -162,52 +163,11 @@ As shown in the following figure:
   
 
 Here is a sample query:
+![1](/img/blogs/tech/parallel-execution-I/1.png)
 
-    create table game (round int primary key, team varchar(10), score int)
-        partition by hash(round) partitions 3;
-    
-    insert into game values (1, "CN", 4), (2, "CN", 5), (3, "JP", 3);
-    insert into game values (4, "CN", 4), (5, "US", 4), (6, "JP", 4);
-    
-    select /*+ parallel(3) */ team, sum(score) total from game group by team;
 
 The execution plan for the query statement is as follows:
-
-    OceanBase(admin@test)>explain select /*+ parallel(3) */ team, sum(score) total from game group by team;
-    +---------------------------------------------------------------------------------------------------------+
-    | Query Plan                                                                                              |
-    +---------------------------------------------------------------------------------------------------------+
-    | =================================================================                                       |
-    | |ID|OPERATOR                     |NAME    |EST.ROWS|EST.TIME(us)|                                       |
-    | -----------------------------------------------------------------                                       |
-    | |0 |PX COORDINATOR               |        |1       |4           |                                       |
-    | |1 | EXCHANGE OUT DISTR          |:EX10001|1       |4           |                                       |
-    | |2 |  HASH GROUP BY              |        |1       |4           |                                       |
-    | |3 |   EXCHANGE IN DISTR         |        |3       |3           |                                       |
-    | |4 |    EXCHANGE OUT DISTR (HASH)|:EX10000|3       |3           |                                       |
-    | |5 |     HASH GROUP BY           |        |3       |2           |                                       |
-    | |6 |      PX BLOCK ITERATOR      |        |1       |2           |                                       |
-    | |7 |       TABLE SCAN            |game    |1       |2           |                                       |
-    | =================================================================                                       |
-    | Outputs & filters:                                                                                      |
-    | -------------------------------------                                                                   |
-    |   0 - output([INTERNAL_FUNCTION(game.team, T_FUN_SUM(T_FUN_SUM(game.score)))]), filter(nil), rowset=256 |
-    |   1 - output([INTERNAL_FUNCTION(game.team, T_FUN_SUM(T_FUN_SUM(game.score)))]), filter(nil), rowset=256 |
-    |       dop=3                                                                                             |
-    |   2 - output([game.team], [T_FUN_SUM(T_FUN_SUM(game.score))]), filter(nil), rowset=256                  |
-    |       group([game.team]), agg_func([T_FUN_SUM(T_FUN_SUM(game.score))])                                  |
-    |   3 - output([game.team], [T_FUN_SUM(game.score)]), filter(nil), rowset=256                             |
-    |   4 - output([game.team], [T_FUN_SUM(game.score)]), filter(nil), rowset=256                             |
-    |       (#keys=1, [game.team]), dop=3                                                                     |
-    |   5 - output([game.team], [T_FUN_SUM(game.score)]), filter(nil), rowset=256                             |
-    |       group([game.team]), agg_func([T_FUN_SUM(game.score)])                                             |
-    |   6 - output([game.team], [game.score]), filter(nil), rowset=256                                        |
-    |   7 - output([game.team], [game.score]), filter(nil), rowset=256                                        |
-    |       access([game.team], [game.score]), partitions(p[0-2])                                             |
-    |       is_index_back=false, is_global_index=false,                                                       |
-    |       range_key([game.round]), range(MIN ; MAX)always true                                              |
-    +---------------------------------------------------------------------------------------------------------+
-    29 rows in set (0.003 sec)
+![2](/img/blogs/tech/parallel-execution-I/2.png)
 
 The execution plan of the `SELECT` statement first performs a full-table scan on the `game` table to group the data by team, and then calculates the total score of each team. The following figure demonstrates the query execution process.
 

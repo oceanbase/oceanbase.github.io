@@ -2,6 +2,7 @@
 slug: truncated-table
 title: 'Why Truncated Tables Cannot Be Recycled in OceanBase Database V4.x?'
 ---
+# Why Truncated Tables Cannot Be Recycled in OceanBase Database V4.x?
 
 > I have been questioned a lot lately that "OceanBase Database V3.x supports the recycle of truncated tables. Why is this feature removed in OceanBase Database V4.x?"  
 > In this article, I will explain why truncated tables are not moved to the recycle bin in OceanBase Database V4.x.
@@ -14,46 +15,11 @@ MySQL does not provide a recycle bin, which, however, is necessary for a databas
 In OceanBase Database V3.x, if the session-level system variable [ob_enable_truncate_flashback](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001030833) is set to `on`, you can perform a `FLASHBACK` operation to restore the data truncated from a table.
 
 For example, you can execute the following SQL sequence to restore the data truncated from table `t1` to a table named `truncated_t1`:
-
-    show variables like 'recyclebin';
-    
-    set recyclebin = on; # Enable the recycle bin feature.
-    
-    show variables like 'ob_enable_truncate_flashback';
-    
-    set ob_enable_truncate_flashback = on; # Allow truncated tables to be moved to the recycle bin.
-    
-    create table t1(c1 int);
-    
-    insert into t1 values(123);
-    
-    truncate table t1;
-    
-    show recyclebin;
-    
-    flashback table t1 to before drop rename to truncated_t1;
-
+![1](/img/blogs/tech/truncated-table/1.png)
   
-
-
-
 
 In OceanBase Database V4.x, a truncated table is not moved to the recycle bin, as shown in the following example:
-
-    # The following system variable is deprecated in OceanBase Database V4.x.
-    > set ob_enable_truncate_flashback = on;
-    
-    > truncate table t1;
-    
-    > show recyclebin;
-    Empty set (0.010 sec)
-    
-    > flashback table t1 to before drop rename to truncated_t1;
-    ERROR 5270 (HY000): object not in RECYCLE BIN
-
-  
-
-
+![2](/img/blogs/tech/truncated-table/2.png)
 
 
 Cause Analysis
@@ -67,81 +33,16 @@ Implementation of the Recycle Bin
 The recycle bin is implemented by logically deleting data, where deleted objects are labeled with an internal identifier, making them invisible to users. Objects in the recycle bin have only their metadata changed. Their underlying data remains unchanged.
 
 You can execute the `SHOW RECYCLEBIN` statement to view the information about all objects in the recycle bin. The object information is stored in an internal table named `__all_recyclebin`. When you move an object to the recycle bin, a record is inserted into the `__all_recyclebin` table. When you perform a `FLASHBACK` or `PURGE` operation, that record is deleted from the `__all_recyclebin` table.
+![3](/img/blogs/tech/truncated-table/3.png)
 
-    obclient [test]> show recyclebin;
-    +--------------------------------+------------------+----------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME    | TYPE     | CREATETIME                 |
-    +--------------------------------+------------------+----------+----------------------------+
-    | __recycle_$_1_1694438429313272 | liboyang_db      | DATABASE | 2023-09-11 21:20:29.314951 |
-    | __recycle_$_1_1694438481392392 | __idx_504469_idx | INDEX    | 2023-09-11 21:21:21.392822 |
-    | __recycle_$_1_1694438481414600 | t1               | TABLE    | 2023-09-11 21:21:21.415038 |
-    +--------------------------------+------------------+----------+----------------------------+
-    3 rows in set (0.011 sec)
-    
-    obclient [test]> select object_name, original_name, type, gmt_create, database_id, table_id from oceanbase. __all_recyclebin;
-    +--------------------------------+------------------+------+----------------------------+-------------+----------+
-    | object_name                    | original_name    | type | gmt_create                 | database_id | table_id |
-    +--------------------------------+------------------+------+----------------------------+-------------+----------+
-    | __recycle_$_1_1694438429313272 | liboyang_db      |    4 | 2023-09-11 21:20:29.314951 |      500006 |       -1 |
-    | __recycle_$_1_1694438481392392 | __idx_504469_idx |    2 | 2023-09-11 21:21:21.392822 |      500001 |   504470 |
-    | __recycle_$_1_1694438481414600 | t1               |    1 | 2023-09-11 21:21:21.415038 |      500001 |   504469 |
-    +--------------------------------+------------------+------+----------------------------+-------------+----------+
-    3 rows in set (0.002 sec)
-    
-    obclient [test]> purge database __recycle_$_1_1694438429313272;
-    Query OK, 0 rows affected (0.080 sec)
-    
-    obclient [test]> show recyclebin;
-    +--------------------------------+------------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME    | TYPE  | CREATETIME                 |
-    +--------------------------------+------------------+-------+----------------------------+
-    | __recycle_$_1_1694438481392392 | __idx_504469_idx | INDEX | 2023-09-11 21:21:21.392822 |
-    | __recycle_$_1_1694438481414600 | t1               | TABLE | 2023-09-11 21:21:21.415038 |
-    +--------------------------------+------------------+-------+----------------------------+
-    2 rows in set (0.011 sec)
-    
-    obclient [test]> flashback table t1 to before drop rename to dropped_t1;
-    Query OK, 0 rows affected (0.145 sec)
-    
-    obclient [test]> show recyclebin;
-    Empty set (0.010 sec)
 
 To retain dropped tables in the recycle bin, OceanBase Database adds a default `__recyclebin` database whose `database_id` is `201004` for each tenant.
+![4](/img/blogs/tech/truncated-table/4.png)
 
-    obclient [test]> 
-    select database_id
-    from oceanbase. __all_database
-    where database_name = '__recyclebin';
-    +-------------+
-    | database_id |
-    +-------------+
-    |      201004 |
-    +-------------+
-    1 row in set (0.008 sec)
 
 Dropping a table into the recycle bin is moving the table from its original database to the `__recyclebin` database, during which the `database_id` and `table_name` of the table are changed. The indexes on the dropped table are also moved to the recycle bin.
+![5](/img/blogs/tech/truncated-table/5.png)
 
-    obclient [test]> create table t1(c1 int, index idx(c1));
-    
-    obclient [test]> drop table t1;
-    
-    obclient [test]> flashback table t1 to before drop rename to dropped_t1;
-    
-    obclient [test]> 
-    select a.schema_version, a.table_id, a.database_id, a.table_name, b.ddl_stmt_str
-    from oceanbase. __all_table_history a, oceanbase. __all_ddl_operation b
-    where a.table_id = 504469 and a.table_id = b.table_id and a.schema_version = b.schema_version;
-    +------------------+----------+-------------+--------------------------------+--------------------------------------------------------+
-    | schema_version   | table_id | database_id | table_name                     | ddl_stmt_str                                           |
-    +------------------+----------+-------------+--------------------------------+--------------------------------------------------------+
-    | 1694438476085056 |   504469 |      500001 | t1                             | create table t1(c1 int, index idx(c1))                 |
-    | 1694438476174856 |   504469 |      500001 | t1                             |                                                        |
-    | 1694438481405672 |   504469 |      500001 | t1                             |                                                        |
-    | 1694438481414600 |   504469 |      201004 | __recycle_$_1_1694438481414600 | DROP TABLE `test`. `t1`                                 |
-    | 1694438664151120 |   504469 |      201004 | __recycle_$_1_1694438481414600 |                                                        |
-    | 1694438664161728 |   504469 |      500001 | dropped_t1                     | flashback table t1 to before drop rename to dropped_t1 |
-    +------------------+----------+-------------+--------------------------------+--------------------------------------------------------+
-    6 rows in set (0.014 sec)
 
 Therefore, the procedure of dropping a table into the recycle bin is as follows:
 
@@ -195,68 +96,8 @@ As stated in [FLASHBACK](https://en.oceanbase.com/docs/common-oceanbase-database
 Actually, OceanBase Database also allows you to specify `original_name`. If the recycle bin contains tables with the same original name, the `FLASHBACK original_name` statement restores the table that was last moved to the recycle bin. This is consistent with the recycle bin feature of Oracle.
 
 Here is an example:
-
-    # Repeat the following steps three times: Create a table named t1 and then drop it into the recycle bin.
-    obclient [test]> create table t1(c1 int);
-    Query OK, 0 rows affected (0.150 sec)
-    
-    obclient [test]> drop table t1;
-    Query OK, 0 rows affected (0.448 sec)
-    
-    obclient [test]> create table t1(c1 int);
-    Query OK, 0 rows affected (0.150 sec)
-    
-    obclient [test]> drop table t1;
-    Query OK, 0 rows affected (0.448 sec)
-    
-    obclient [test]> create table t1(c1 int);
-    Query OK, 0 rows affected (0.150 sec)
-    
-    obclient [test]> drop table t1;
-    Query OK, 0 rows affected (0.448 sec)
-    
-    # Check whether the recycle bin has three tables whose original name is t1.
-    obclient [test]> show recyclebin;
-    +--------------------------------+---------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME | TYPE  | CREATETIME                 |
-    +--------------------------------+---------------+-------+----------------------------+
-    | __recycle_$_1_1694489277444056 | t1            | TABLE | 2023-09-12 11:27:57.450622 |
-    | __recycle_$_1_1694489280576008 | t1            | TABLE | 2023-09-12 11:28:00.577040 |
-    | __recycle_$_1_1694489499729088 | t1            | TABLE | 2023-09-12 11:31:39.729893 |
-    +--------------------------------+---------------+-------+----------------------------+
-    3 rows in set (0.011 sec)
-    
-    # Execute the FLASHBACK statement with original_name specified. This restores the t1 table that was moved to the recycle bin at 11:31.
-    obclient [test]> flashback table t1 to before drop rename to t1_1;
-    Query OK, 0 rows affected (0.123 sec)
-    
-    obclient [test]> show recyclebin;
-    +--------------------------------+---------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME | TYPE  | CREATETIME                 |
-    +--------------------------------+---------------+-------+----------------------------+
-    | __recycle_$_1_1694489277444056 | t1            | TABLE | 2023-09-12 11:27:57.450622 |
-    | __recycle_$_1_1694489280576008 | t1            | TABLE | 2023-09-12 11:28:00.577040 |
-    +--------------------------------+---------------+-------+----------------------------+
-    2 rows in set (0.010 sec)
-    
-    # Execute the FLASHBACK statement again with original_name specified. This restores the t1 table that was moved to the recycle bin at 11:28.
-    obclient [test]> flashback table t1 to before drop rename to t1_2;
-    Query OK, 0 rows affected (0.089 sec)
-    
-    obclient [test]> show recyclebin;
-    +--------------------------------+---------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME | TYPE  | CREATETIME                 |
-    +--------------------------------+---------------+-------+----------------------------+
-    | __recycle_$_1_1694489277444056 | t1            | TABLE | 2023-09-12 11:27:57.450622 |
-    +--------------------------------+---------------+-------+----------------------------+
-    1 row in set (0.012 sec)
-    
-    # Execute the FLASHBACK statement for the third time with object_name specified.
-    obclient [test]> flashback table __recycle_$_1_1694489277444056 to before drop rename to t1_3;
-    Query OK, 0 rows affected (0.093 sec)
-    
-    obclient [test]> show recyclebin;
-    Empty set (0.011 sec)
+![6](/img/blogs/tech/truncated-table/6.png)
+![7](/img/blogs/tech/truncated-table/7.png)
 
 Purge a Table by Using original_name
 -------------------------------
@@ -266,70 +107,8 @@ As stated in [PURGE](https://en.oceanbase.com/docs/common-oceanbase-database-100
 Actually, OceanBase Database also allows you to specify `original_name`. If the recycle bin contains tables with the same original name, the `PURGE original_name` statement purges the table that was first moved to the recycle bin. This is consistent with the recycle bin feature of Oracle.
 
 Here is an example:
-
-    # Repeat the following steps three times: Create a table named t1 and then drop it into the recycle bin.
-    obclient [test]> create table t1(c1 int);
-    Query OK, 0 rows affected (0.143 sec)
-    
-    obclient [test]> drop table t1;
-    Query OK, 0 rows affected (0.551 sec)
-    
-    obclient [test]> create table t1(c1 int);
-    Query OK, 0 rows affected (0.146 sec)
-    
-    obclient [test]> drop table t1;
-    Query OK, 0 rows affected (0.552 sec)
-    
-    obclient [test]> create table t1(c1 int);
-    Query OK, 0 rows affected (0.145 sec)
-    
-    obclient [test]> drop table t1;
-    Query OK, 0 rows affected (0.551 sec)
-    
-    # Check whether the recycle bin has three tables whose original name is t1.
-    obclient [test]> show recyclebin;
-    +--------------------------------+---------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME | TYPE  | CREATETIME                 |
-    +--------------------------------+---------------+-------+----------------------------+
-    | __recycle_$_1_1694490316467736 | t1            | TABLE | 2023-09-12 11:45:16.468070 |
-    | __recycle_$_1_1694490326604712 | t1            | TABLE | 2023-09-12 11:45:26.605179 |
-    | __recycle_$_1_1694490329719016 | t1            | TABLE | 2023-09-12 11:45:29.719260 |
-    +--------------------------------+---------------+-------+----------------------------+
-    3 rows in set (0.017 sec)
-    
-    # Execute the PURGE statement with original_name specified. This purges the t1 table that was moved to the recycle bin at 11:45:16.
-    obclient [test]> purge table t1;
-    Query OK, 0 rows affected (0.178 sec)
-    
-    obclient [test]> show recyclebin;
-    +--------------------------------+---------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME | TYPE  | CREATETIME                 |
-    +--------------------------------+---------------+-------+----------------------------+
-    | __recycle_$_1_1694490326604712 | t1            | TABLE | 2023-09-12 11:45:26.605179 |
-    | __recycle_$_1_1694490329719016 | t1            | TABLE | 2023-09-12 11:45:29.719260 |
-    +--------------------------------+---------------+-------+----------------------------+
-    2 rows in set (0.011 sec)
-    
-    # Execute the PURGE statement again with original_name specified. This purges the t1 table that was moved to the recycle bin at 11:45:26.
-    obclient [test]> purge table t1;
-    Query OK, 0 rows affected (0.127 sec)
-    
-    obclient [test]> show recyclebin;
-    +--------------------------------+---------------+-------+----------------------------+
-    | OBJECT_NAME                    | ORIGINAL_NAME | TYPE  | CREATETIME                 |
-    +--------------------------------+---------------+-------+----------------------------+
-    | __recycle_$_1_1694490329719016 | t1            | TABLE | 2023-09-12 11:45:29.719260 |
-    +--------------------------------+---------------+-------+----------------------------+
-    1 row in set (0.013 sec)
-    
-    # Execute the PURGE statement for the third time with object_name specified.
-    obclient [test]> purge table __recycle_$_1_1694490329719016;
-    Query OK, 0 rows affected (0.134 sec)
-    
-    obclient [test]> show recyclebin;
-    Empty set (0.010 sec)
-
-  
+![8](/img/blogs/tech/truncated-table/8.png)
+![9](/img/blogs/tech/truncated-table/9.png)  
 
 
 

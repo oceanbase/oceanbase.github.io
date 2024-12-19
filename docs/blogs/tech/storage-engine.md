@@ -48,7 +48,7 @@ The storage engine of OceanBase Database offers a full set of syntax for configu
 
 As shown in the following figure, the maximum IOPS of Tenant 4 (blue line) is limited to 5,000 to prevent the concurrent traffic from affecting other tenants. As Tenant 1 (red line) and Tenant 2 (green line) have high IOPS demands, their maximum IOPS is limited to 100,000, and their weight ratio is set to 2:1 to control their traffic ratio. What will happen if you add Tenant 3 (yellow line) to the cluster? Tenant 4 is unaffected because its maximum IOPS is limited. Tenants 1 and 2 can lend IOPS resources to Tenant 3 based on their weight ratio. This way, inter-tenant isolation is achieved.
 
-![1694074568](/img/blogs/tech/storage-engine/1694074568063.png)
+![1694074568](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2023-09/1694074568063.png)
 
 OceanBase Database also supports intra-tenant isolation. Why is intra-tenant isolation necessary?
 
@@ -65,7 +65,7 @@ The storage engine of OceanBase Database leverages the well-known Tiered & Level
 
 Unlike the multi-level optimizations in RocksDB, Cassandra, and other systems, the LSM-tree architecture has only three levels of persistent SSTables, as shown in the following figure. Each level serves specific purposes. L0, with a low-overhead and quick data processing logic, is designed to rapidly release memory. L1 aims to eliminate read amplification and reduce disk overheads caused by data overlaps, including spatial data redundancy and temporal version redundancy. L2 not only resolves space amplification but also performs complex transactional and distributed tasks such as data validation, reclamation, and compression.
 
-![1694074592](/img/blogs/tech/storage-engine/1694074592358.png)
+![1694074592](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2023-09/1694074592358.png)
 
 Based on an in-depth analysis of data processing and system resources, the storage engine of OceanBase Database V4.x has introduced the following compaction methods: mini compaction, minor compaction, medium compaction, and major compaction. The storage engine automatically selects a compaction method based on real-time resource usage and statistical sampling data to achieve dynamic balance, alleviating resource bottlenecks and improving system stability.
 
@@ -75,7 +75,7 @@ Based on an in-depth analysis of data processing and system resources, the stora
 
 For medium compaction, one of its functions is to resolve the well-known queuing table issue in the LSM-tree architecture. For example, assume that a user inserts six rows of data and then deletes all of them, as shown in the following figure. The table is logically empty, but 12 physical rows are scanned during a query. Another example is a scenario involving both updates and inserts, where Aggregation Count returns two rows but seven rows are scanned during a query. The gap between the logical and physical row counts leads to poorer-than-expected query performance.
 
-![1694074606](/img/blogs/tech/storage-engine/1694074606772.png)
+![1694074606](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2023-09/1694074606772.png)
 
 In OceanBase Database of earlier versions, you must explicitly specify the buffer table attribute when creating a table. This signals the storage engine to identify buffer tables with a large number of rows and trigger special compaction actions to compress rows. In OceanBase Database V4.1, the storage engine intelligently collects data statistics each time it generates an SSTable. Each SSTable is represented by a set of vectors that describe its update characteristics. When identifying a queuing table, the system automatically initiates a medium compaction to remove redundant data. The process is imperceptible to users so that you do not need to learn about business characteristics before creating tables or perform a DDL operation after deploying the system. This lowers the barrier to using OceanBase Database and enhances business stability after a traffic switchover.
 
@@ -88,7 +88,7 @@ In terms of cost reduction, the storage engine of OceanBase Database has archite
 
 As shown in the following figure, the storage engine of OceanBase Database uses hybrid row-column storage to support a high compression ratio. Unlike rowstore storage, hybrid row-column storage organizes data in microblocks in columns instead of rows. When generating SSTables during a compaction, OceanBase Database encodes and compresses a microblock in two steps. First, OceanBase Database chooses the optimal algorithm based on the data characteristics of adjacent rows in a column to encode the microblock. This initial encoding typically achieves a compression ratio of about 50%. Then, OceanBase Database compresses the encoded microblock to reach an average compression ratio of 30%.
 
-![1694074619](/img/blogs/tech/storage-engine/1694074619037.png)
+![1694074619](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/prod/blog/2023-09/1694074619037.png)
 
 OceanBase Database uses an adaptive and heuristic mechanism to choose the encoding algorithm by automatically analyzing characteristics such as data type, value range, and number of distinct values (NDV), and referencing the encoding and compression history of adjacent microblocks. Here are some examples. For short strings such as license plates, OceanBase Database encodes and compresses them by using bit-packing and hex encoding to effectively decrease the bit width for storage. For a column with much duplicate data, such as a column storing gender or zodiac data, OceanBase Database deduplicates the column data by using dictionary encoding and run-length encoding (RLE). For strings or values with similar ranges, OceanBase Database uses delta encoding. For columns that are related or similarly prefixed, such as barcodes of different products under the same categories, OceanBase Database reduces redundancy across these columns by using span-column encoding.
 
