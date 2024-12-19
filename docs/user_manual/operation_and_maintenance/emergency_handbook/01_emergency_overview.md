@@ -1,5 +1,5 @@
 ---
-title: 故障应急手册概述
+title: OBServer 故障应急手册概述
 weight: 1
 ---
 
@@ -32,6 +32,13 @@ weight: 1
   * 日志盘 / 数据盘写满
 
 * ……
+
+
+
+OBServer 的故障排查脑图详见：
+
+![image](/img/user_manual/operation_and_maintenance/emergency_handbook/01_emergency_overview/001.jpg)
+
 
 ## What's more ?
 
