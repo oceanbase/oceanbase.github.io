@@ -7,6 +7,13 @@ weight: 1
 > 
 > **<font color="red">如果时间紧迫，可以只阅读本文最开始的 “ODP 的特性” 和 “ODP 路由的实现逻辑” 这两个部分。</font>**
 
+## ODP 的故障排查脑图
+如果大家已经了解 ODP，只想对在 ODP 使用过程中遇到的问题进行排查，可以参考下面这张图片，跳转到后面几个小节进行阅读。
+
+![image](/img/user_manual/operation_and_maintenance/tool_emergency_handbook/odp_troubleshooting_guide/01_introduction/000.jpg)
+
+
+## ODP 是什么
 ODP 是代理服务器，代理服务器会让访问数据库的链路多一跳，那为什么需要 ODP 呢？我们以下图为例进行说明。
 
 ![代理](/img/user_manual/operation_and_maintenance/tool_emergency_handbook/odp_troubleshooting_guide/01_introduction/001.png)
