@@ -1,6 +1,6 @@
 ﻿---
 slug: Kwai
-title: 'OceanBase provides stable support for massive clusters of Kwai'
+title: '400TB Single Cluster: OceanBase Powers Kwai`s Core Business'
 tags:
   - User Case
 ---
