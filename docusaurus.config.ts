@@ -104,6 +104,10 @@ const community = [
     href: "/docs/sig/overview/list",
   },
   {
+    label: 'Community Honors',
+    href: "/docs/honor/overview",
+  },
+  {
     label: 'GitHub Discussion',
     href: 'http://github.com/oceanbase/oceanbase/discussions',
   },

@@ -72,6 +72,11 @@ const sidebars: SidebarsConfig = {
     'sig/overview/list',
     'sig/overview/join_us'
   ],
+  honorSidebar: [
+    'honor/overview',
+    'honor/star_year_2024',
+    'honor/company_2024'
+  ],
   quick_starts_and_hands_on_practices_in_englishSidebar: [
     {
       type: 'category',
