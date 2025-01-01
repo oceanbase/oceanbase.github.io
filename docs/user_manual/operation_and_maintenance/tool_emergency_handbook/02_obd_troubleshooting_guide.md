@@ -149,14 +149,13 @@ obd --version
 
 3. 编辑 obd yaml 部署配置文件
 4. 部署 oceanbase 集群
-
+    1. 在使用 `obd cluster deploy` 之后会在当前对应的用户家目录下生成一个 ` .obd` 的隐藏目录。
+    2. `${your_deploy_name}` 指定的名字跟配置文件中的 `app_name` 没有关系（名字可以一样，也可以不一样），可以根据需要设置。
+    3. 这一步并不是真正的部署 OceanBase 集群，是创建目录结构、授权等。
 ```yaml
 obd cluster deploy ${your_deploy_name} -c distributed-with-obproxy-example.yaml
 ```
 
-    1. 在使用 `obd cluster deploy` 之后会在当前对应的用户家目录下生成一个 ` .obd` 的隐藏目录。
-    2. `${your_deploy_name}` 指定的名字跟配置文件中的 `app_name` 没有关系（名字可以一样，也可以不一样），可以根据需要设置。
-    3. 这一步并不是真正的部署 OceanBase 集群，是创建目录结构、授权等。
 
 5. 启动集群
 
