@@ -211,12 +211,8 @@ const config: Config = {
           position: 'left',
           items: [
             {
-              label: 'Devhub',
+              label: 'AI Workshops',
               href: 'https://oceanbase-devhub.github.io',
-            },
-            {
-              type: "html",
-              value: '<div style="padding: 0.25rem 0.5rem; font-size: 14px; color: #4e7ff1;">AI Workshops</div>'
             },
             {
               label: 'RAG Bot',
