@@ -26,7 +26,7 @@ function HomepageHeader() {
           <div className={clsx(styles.buttons)}>
             <Link
               className="button button--secondary margin-vert--md"
-              to="docs/user_manual/user_best_practices/tutorial/quickstart"
+              href="https://en.oceanbase.com/"
             >
               <Translate>Get Started</Translate>
             </Link>
