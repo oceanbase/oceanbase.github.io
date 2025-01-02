@@ -31,11 +31,7 @@ const user_manual = [
   {
     label: "Operation And Maintenance Manual (in Chinese)",
     to: '/docs/user_manual/operation_and_maintenance/about_this_manual/overview'
-  },
-  {
-    label: "User Best Practices (in Chinese)",
-    to: '/docs/user_manual/user_best_practices/about_oceanbase/overview'
-  },
+  }
 ]
 
 const dev_manual = [
@@ -57,7 +53,7 @@ const docs = [
   },
   {
     label: 'User Manual',
-    to: '/docs/user_manual/user_best_practices/about_oceanbase/overview',
+    href: "https://oceanbase.github.io",
     dropdownItems: user_manual,
   },
   {
