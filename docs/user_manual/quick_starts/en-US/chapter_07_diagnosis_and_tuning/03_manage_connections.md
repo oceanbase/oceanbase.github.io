@@ -27,11 +27,11 @@ ODP provides the following connection management features:
 
 When you connect to a standalone database from a client, only one physical connection exists between your client and the database, as shown in the following figure.
 
-![Standalone mapping](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/03_manage_connections/001.png)
+![Standalone mapping](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/03_manage_connections/001.png)
 
 When you use ODP to connect to OceanBase Database, one physical connection exists between your client and ODP, and multiple physical connections can exist between ODP and OBServer nodes, as shown in the following figure. The connection between your client and ODP is called a client session, and those between ODP and OBServer nodes are called server sessions.
 
-![Server session mapping](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/03_manage_connections/002.png)
+![Server session mapping](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/03_manage_connections/002.png)
 
 If the data accessed by your client is stored on different OBServer nodes, ODP will create multiple physical connections to OceanBase Database. It will also manage and reuse these connections. However, your client perceives only one logical connection. This allows ODP to provide a wide range of features, such as primary/standby cluster separation, read/write splitting, data access request routing for partitioned tables, prepared statements in a distributed architecture, and backend exception shielding.
 

@@ -86,7 +86,7 @@ For more information, see the [introduction to Flink CDC](https://github.com/apa
 
 DataX is a tool for offline synchronization between heterogeneous data sources. You can use it to stably and efficiently synchronize data between many types of heterogeneous data sources, such as relational databases (like MySQL, Oracle, and OceanBase Database), HDFS, Hive, ODPS, HBase, and FTP. 
 
-![DataX architecture](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/02_ecological_tools_of_migration_synchronization/001.png)
+![DataX architecture](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/02_ecological_tools_of_migration_synchronization/001.png)
 
 To address issues of data synchronization between heterogeneous data sources in a complex mesh topology, DataX introduces the star topology and serves as the transmission hub that connects to various data sources. This way, you can connect a new data source to DataX and start synchronizing data between the new data source and the existing data sources right away. 
 
@@ -112,6 +112,6 @@ SeaTunnel is specifically developed for data integration and synchronization, an
 
 The following diagram describes the workflow of SeaTunnel.
 
-![SeaTunnel workflow](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/02_ecological_tools_of_migration_synchronization/002.png)
+![SeaTunnel workflow](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/02_ecological_tools_of_migration_synchronization/002.png)
 
 For more information, see the [introduction to SeaTunnel](https://seatunnel.apache.org/docs/about/). 

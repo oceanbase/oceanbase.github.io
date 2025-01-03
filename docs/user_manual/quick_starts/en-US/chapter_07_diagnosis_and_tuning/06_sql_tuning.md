@@ -452,7 +452,7 @@ After receiving an SQL request, OceanBase Database uses the fast parser module t
 
 In most cases, obtaining an execution plan directly from the plan cache takes at least an order of magnitude less time than regenerating an execution plan, and thus makes the SQL response quicker.
 
-![Plan cache](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/06_sql_tuning/001.png)
+![Plan cache](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/06_sql_tuning/001.png)
 
 ### Bad case of the plan cache
 
@@ -1024,7 +1024,7 @@ explain select count(*) from test;
 
 However, if you use an index when you query a large number of columns, table access by index primary key is required. You must query other columns from the primary table based on the primary key column contained in the index. The cost of table access by index primary key is very high. Generally, the performance of table access by index primary key is only 1/10 that of a full table scan. Especially, if the filter condition has poor selectivity, the cost of table access by index primary key is impossible to ignore.
 
-![Index table](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/06_sql_tuning/002.png)
+![Index table](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/06_sql_tuning/002.png)
 
 The following statement queries all rows of the `a` and `b` columns, with an index created on the `b` column. The `EST.TIME` value estimated by the optimizer for a full table scan without using the index is 2 µs.
 

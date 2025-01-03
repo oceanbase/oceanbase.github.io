@@ -29,11 +29,11 @@ Data is processed through the following link: `application server <-> OceanBase 
 
 In the case of an end-to-end performance issue, such as long response time (RT) detected on the application server, you need to first find the component that has caused the issue on the database access link, and then troubleshoot the component.
 
-![End-to-end tracing 01](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/001.png)
+![End-to-end tracing 01](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/001.png)
 
-![End-to-end tracing 02](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/002.png)
+![End-to-end tracing 02](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/002.png)
 
-![End-to-end tracing 03](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/003.png)
+![End-to-end tracing 03](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/003.png)
 
 Two paths are involved in end-to-end tracing:
 
@@ -328,23 +328,23 @@ Collect the information recorded by SQL plan monitor based on the trace ID.
 
 An HTML file is returned. You can open it to view the collected information.
 
-![Sample information](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/004.png)
+![Sample information](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/004.png)
 
 The preceding SQL statement is simple and has a simple execution plan that involves `COUNT` operations in two phases. In the first phase, three threads of Operator 3 perform `COUNT` operations separately. In the second phase, Operator 0 calculates the sum of count results from all threads. The following figure shows the sample information returned by SQL plan monitor. You can view the number of threads used by each operator and the number of rows returned by each operator.
 
-![Example](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/005.png)
+![Example](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/005.png)
 
 In the preceding figure, the granule count for the `PHY_GRANULE_ITERATOR` operator is highlighted in yellow. If multiple granules exist, one granule is distributed to each of the three threads at first. After a thread completes the granule distributed to it, it contends for other granules in the pool. You can move your pointer over the block highlighted in yellow to view the granule count. In the preceding figure, the job is divided into 12 granules. For more information about granules, see [Introduction to parallel execution](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001378041).
 
 The `RESCAN` column in the following figure shows that the three threads have processed data of 1+2, 1+3, and 1+4 granules respectively. 1 indicates the granule originally distributed to each thread. 2, 3, and 4 indicate the granules that the threads subsequently contended for from the pool.
 
-![Details](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/006.png)
+![Details](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/006.png)
 
 In this example, the granules are almost evenly distributed because the amount of data is very small.
 
 When an operator involves a large amount of data, a large number of threads may be allocated to it. If only a few threads are working, you can collect the information recorded by SQL plan monitor and post it to the Q&A module in the OceanBase community or send it to OceanBase Technical Support. For example, in the following figure, a few threads of the `HASH JOIN` operator processed most of the data.
 
-![image](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/007.png)
+![image](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/007.png)
 
 ## Typical scenarios of SQL performance issues for OBServer nodes
 
@@ -362,7 +362,7 @@ OceanBase Database provides a variety of internal tables and system logs for you
 
 The following figure shows the major types of OBServer node exceptions based on the preceding analysis:
 
-![Performance jitter](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/008.png)
+![Performance jitter](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/008.png)
 
 ### Execution issues
 
@@ -370,7 +370,7 @@ The following figure shows the major types of OBServer node exceptions based on 
 
 The execution process of an SQL query is divided into a compilation phase and an execution phase. An execution plan is generated in the compilation phase, which consists of several sub-phases such as lexical parsing, syntax parsing, syntax optimization, and code generation. Then, the execution plan is submitted to the executor for execution, and the result is returned. The process of parsing an SQL query to generate the execution plan is known as hard parsing. Hard parsing consumes considerable resources and affects the duration of SQL execution. Therefore, a generated execution plans is stored in the plan cache. When the same SQL query is received next time, the system first checks whether it hits the plan cache. If yes, the cached plan is extracted and submitted to the executor for execution. This process is defined as soft parsing. This way, it is unnecessary to perform hard parsing for each SQL query, thereby reducing resource consumption. Therefore, the key to performance tuning is to make sure that SQL queries hit the plan cache and the plan is optimal.
 
-![Execution process](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/009.png)
+![Execution process](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/07_troubleshooting_sql_performance_issues/009.png)
 
 The optimizer may generate suboptimal execution plans due to various reasons, such as missing indexes, outdated statistics, buffer tables, and cardinality. The execution of a suboptimal execution plan requires massive logical reads and scanning of a large amount of data. As a result, the time consumption increases and the throughput decreases.
 

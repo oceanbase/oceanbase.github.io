@@ -408,7 +408,7 @@ If you have multiple servers available, you can run the `obd web` command to sta
 
 2. Click **Try Now** to start the deployment process.
 
-   ![Start](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/001.png)
+   ![Start](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/001.png)
 
    > **Note**
    >
@@ -416,29 +416,29 @@ If you have multiple servers available, you can run the `obd web` command to sta
 
 3. Select **OceanBase and supporting tools** and click **OK**.
 
-   ![Select](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/002.png)
+   ![Select](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/002.png)
 
 4. On the **Deployment Configuration** page, modify **Cluster Name** and select the components that you want to deploy. You can also retain the default configurations. By default, all components are deployed.
 
-   ![Deployment configuration](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/003.png)
+   ![Deployment configuration](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/003.png)
 
    Click **Next Step** to go to the **Node Configuration** page.
 
 5. On the **Node Configuration** page, enter node IP addresses and the user password and then click **Next Step** to go to the **Cluster Configuration** page.
 
-   ![Node configuration](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/004.png)
+   ![Node configuration](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/004.png)
 
 6. On the **Cluster Configuration** page, specify the deployment mode, password, directory, port, and other information about the cluster. You can also retain the default values.
 
-   ![Cluster configuration](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/005.png)
+   ![Cluster configuration](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/005.png)
 
    Click **Next Step** to go to the **Pre-check** page.
 
 7. On the **Pre-check** page, verify the configuration information and then click **Pre-check**.
 
-   ![Precheck](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/006.png)
+   ![Precheck](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/006.png)
 
-   ![Precheck](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/007.png)
+   ![Precheck](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/007.png)
 
    If an error code is returned, you can click **Automatic Repair** to automatically repair the error, or click **Learn more** to go to the error code document and correct the error based on the reference document. After all the errors are corrected, click **Re-check** to perform a precheck again.
 
@@ -447,10 +447,10 @@ If you have multiple servers available, you can run the `obd web` command to sta
    If the deployment is successful, the connection strings of the components are displayed. You can copy a connection string to access the corresponding component.
 
 
-   ![Deployment](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/008.png)
+   ![Deployment](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/008.png)
 
 9. Click **Finish**.
-   ![Finish](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/009.png)
+   ![Finish](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/009.png)
 
 10. Log on to OCP Express and create a user tenant.
 

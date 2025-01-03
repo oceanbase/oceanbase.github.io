@@ -21,17 +21,17 @@ We recommend that you create a user tenant by referring to this topic for testin
 
    If no unit config is suitable, you can create one. After you create a unit config in OCP, it is not immediately recorded in the internal view `DBA_OB_UNIT_CONFIGS` of OceanBase Database, but rather in the `meta_database.ob_unit_spec` table of OCP. The unit config is actually created only when you create a tenant.
 
-   ![Configure the tenant](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/06_create-tenant/001.png)
+   ![Configure the tenant](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/06_create-tenant/001.png)
 
 2. Configure the IP address allowlist and variables of the tenant.
 
-   ![Configure the tenant](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/06_create-tenant/002.png)
+   ![Configure the tenant](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/06_create-tenant/002.png)
 
 3. View the tenant creation task.
 
    To learn about the task execution process, you can download the logs.
 
-   ![View logs](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/06_create-tenant/003.png)
+   ![View logs](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/06_create-tenant/003.png)
 
    You can learn from the logs that OCP will respectively name each unit and resource pool during tenant creation, which is not the case when you create a tenant in OceanBase Deployer (OBD). This practice brings the following benefits:
 
