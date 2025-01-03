@@ -17,17 +17,17 @@ const prod_docs =
     const user_manual =
         [
           {
-            label: 'Quick Starts And Hands-On Practices (in English)',
+            label: 'Quick Starts (in English)',
             to: '/docs/user_manual/quick_starts/en-US/chapter_01_overview_of_the_oceanbase_database/overview'
           },
           {
-            label: 'Quick Starts And Hands-On Practices (in Chinese)',
+            label: 'Quick Starts (in Chinese)',
             href:
                 'https://www.oceanbase.com/docs/enterprise-tutorials-cn-1000000001390092'
           },
           {
             label: 'Operation And Maintenance Manual (in Chinese)',
-            to: '/docs/user_manual/operation_and_maintenance/about_this_manual/overview'
+            to: '/docs/user_manual/operation_and_maintenance/zh-CN/about_this_manual/overview'
           }
         ]
 
