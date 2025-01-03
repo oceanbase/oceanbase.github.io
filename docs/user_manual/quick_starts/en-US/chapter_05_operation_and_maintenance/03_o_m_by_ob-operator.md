@@ -75,7 +75,7 @@ For more information, see [High availability](https://en.oceanbase.com/docs/comm
 
 The O&M of an OceanBase cluster is implemented by modifying the cluster resources in Kubernetes. The current implementation logic is to deliver the cluster resource modifications to target resources.
 
-![Cluster information](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/001.png)
+![Cluster information](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/001.png)
 
 ### Create a tenant
 
@@ -134,7 +134,7 @@ spec:
 
 The following figure shows the GUI provided by Dashboard for creating a tenant.
 
-![Create a tenant](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/002.png)
+![Create a tenant](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/002.png)
 
 ### Modify the resource specifications for a tenant
 
@@ -185,9 +185,9 @@ spec:
 
 The following figures show the GUI provided by Dashboard for modifying the resource specifications for a tenant.
 
-![Modify tenant resources](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/003.png)
+![Modify tenant resources](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/003.png)
 
-![Modify tenant resources](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/004.png)
+![Modify tenant resources](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/004.png)
 
 ### Back up data
 
@@ -236,7 +236,7 @@ Take note of the following considerations:
 
 The following figure shows the GUI provided by Dashboard for creating a backup strategy.
 
-![Create a backup strategy](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/005.png)
+![Create a backup strategy](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/005.png)
 
 ### Restore data
 
@@ -329,7 +329,7 @@ Take note of the following considerations:
 
 The following figure shows the GUI provided by Dashboard for adding a zone.
 
-![Add a zone](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/006.png)
+![Add a zone](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/006.png)
 
 #### Scale up a cluster
 
@@ -351,7 +351,7 @@ Take note of the following considerations:
 
 The following figure shows the GUI provided by Dashboard for adding OBServer nodes to a zone.
 
-![Scale-up](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/007.png)
+![Scale-up](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/007.png)
 
 ### Scale in or scale down a cluster
 
@@ -385,7 +385,7 @@ Take note of the following considerations:
 
 The following figure shows the GUI provided by Dashboard for deleting OBServer nodes from a zone.
 
-![Scale-down](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/008.png)
+![Scale-down](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/008.png)
 
 ### Upgrade a cluster
 
@@ -401,4 +401,4 @@ Take note of the following considerations:
 
 The following figure shows the GUI provided by Dashboard for upgrading a cluster.
 
-![Upgrade](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/009.png)
+![Upgrade](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/03_o_m_by_ob-operator/009.png)

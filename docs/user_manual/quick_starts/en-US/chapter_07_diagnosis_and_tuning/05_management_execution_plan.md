@@ -36,7 +36,7 @@ dml_statement:
   | REPLACE statement
 ```
 
-![EXPLAIN](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/05_management_execution_plan/001.png)
+![EXPLAIN](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/05_management_execution_plan/001.png)
 
 ### Parameters
 
@@ -114,7 +114,7 @@ The `EXPLAIN` and `EXPLAIN EXTENDED_NOADDR` statements are most commonly used in
 
   In OceanBase Database, the first part of the output of `EXPLAIN` is the tree structure of the execution plan. The hierarchy of operations in the tree is represented by the indentation of the operators. Operators at the deepest level are executed first. Operators at the same level are executed in the specified execution order. The following figure shows the tree structure of the execution plan described in the preceding example:
 
-  ![Plan display](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/05_management_execution_plan/002.png)
+  ![Plan display](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/05_management_execution_plan/002.png)
 
   Operator 0 is a `HASH JOIN` operator and has two subnodes: Operators 1 and 2, which are `TABLE SCAN` operators. The execution logic of Operator 0 is as follows:
 

@@ -11,7 +11,7 @@ OceanBase Developer Center (ODC) is a GUI-based development tool and a collabora
 
 ### Features and architecture
 
-![Features and architecture](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/001.png)
+![Features and architecture](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/001.png)
 
 ## Limitations
 
@@ -59,7 +59,7 @@ Client ODC focuses on database development. It is lightweight and easy to deploy
 
 A data source is a remote database environment, such as a standalone OceanBase cluster or an instance of another database system.
 
-![Data sources](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/002.png)
+![Data sources](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/002.png)
 
 #### Configure a data source
 
@@ -81,7 +81,7 @@ A data source is a remote database environment, such as a standalone OceanBase c
 
 * The **Environment** parameter specifies the environment type of the data source, such as a development environment or production environment, to configure different control policies.
 
-![Create data source](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/003.png)
+![Create data source](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/003.png)
 
 #### Use ODC
 
@@ -95,7 +95,7 @@ Manage databases
   
   * Assign a database to a project
 
-![Database tab](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/004.png)
+![Database tab](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/004.png)
 
 Manage the sessions of a data source
 
@@ -109,7 +109,7 @@ Manage the sessions of a data source
 
   * End an ongoing query in a session.
 
-![Session tab](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/005.png)
+![Session tab](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/005.png)
 
 Use the recycle bin
 
@@ -125,7 +125,7 @@ Use the recycle bin
 >
 > The recycle bin is a tenant-level feature. Enable it with caution.
 
-![Recycle Bin tab](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/006.png)
+![Recycle Bin tab](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/006.png)
 
 Use the command-line window
 
@@ -133,7 +133,7 @@ Use the command-line window
 
 * You can perform the following operations on the tab: Connect to the data source by using OceanBase Client (OBClient).
 
-![Command-line Window tab](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/007.png)
+![Command-line Window tab](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/007.png)
 
 ### SQL development
 
@@ -151,25 +151,25 @@ Use the command-line window
 
     Before formatting
 
-    ![Before formatting](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/008.png)
+    ![Before formatting](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/008.png)
 
     After formatting
 
-    ![After formatting](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/009.png)
+    ![After formatting](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/009.png)
 
 * Syntax prompts
 
   * ODC supports keyword prompts to minimize spelling errors.
 
-    ![Keyword prompt](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/010.png)
+    ![Keyword prompt](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/010.png)
 
   * ODC supports database object prompts. This allows you to quickly find the target from numerous database objects.
 
-    ![Object name prompt](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/011.png)
+    ![Object name prompt](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/011.png)
 
   * ODC supports column name prompts based on the table that you are dealing with.
 
-    ![Column name prompt](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/012.png)
+    ![Column name prompt](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/012.png)
 
 * SQL check
 
@@ -183,11 +183,11 @@ Use the command-line window
 
   Built-in check rules:
   
-  ![Check rules](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/013.png)
+  ![Check rules](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/013.png)
   
   Perform an SQL check:
   
-  ![Perform a check](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/014.png)
+  ![Perform a check](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/014.png)
 
 * SQL scripts
 
@@ -197,7 +197,7 @@ Use the command-line window
 
     * You can drag a snippet to the SQL editing area. The operation is easy and fast, saving you from memorizing all the SQL or PL statements.
   
-    ![Snippets](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/015.png)
+    ![Snippets](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/015.png)
 
   * SQL scripts
 
@@ -205,7 +205,7 @@ Use the command-line window
 
     * You can use the saved scripts for efficient queries.
 
-    ![SQL scripts](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/016.png)
+    ![SQL scripts](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/016.png)
 
 #### Result sets
 
@@ -213,15 +213,15 @@ Use the command-line window
   
   * Data can be displayed in row mode for you to have a global view.
 
-    ![Display in row mode](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/017.png)
+    ![Display in row mode](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/017.png)
 
   * Data can be displayed in column mode for you to focus on details.
 
-    ![Display in column mode](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/018.png)
+    ![Display in column mode](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/018.png)
   
   * Large object (LOB) data can be displayed in texts, hexadecimal values, or images.
 
-    ![LOB data displayed in image ](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/019.png)
+    ![LOB data displayed in image ](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/019.png)
 
 * Edit and export the result set
 
@@ -239,7 +239,7 @@ Use the command-line window
   
     * Multiple encoding formats are supported.
 
-  ![Result set export](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/020.png)
+  ![Result set export](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/020.png)
 
 #### SQL execution details and plans
 
@@ -253,7 +253,7 @@ Use the command-line window
   
   * The trace ID of each SQL statement is recorded for easier troubleshooting.
   
-  ![Execution duration](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/021.png)
+  ![Execution duration](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/021.png)
 
 * Execution details
 
@@ -261,8 +261,8 @@ Use the command-line window
 
   * ODC displays the entire execution process of an SQL statement, from the driver to OceanBase Database Proxy (ODP) and OBServer node, making end-to-end diagnostics possible.
 
-  ![Execution details](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/022.png)
-  ![Execution details](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/023.png)
+  ![Execution details](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/022.png)
+  ![Execution details](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/023.png)
 
 #### Database objects
 

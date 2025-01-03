@@ -11,7 +11,7 @@ weight: 4
 
 In OceanBase Database, partitioning allows you to decompose a table into multiple smaller and more manageable parts called partitions based on specific rules. Each partition is an independent object with its own name and may have its own storage features. For example, the following figure shows a table that consists of five partitions, which are distributed across two servers.
 
-![Partitioned table](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/03_horizontal_splitting_using_partition_table/001.png)
+![Partitioned table](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/03_horizontal_splitting_using_partition_table/001.png)
 
 An application that accesses a database logically accesses only one table or one index. However, the table may consist of multiple physical partitions. Each partition is an independent object and can be independently accessed or accessed as part of the table. The partitions are completely transparent to the application and do not affect the business logic of the application.
 
@@ -361,7 +361,7 @@ Query OK, 0 rows affected
 
 Subpartitioning is a technique that partitions a table based on two dimensions. For example, it is frequently used in scenarios that involve bills. `HASH` partitioning by `user_id` is first performed, followed by `RANGE` partitioning based on bill creation time.
 
-![Subpartitioning](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_06_using_ob_for_business_development/03_horizontal_splitting_using_partition_table/002.png)
+![Subpartitioning](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/03_horizontal_splitting_using_partition_table/002.png)
 
 OceanBase Database in MySQL mode supports the `HASH`, `RANGE`, `LIST`, `KEY`, `RANGE COLUMNS`, and `LIST COLUMNS` partitioning types, and a combination of any two partitioning types as the subpartitioning type.
 

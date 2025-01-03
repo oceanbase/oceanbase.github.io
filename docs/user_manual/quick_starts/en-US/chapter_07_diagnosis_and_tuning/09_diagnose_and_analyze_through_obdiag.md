@@ -11,7 +11,7 @@ You can use OceanBase Diagnostic Tool (obdiag) for diagnostics and analytics.
 
 In the native distributed database system OceanBase Database, root cause analysis for faults is complex because many factors may be involved, such as the server environment, parameters, and running load. Experts must collect and analyze extensive information during troubleshooting. Therefore, obdiag is introduced to help efficiently collect information scattered on various nodes and find their association.
 
-![obdiag](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/001.png)
+![obdiag](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/001.png)
 
 ### Benefits
 
@@ -25,13 +25,13 @@ obdiag is an agile diagnostic tool designed for OceanBase Database. It provides 
 
 - **High scalability**: The inspection, scenario-based information collection, and root cause analysis features of obdiag are all available as add-ons. You can add custom diagnostic scenarios at low costs.
 
-![Benefits](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/002.png)
+![Benefits](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/002.png)
 
 ### Features
 
 obdiag can scan, collect, analyze, and diagnose information such as the logs, SQL audit records, and the process stack information of OceanBase Database. You can use obdiag with ease, no matter whether your OceanBase cluster is deployed manually or by using OceanBase Cloud Platform (OCP) or OBD. obdiag has the following features:
 
-![Features](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/003.png)
+![Features](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/003.png)
 
 - **Cluster inspection**: You can use `obdiag check` commands to inspect the status of an OceanBase cluster. The inspection process analyzes the cluster from perspectives of the system kernel parameters and internal tables, identifies the causes of existing or possible exceptions, and provides O&M suggestions.
 
@@ -873,4 +873,4 @@ Root cause analysis scenarios are recorded in Python files under the `~/.obdiag/
 
 obdiag supports cluster inspection, diagnostic analysis, and information collection. You can easily inspect an OceanBase cluster and recover the cluster based on the diagnostics report. If a cluster encounters an unknown exception, obdiag allows you to analyze the logs to narrow the troubleshooting scope. If a cluster encounters a known exception, obdiag allows you to directly analyze the root cause based on the root cause analysis report. If the problem persists, you can collect diagnostic information and post it to the QA module in the OceanBase community or send it to OceanBase Technical Support.
 
-![Overall process](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/004.png)
+![Overall process](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/09_diagnose_and_analyze_through_obdiag/004.png)

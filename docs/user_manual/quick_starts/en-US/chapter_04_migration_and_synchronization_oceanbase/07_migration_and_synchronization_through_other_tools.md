@@ -21,7 +21,7 @@ Flink CDC Connectors (Flink CDC for short) is a set of source connectors for Apa
 
 Flink CDC also supports data processing. You can use the SQL client of Flink CDC to associate, widen, and aggregate database data in real time, and write the results to various stores. 
 
-![Flink CDC](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/001.png)
+![Flink CDC](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/001.png)
 
 ### Supported connectors
 
@@ -53,7 +53,7 @@ Canal is an open source product of Alibaba. It provides subscription and consump
 
 The following figure shows how Canal works.
 
-![How Canal works](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/002.png)
+![How Canal works](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/002.png)
 
 * Canal disguises itself as a MySQL slave by simulating the communication protocol of the MySQL slave, and sends a dump request to the MySQL master.
 
@@ -65,7 +65,7 @@ The following figure shows how Canal works.
 
 The following figure shows the architecture and components of Canal.
 
-![Canal architecture ](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/003.png)
+![Canal architecture ](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/003.png)
 
 where
 
@@ -95,7 +95,7 @@ For more information, see the following topics:
 
 DataX is the open source edition of DataWorks of Alibaba Cloud. It is an offline data synchronization tool/platform widely used in Alibaba Group. DataX efficiently synchronizes data between heterogeneous data sources such as MySQL, Oracle, SQL Server, PostgreSQL, Hadoop Distributed File System (HDFS), Hive, ADS, HBase, Table Store (OTS), MaxCompute (formerly known as ODPS), Distributed Relational Database Service (DRDS), and OceanBase Database. 
 
-![DataX topology](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/004.png)
+![DataX topology](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/004.png)
 
 To address issues of data synchronization between heterogeneous data sources in a complex mesh topology, DataX introduces the star topology and serves as the transmission hub that connects to various data sources. This way, you can connect a new data source to DataX and start synchronizing data between the new data source and the existing data sources right away. 
 
@@ -105,7 +105,7 @@ DataX has been widely used in Alibaba Group for six years with stable operation.
 
 DataX is an offline data synchronization framework that is designed based on the framework + plug-in architecture. Data source reads and writes are abstracted as the reader and writer plug-ins and are integrated into the entire framework. 
 
-![DataX architecture](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/005.png)
+![DataX architecture](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/005.png)
 
 * Reader: The reader plug-in is a data collection module that collects data from a data source and sends the data to the framework. 
 
@@ -263,7 +263,7 @@ Over years of development, DataX has supported a wide range of plug-ins for conn
 
 Open source DataX 3.0 supports data synchronization by multiple threads on a single server. The following sequence diagram describes how modules of DataX work with each other in handling a job. 
 
-![DataX modules](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/006.png)
+![DataX modules](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/07_migration_and_synchronization_through_other_tools/006.png)
 
 **Core modules**
 

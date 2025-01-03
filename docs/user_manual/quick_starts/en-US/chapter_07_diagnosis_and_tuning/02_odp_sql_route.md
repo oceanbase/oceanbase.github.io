@@ -11,7 +11,7 @@ OceanBase Database Proxy (ODP) is a dedicated proxy server for OceanBase Databas
 
 Although ODP adds a hop to the database access link, ODP serves as a proxy server that provides various features and benefits. The following figure shows a sample deployment architecture where ODP is used.
 
-![ODP](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/001.png)
+![ODP](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/001.png)
 
 As shown in the preceding figure, the application is a business application and is allocated with three ODP nodes that run obproxy processes. In actual deployment, a load balancer such as F5, LVS, or Nginx is deployed between the ODP nodes and the application to distribute requests to multiple ODP nodes, to which OBServer nodes are connected. Six OBServer nodes are deployed in the sample deployment architecture.
 
@@ -75,7 +75,7 @@ Based on the routing feature, a query can be accurately routed to the OBServer n
 
 The following figure shows the routing logic.
 
-![Routing logic](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/002.png)
+![Routing logic](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/002.png)
 
 1. Parse the SQL request and extract information.
 
@@ -105,7 +105,7 @@ This section describes how to read data from a partition leader in strong consis
 
 All partition leaders involved in an SQL statement with a local plan are stored on the OBServer node where the current session resides. The OBServer node does not need to interact with other nodes during execution of the SQL statement.
 
-![Local plan](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/003.png)
+![Local plan](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/003.png)
 
 You can execute the `EXPLAIN` statement to query a local plan. The output is as follows:
 
@@ -123,7 +123,7 @@ You can execute the `EXPLAIN` statement to query a local plan. The output is as 
 
 All partition leaders involved in an SQL statement with a remote plan are stored on an OBServer node other than the one where the current session resides. The current OBServer node must forward the SQL statement or subplan.
 
-![Remote plan](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/004.png)
+![Remote plan](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/004.png)
 
 You can execute the `EXPLAIN` statement to query a remote plan, which contains `EXCHANGE REMOTE` operators. The output is as follows:
 
@@ -153,7 +153,7 @@ A distributed plan does not define the relationship between partition leaders in
 
 A distributed plan is scheduled in parallel execution mode and divided into multiple steps during scheduling. Each step is called a data flow operation (DFO).
 
-![Distributed plan](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/005.png)
+![Distributed plan](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/005.png)
 
 You can execute the `EXPLAIN` statement to query a distributed plan, which contains `EXCHANGE DISTR` operators. The output is as follows:
 
@@ -355,7 +355,7 @@ Cluster routing allows you to access different clusters. The key to cluster rout
 
 Note that the RootService list does not need to contain all the cluster servers. ODP obtains the list of servers in a cluster from a view. Generally, the RootService list contains servers where RootService is located.
 
-![Cluster routing procedure](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/006.png)
+![Cluster routing procedure](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/006.png)
 
 
 As can be seen from the preceding figure, OceanBase Cloud Platform (OCP) is a key module in cluster routing. If cluster routing issues occur in your production environment, check whether OCP operates properly.
@@ -392,7 +392,7 @@ Unlike the routing information of the `sys` tenant, the routing information of a
 
 ODP does not obtain routing information of a user tenant from a unit-related table, but by using the special table name `__all_dummy`, which indicates a query for the tenant information. ODP obtains the server list of the tenant from the internal table `__all_virtual_proxy_schema`. For ODP to access the `__all_virtual_proxy_schema` table, you must specify the table name `__all_dummy` and the tenant name to obtain the node information of the tenant.
 
-![Routing for a user tenant](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/02_odp_sql_route/007.png)
+![Routing for a user tenant](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/02_odp_sql_route/007.png)
 
 ODP stores the obtained tenant information in the local memory and updates the cache information according to certain strategies. For the `sys` tenant, ODP initiates a pull task every 15 seconds to obtain the latest information. For user tenants, ODP refreshes the routing cache in accordance with the following strategies:
 

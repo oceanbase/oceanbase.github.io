@@ -15,7 +15,7 @@ OceanBase Database is a single-process software solution. Its process is named `
 
 As shown in the following figure, an OceanBase cluster can manage all resources allocated to the `observer` process in a centralized manner and allocate the resources to tenants. You can define the resource specifications for a tenant and adjust the resource specifications online.
 
-![Resource allocation](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/05_view-resources/001.png)
+![Resource allocation](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/05_view-resources/001.png)
 
 The resources for an OceanBase Database tenant include CPU, memory, and IOPS. At present, OceanBase Database supports the isolation of these resources. We recommend that you set the resource parameters based on the actual situation when you create resources. For example, the value of the parameter related to the disk space should not exceed the actual available disk space. Otherwise, load balancing is affected.
 

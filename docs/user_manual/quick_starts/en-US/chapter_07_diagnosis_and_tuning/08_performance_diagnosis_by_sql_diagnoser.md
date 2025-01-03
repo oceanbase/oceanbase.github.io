@@ -21,7 +21,7 @@ As shown in the following figure, SQL Diagnoser contains two diagnostic rule eng
 
 - The dynamic rule engine queries the internal performance views `gv$(ob_)sql_audit` and `gv$(ob_)plan_cache_plan_stat` of OceanBase Database as well as tables and indexes to analyze SQL statement exceptions.
 
-![Architecture](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_07_diagnosis_and_tuning/08_performance_diagnosis_by_sql_diagnoser/001.png)
+![Architecture](/img/user_manual/quick_starts/en-US/chapter_07_diagnosis_and_tuning/08_performance_diagnosis_by_sql_diagnoser/001.png)
 
 ## Use SQL Diagnoser
 

@@ -17,11 +17,11 @@ The procedure for connecting to OceanBase Database by using ODC is as follows. F
 
 1. Create a connection.
 
-   ![Create a connection](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/07_connecting-tenants/001.png)
+   ![Create a connection](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/07_connecting-tenants/001.png)
 
 2. Save and open the connection.
 
-   ![Open the connection](/img/user_manual/quick_starts_and_hands_on_practices_in_english/chapter_02_deploy_oceanbase_database/07_connecting-tenants/002.png)
+   ![Open the connection](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/07_connecting-tenants/002.png)
 
 ## Connect to a tenant by using a MySQL client
 
