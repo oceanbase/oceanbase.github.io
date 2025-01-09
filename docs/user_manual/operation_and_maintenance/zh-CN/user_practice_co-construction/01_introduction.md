@@ -55,4 +55,4 @@ weight: 1
 
 活动交流贴详见：[《OceanBase 4.x DBA 进阶教程》用户共建计划](https://ask.oceanbase.com/t/topic/35617370)，欢迎大家来这里留言评论，提出你对这个共建计划的建议，以及更有趣的共建想法~
 
-![示例图片](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/001.png)
+![示例图片](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/01_introduction/001.png)
