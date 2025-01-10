@@ -1,4 +1,7 @@
-# 在K8S上部署OceanBase的最佳实践
+---
+title: 在 K8S 上部署 OceanBase 的最佳实践
+weight: 2
+---
 
 ## 目录
 - [1. 背景与选型](#1-背景与选型)
@@ -19,24 +22,24 @@
 
 ## 1. 背景与选型
 
-OB（下称OB）是一款分布式关系型数据库，具有高性能、高可用性和弹性扩展等特点，其企业版已经在公司内部的"去Oracle"项目中进行了落地，并取得了不错的效果。此外，考虑到我们仍有许多业务在关系型数据库上有着需求，同时考虑到我们已经具备MySQL/MariaDB/MongoDB/PostgresSQL在公司内部的K8S集群上进行容器化部署经验，因此我们决定将OceanBase也进行容器化部署。
+OB（下称OB）是一款分布式关系型数据库，具有高性能、高可用性和弹性扩展等特点，其企业版已经在公司内部的 "去 Oracle" 项目中进行了落地，并取得了不错的效果。此外，考虑到我们仍有许多业务在关系型数据库上有着需求，同时考虑到我们已经具备MySQL / MariaDB / MongoDB / PostgresSQL 在公司内部的 K8S 集群上进行容器化部署经验，因此我们决定将 OceanBase 也进行容器化部署。
 
 ### 1.1 为什么选择OB
 
 在选择数据库时，我们从以下几个维度进行了分析：
 
-- **高可用性**：OB是基于Paxos算法的强一致性数据库，具备强大的容灾能力，支持多数据中心部署，同时单点故障并不影响业务连续性。
-- **弹性扩展**：OB的租户特性，使得相比MySQL和TiDB等关系型数据库而言，OB提供了更灵活的扩展能力，能够根据业务需求动态调整资源。
-- **成本**：OB内核天然自带数据压缩能力，相比MySQL/TiDB具备更低的存储成本，特别是在大规模部署时，能够有效降低硬件成本（实测重复性文本数据下，OB的存储成本仅为MySQL的1/4甚至更低）。
-- **兼容性**：OB内核天然兼容MySQL协议，方便现有应用的迁移和集成。
+- **高可用性**：OB 是基于 Paxos 算法的强一致性数据库，具备强大的容灾能力，支持多数据中心部署，同时单点故障并不影响业务连续性。
+- **弹性扩展**：OB 的租户特性，使得相比 MySQL 和 TiDB 等关系型数据库而言，OB 提供了更灵活的扩展能力，能够根据业务需求动态调整资源。
+- **成本**：OB 内核天然自带数据压缩能力，相比 MySQL/TiDB 具备更低的存储成本，特别是在大规模部署时，能够有效降低硬件成本（实测重复性文本数据下，OB 的存储成本仅为 MySQL 的 1/4 甚至更低）。
+- **兼容性**：OB 内核天然兼容 MySQL 协议，方便现有应用的迁移和集成。
 
-### 1.2 为什么选择ob-operator实现OB on K8S
+### 1.2 为什么选择 ob-operator 实现 OB on K8S
 
-在将OB部署到K8S的过程中，我们选择了 ob-operator 作为核心组件。ob-operator 提供了自动化管理 OB集群的能力，能够简化部署、扩展和运维的复杂性。其主要优势包括：
+在将 OB 部署到 K8S 的过程中，我们选择了 ob-operator 作为核心组件。ob-operator 提供了自动化管理 OB 集群的能力，能够简化部署、扩展和运维的复杂性。其主要优势包括：
 
-- **自动化管理**：ob-operator 能够自动处理OB集群的生命周期管理，包括创建、更新和删除。
-- **灵活性**：支持自定义OServer/OBTenant资源，支持快速扩展集群规模, 支持通过CR文件快速修改参数。
-- **高可用性**：通过多实例部署和健康检查机制，确保集群的稳定运行。支持静态IP和OVN网络，确保POD重建后仍然使用原IP，避免了POD重建后IP变化带来的问题。
+- **自动化管理**：ob-operator 能够自动处理 OB 集群的生命周期管理，包括创建、更新和删除。
+- **灵活性**：支持自定义 OServer/OBTenant 资源，支持快速扩展集群规模, 支持通过 CR 文件快速修改参数。
+- **高可用性**：通过多实例部署和健康检查机制，确保集群的稳定运行。支持静态 IP 和 OVN 网络，确保 POD 重建后仍然使用原 IP，避免了 POD 重建后 IP 变化带来的问题。
 
 ## 2 部署实操
 
@@ -49,7 +52,7 @@ OB（下称OB）是一款分布式关系型数据库，具有高性能、高可�
 - 有可用的 Kubernetes 集群，至少有 9 个可用 CPU，33 GB 可用内存和 360 GB 的可用存储空间。
 - ob-operator 依赖 cert-manager，请确保已安装 cert-manager。cert-manager 的安装方法如下。
 - 连接 OceanBase 集群时，需已安装 MySQL 客户端或 OBClient。
-- Kubernetes集群需要安装网络插件，例如OVN。2.3.1以上版本 ob-operator 支持OVN网络，并且能够做到pod重建后IP不变，进一步提高了 OB集群 的稳定性。
+- Kubernetes集群需要安装网络插件，例如 OVN。2.3.1 以上版本 ob-operator 支持 OVN 网络，并且能够做到 pod 重建后IP不变，进一步提高了 OB 集群的稳定性。
 
 **安装 cert-manager**
 
@@ -61,13 +64,13 @@ kubectl get pod -n cert-manager
 wget https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
 
 # 拉取镜像需要科学上网
-# 我们使用的K8S的网络插件为OVN，节点需要调度到 OVN 网络的节点上，否则可能无法通过 cert-manager 的 service 访问后端 POD
+# 我们使用的 K8S 的网络插件为 OVN，节点需要调度到 OVN 网络的节点上，否则可能无法通过 cert-manager 的 service 访问后端 POD
 kubectl apply -f cert-manager.yaml
 ```
 
 ### 2.2 安装 ob-operator
 
-安装ob-operator的操作可参考[ob-operator部署](https://www.oceanbase.com/docs/community-ob-operator-doc-1000000001666236)，如果手动通过CRD部署可以自行从github仓库中下载[CRD和Operator](https://github.com/oceanbase/ob-operator/blob/2.3.1/deploy/operator.yaml)的yaml文件，然后通过kubectl apply -f 命令进行安装。
+安装 ob-operator 的操作可参考[ob-operator部署](https://www.oceanbase.com/docs/community-ob-operator-doc-1000000001666236)，如果手动通过 CRD 部署可以自行从 github 仓库中下载 [CRD 和Operator](https://github.com/oceanbase/ob-operator/blob/2.3.1/deploy/operator.yaml) 的 yaml 文件，然后通过 ``kubectl apply -f`` 命令进行安装。
 
 
 ### 2.3 配置 OB 集群
@@ -76,9 +79,9 @@ kubectl apply -f cert-manager.yaml
 
 ### 2.4 配置 OBProxy 集群
 
-OBProxy（即odp，OceanBase Database Proxy） 是 OB集群 的代理组件，生产环境上建议使用 OBProxy 对OB集群进行访问。使用 OBProxy 的好处包括：
+OBProxy（即 ODP，OceanBase Database Proxy） 是 OB 集群的代理组件，生产环境上建议使用 OBProxy 对 OB 集群进行访问。使用 OBProxy 的好处包括：
 
-- **连接管理**：OBProxy 负责管理客户端的连接，维护与后端 OB集群 的会话，减少客户端与数据库之间的连接开销。
+- **连接管理**：OBProxy 负责管理客户端的连接，维护与后端 OB 集群 的会话，减少客户端与数据库之间的连接开销。
 - **负载均衡**：OBProxy 能够智能地将客户端请求分发到不同的 OB 节点，优化资源使用，提升系统性能。
 - **高可用性**：在后端 OB 节点发生故障时，OBProxy 能够自动剔除故障节点，确保请求的高可用性。
 - **安全性**：通过 OBProxy，可以集中管理访问控制和安全策略，增强系统的安全性。
@@ -87,10 +90,10 @@ OBProxy（即odp，OceanBase Database Proxy） 是 OB集群 的代理组件，�
 
 **安装 OBProxy**：直接应用 YAML 文件进行安装。
 
-obproxy YAML文件地址：[obproxy.yaml](https://github.com/oceanbase/ob-operator/blob/2.3.1/example/webapp/obproxy.yaml)，但在部署 OBProxy 前需要创建一个用于 OBProxy 与 OB集群 通信的 Secret。
+obproxy YAML文件地址：[obproxy.yaml](https://github.com/oceanbase/ob-operator/blob/2.3.1/example/webapp/obproxy.yaml)，但在部署 OBProxy 前需要创建一个用于 OBProxy 与 OB 集群 通信的 Secret。
 
 ```shell
-# 创建用于 OBProxy 与 OB集群 通信的 Secret
+# 创建用于 OBProxy 与 OB 集群 通信的 Secret
 kubectl create secret -n oceanbase generic proxyro-password --from-literal=password='<proxyro_password>'
 
 # 部署 OBProxy
@@ -139,13 +142,13 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: odp            # 生产环境下，不建议使用 odp 作为 Deployment 名称，建议使用 odp-${obcluster_name} 作为 Deployment 名称
+  name: odp # 生产环境下，不建议使用 odp 作为 Deployment 名称，建议使用 odp-${obcluster_name} 作为 Deployment 名称
   namespace: oceanbase
 spec:
   selector:
     matchLabels:
       app: odp
-      name: odp        # 生产环境下，不建议使用 odp 作为 Deployment 名称，建议使用 odp-${obcluster_name} 作为 Deployment 名称
+      name: odp # 生产环境下，不建议使用 odp 作为 Deployment 名称，建议使用 odp-${obcluster_name} 作为 Deployment 名称
   replicas: 3
   template:
     metadata:
@@ -185,13 +188,13 @@ spec:
 
 ![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/001.png)
 
-**通过 OBProxy 访问OB集群**：
+**通过 OBProxy 访问 OB 集群**：
 
-此时，可以通过OBProxy的Service提供OB数据库的访问入口，如下（obmysql是我提前创建好的租户，testdb是提前在obmysql下创建的用户）：
+此时，可以通过 OBProxy 的 Service 提供 OB 数据库的访问入口，如下（obmysql 是我提前创建好的租户，testdb 是提前在 obmysql 下创建的用户）：
 
 ![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/002.png)
 
-当然，在实际的生产中，我们采用的是域名访问的方式，而不是通过IP地址访问，因此需要进行域名重写，可看下一小节。
+当然，在实际的生产中，我们采用的是域名访问的方式，而不是通过 IP 地址访问，因此需要进行域名重写，可看下一小节。
 
 
 ### 2.5 Headless Service 和 CoreDNS 配置
@@ -249,12 +252,12 @@ spec:
    - 应用获得 Pod IP 并建立连接
 
 5. **CoreDNS 主机模式部署**
-   - 将 CoreDNS 部署在主机网络模式 （即 hostNetwork: true），使 CoreDNS POD与主机共享网络。
-   - 这样用，在其余K8S集群中的机器上，将 /etc/resolv.conf 配置为 CoreDNS 服务器ip后，即可通过 CoreDNS 进行域名解析。
+   - 将 CoreDNS 部署在主机网络模式 （即 hostNetwork: true），使 CoreDNS POD 与主机共享网络。
+   - 这样用，在其余 K8S 集群中的机器上，将 /etc/resolv.conf 配置为 CoreDNS 服务器 ip 后，即可通过 CoreDNS 进行域名解析。
    - 这种配置方式使得外部机器能够方便地通过 CoreDNS 进行域名解析，适合需要跨集群访问的场景。
 
 6. **如图所示**：
-   - 直接通过域名即可访问，而不用关心 obproxy 的service ip，进一步加强了集群的高可用能力
+   - 直接通过域名即可访问，而不用关心 obproxy 的 service ip，进一步加强了集群的高可用能力
 
 ![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/003.png)
 
@@ -288,25 +291,25 @@ svc-prometheus    NodePort    12.80.144.38   <none>        9090:30090/TCP      7
 ```
 
 
-#### 2.6.2 Grafana接入
+#### 2.6.2 Grafana 接入
 
-- 可以应用ob-operator中的grafana.yaml文件进行部署，文件链接：[grafana.yaml](https://github.com/oceanbase/ob-operator/blob/2.3.1/example/webapp/grafana.yaml)
-- 也可以通过grafana的配置页面，添加prometheus数据源，然后通过prometheus的SVC地址进行接入。
+- 可以应用 ob-operator 中的 grafana.yaml 文件进行部署，文件链接：[grafana.yaml](https://github.com/oceanbase/ob-operator/blob/2.3.1/example/webapp/grafana.yaml)
+- 也可以通过 grafana 的配置页面，添加 prometheus 数据源，然后通过 prometheus 的 SVC 地址进行接入。
 
-因为我们本地已经有grafana，所以这里我们通过grafana的配置页面，添加prometheus数据源，然后通过prometheus的SVC地址进行接入。
+因为我们本地已经有 grafana，所以这里我们通过 grafana 的配置页面，添加 prometheus 数据源，然后通过 prometheus的 SVC 地址进行接入。
 
-##### 2.6.2.1 配置Prometheus数据源
+##### 2.6.2.1 配置 Prometheus 数据源
 
-1. 在Grafana左侧导航栏，单击 `Configuration` 按钮，然后单击 `Add data source` 按钮。
+1. 在 Grafana 左侧导航栏，单击 `Configuration` 按钮，然后单击 `Add data source` 按钮。
 2. 在 `Add data source` 页面，选择 `Prometheus` 作为数据源类型。
 3. 在 `Prometheus` 页面，填写 `Name` 为 `ob-prometheus`，`URL` 为 `http://12.80.144.38:9090`(即上面的promethues对应的svc ip)，然后单击 `Save & Test` 按钮。
 
 ![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/004.png)
 
 
-##### 2.6.2.2 配置Grafana Dashboard
+##### 2.6.2.2 配置 Grafana Dashboard
 
-1. 新建一个名为OceanBase的文件夹
+1. 新建一个名为 OceanBase 的文件夹
 
 ![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/005.png)
 
@@ -345,10 +348,10 @@ spec:
 
 ### 3.2 网络配置问题
 
-**问题描述**：在使用 OVN 网络插件时，发现 Pod IP 在重启后发生变化，导致OBProxy无法正常访问OB集群。 
+**问题描述**：在使用 OVN 网络插件时，发现 Pod IP 在重启后发生变化，导致 OBProxy 无法正常访问OB集群。 
 
 **解决方案**：
-（1）使用ob-operator的service模式，即为每个OBServer Pod创建一个Service，通过service来做静态IP的绑定，从而解决IP变化的问题，用法如下:
+（1）使用 ob-operator 的 service 模式，即为每个 OBServer Pod 创建一个 Service，通过 service 来做静态 IP 的绑定，从而解决 IP 变化的问题，用法如下:
 ```yaml
 apiVersion: oceanbase.oceanbase.com/v1alpha1
 kind: OBCluster
@@ -367,11 +370,11 @@ spec:
       memory: 16Gi
     ...
 ```
-但是链路上多一节service做静态IP的绑定，会增加网络的复杂度，而从生产角度和高可用shang因此我们采用了下面的方案。
+但是链路上多一节 service 做静态 IP 的绑定，会增加网络的复杂度。因此我们采用了下面的方案：
 
-（2）ob-operator更新到2.3.1，该版本支持OVN网络插件，并且能够做到Pod重建后IP不变。
+（2）ob-operator 更新到 2.3.1，该版本支持 OVN 网络插件，并且能够做到 Pod 重建后 IP 不变。
 
-（3）但仍存在潜在的IP冲突问题，即当一个 OB Pod 正在重建过程中时，如果此时有其他新的 Pod 被创建，这些新 Pod 可能会占用到正在重建的 OB Pod 原本使用的 IP 地址。这会导致该 OB Pod 重建完成后无法使用其原有的 IP 地址。
+（3）但仍存在潜在的 IP 冲突问题，即当一个 OB Pod 正在重建过程中时，如果此时有其他新的 Pod 被创建，这些新 Pod 可能会占用到正在重建的 OB Pod 原本使用的 IP 地址。这会导致该 OB Pod 重建完成后无法使用其原有的 IP 地址。
 
 为了解决这个问题，我们采用了 OVN 的子网隔离方案：
 
@@ -393,6 +396,6 @@ spec:
   ```
 
 这种配置的优势：
-- 网络隔离：OB 集群的 Pod 使用独立的 IP 地址段，避免与其他业务 Pod 发生 IP 冲突
-- 地址管理：可以更好地规划和管理 IP 地址资源
-- 安全性：通过网络隔离提升了系统安全性
+- 网络隔离：OB 集群的 Pod 使用独立的 IP 地址段，避免与其他业务 Pod 发生 IP 冲突。
+- 地址管理：可以更好地规划和管理 IP 地址资源。
+- 安全性：通过网络隔离提升了系统安全性。
