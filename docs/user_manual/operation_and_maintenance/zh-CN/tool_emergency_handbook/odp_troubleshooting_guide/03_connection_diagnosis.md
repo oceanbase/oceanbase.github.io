@@ -212,7 +212,7 @@ OceanBase 数据库主动断开连接对应的 trace_type 为 SERVER_VC_TRACE，
 
 额外诊断信息有如下三条。
 
-* vc_event：表示断连接相关的时间，您无需太过关注
+* vc_event：表示断连接相关的事件，您无需太过关注
 
 * total_time：表示请求执行时间
 
@@ -241,7 +241,7 @@ OceanBase 数据库主动断连接有如下几种场景。
 
 额外诊断信息有如下三条。
 
-* vc_event：表示断连接相关的时间，您无需太过关注
+* vc_event：表示断连接相关的事件，您无需太过关注
 
 * total_time：表示请求执行时间
 
