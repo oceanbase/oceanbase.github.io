@@ -183,13 +183,13 @@ spec:
 ```
 部署完成后，如下图所示：
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-1.png" width="33%" height="33%">
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/001.png)
 
 **通过 OBProxy 访问OB集群**：
 
 此时，可以通过OBProxy的Service提供OB数据库的访问入口，如下（obmysql是我提前创建好的租户，testdb是提前在obmysql下创建的用户）：
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-2.png" width="33%" height="33%">
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/002.png)
 
 当然，在实际的生产中，我们采用的是域名访问的方式，而不是通过IP地址访问，因此需要进行域名重写，可看下一小节。
 
@@ -256,7 +256,7 @@ spec:
 6. **如图所示**：
    - 直接通过域名即可访问，而不用关心 obproxy 的service ip，进一步加强了集群的高可用能力
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-3.png" width="33%" height="33%">
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/003.png)
 
 ### 2.6 监控与运维
 
@@ -301,22 +301,21 @@ svc-prometheus    NodePort    12.80.144.38   <none>        9090:30090/TCP      7
 2. 在 `Add data source` 页面，选择 `Prometheus` 作为数据源类型。
 3. 在 `Prometheus` 页面，填写 `Name` 为 `ob-prometheus`，`URL` 为 `http://12.80.144.38:9090`(即上面的promethues对应的svc ip)，然后单击 `Save & Test` 按钮。
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-4.png" width="33%" height="33%">
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/004.png)
 
 
 ##### 2.6.2.2 配置Grafana Dashboard
 
 1. 新建一个名为OceanBase的文件夹
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-5.png" width="33%" height="33%">
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/005.png)
 
 2. 进入该文件夹，接着导入文件链接：[grafana.yaml](https://github.com/oceanbase/ob-operator/blob/2.3.1/example/webapp/grafana.yaml) 中的grafana-dashboards-ob部分的json配置
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-6.png" width="33%" height="33%">
-
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/006.png)
 3. 监控展示如图
 
-<img src="./02_Best_Practices_for_Deploying_OceanBase_on_K8s/image-7.png" width="33%" height="33%">
+![img](/img/user_manual/operation_and_maintenance/zh-CN/user_practice_co-construction/02_best_practices_for_deploying_oceanbase_on_k8s/007.png)
 
 
 ## 3. 部署中遇到的问题及解决方案
