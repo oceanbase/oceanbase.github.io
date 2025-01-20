@@ -468,7 +468,7 @@ FROM
 
 ## 统计租户表数量
 
-查询非 META 租户的表数量：
+查询非 META 租户的表数量（已排除 oceanbase 库和 mysql 库中的一些系统表）：
 
 ```
 SELECT

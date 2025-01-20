@@ -99,7 +99,7 @@ weight: 2
 
     2. **<font color="red">multi_level_queue</font>**，表示嵌套请求队列
         
-        - total_size=n，n 表示优先级队列中总共的排队请求数。
+        - total_size=n，n 表示层级队列中总共的排队请求数。
         
         - queue[x]=y，y 表示每个层级子队列中的排队请求数。
         

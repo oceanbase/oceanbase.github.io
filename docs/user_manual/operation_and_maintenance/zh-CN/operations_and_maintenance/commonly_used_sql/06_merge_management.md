@@ -3,10 +3,10 @@ title: 合并管理
 weight: 6
 ---
 
-`root@sys` 登陆查询，
+本文中在系统租户下查询的内容，均需要通过 `root@sys` 登陆。
 
 ## 系统租户下查询所有租户的合并状态
-
+`root@sys` 登陆查询：
 ```
 SELECT
   tenant_id,
@@ -58,6 +58,7 @@ LIMIT
 ```
 
 ## 查询所有租户的 tablet 转储历史信息
+`root@sys` 登陆查询：
 
 ```
 SELECT
@@ -96,6 +97,7 @@ LIMIT
 
 ## memstore 信息
 
+`root@sys` 登陆查询：
 ```
 SELECT
   /*+ MONITOR_AGENT READ_CONSISTENCY(WEAK) */
@@ -118,6 +120,7 @@ ORDER BY
 
 ## 租户 memstore 信息
 
+`root@sys` 登陆查询：
 ```
 SELECT
   /*+ READ_CONSISTENCY(WEAK),query_timeout(100000000) */
@@ -140,7 +143,7 @@ GROUP BY
 
 ## 查看转储信息
 
-`root@sys` 登陆查询，
+`root@sys` 登陆查询：
 
 ```
 SELECT
@@ -157,7 +160,7 @@ LIMIT
 
 ## 查看每日合并耗时
 
-`root@sys` 登陆查询，
+`root@sys` 登陆查询：
 
 ```
 SELECT

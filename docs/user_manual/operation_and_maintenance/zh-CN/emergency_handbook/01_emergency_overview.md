@@ -44,7 +44,7 @@ OBServer 的故障排查脑图详见：
 
 这一小节只有手册的内容介绍，没啥干货，有点儿过意不去。那就在最后附送一个 **<font color="red">针对 OceanBase 严重故障（尤其是业务停服场景），进行快速止血恢复的通用方法</font>** ，简单来说就是：切主 -> 隔离 -> 重启 -> 切备集群。
 
-- 如果集群中只有一个租户有问题，那就切这个租户的主（通过 set tenant primary_zone 修改租户的 primary_zone）。
+- 如果集群中只有一个租户有问题，那就切这个租户的主（通过 alter tenant set primary_zone 修改租户的 primary_zone）。
 
 - 如果集群中只有一个节点有问题，那就 stop or isolate 这个节点。
 
