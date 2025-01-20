@@ -32,8 +32,8 @@ SELECT b.zone, a.svr_ip, a.svr_port,
         ROUND((a.total_size-a.free_size)/1024/1024/1024,3) used_size_GB,
         ROUND(a.free_size/1024/1024/1024,3) free_size_GB,
         ROUND((a.total_size-a.free_size)/total_size,2)*100 disk_used_percentage
-FROM __all_virtual_disk_stat a
-INNER JOIN __all_server b
+FROM oceanbase.__all_virtual_disk_stat a
+INNER JOIN oceanbase.__all_server b
   ON a.svr_ip=b.svr_ip AND a.svr_port=b.svr_port
 ORDER BY zone
 

@@ -1869,54 +1869,6 @@ ORDER BY
   a.svr_port;
 ```
 
-以下为视图查询，但性能较差，
-
-```
-SELECT
-  /*+ READ_CONSISTENCY(WEAK) QUERY_TIMEOUT(50000000) */
-  a.tenant_id,
-  a.svr_ip,
-  a.svr_port,
-  c.object_type,
-  round(SUM(data_size) / 1024 / 1024) AS data_size_mb,
-  round(SUM(required_size) / 1024 / 1024) AS required_size_mb
-FROM
-  cdb_ob_table_locations a
-  JOIN (
-    SELECT
-      tenant_id,
-      tablet_id,
-      svr_ip,
-      svr_port,
-      data_size,
-      required_size
-    FROM
-      cdb_ob_tablet_replicas
-  ) b ON a.tenant_id = b.tenant_id
-   AND a.tenant_id = 1012
---   AND a.database_name = 'ALVIN'
-  AND a.tablet_id = b.tablet_id
-  AND a.svr_ip = b.svr_ip
-  AND a.svr_port = b.svr_port
-  JOIN cdb_objects c ON a.tenant_id = c.con_id
-  AND a.table_id = c.object_id
-  AND c.object_type = 'TABLE'
---   AND c.object_name = 'test'
-GROUP BY
-  a.tenant_id,
-  a.svr_ip,
-  a.svr_port,
-  c.object_type
-ORDER BY
-  a.tenant_id,
-  a.svr_ip,
-  a.svr_port;
-```
-
-目前 内核提供的最准确的内部表是 `__all_virtual_tablet_sstable_macro_info` 。这张表详细的记录了细到分区(tablet) 对应的每个宏块的信息。OCP 倒是可以根据宏块的 idx 去重后得到准确的统计信息（4.x 即使是这张表也没办法去掉小 sstable 的重复） 421 即采用上述方式进行统计。但该表在数据量很大的时候记录非常多，OCP 全量的查询会有性能问题。考虑尝试过滤 svr 查询会极大提升查询性能，但是4.x 的 OB 这张表不在内存中了，而是走磁盘扫描，部分情况会将硬盘 IO 打满，造成稳定性问题。
-
-详见相关 git [PR](https://code.alipay.com/oceanbase-cloud-platform/ocp-all-in-one/pull_requests/10663?tab=diff)。
-
 ```
 SELECT
   a.tenant_id,

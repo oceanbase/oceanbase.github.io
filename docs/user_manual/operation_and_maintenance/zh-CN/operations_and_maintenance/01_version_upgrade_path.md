@@ -24,7 +24,7 @@ weight: 1
 + CE（Community Edition）代表社区版。
 + LTS（Long-Term Support）代表长期支持版，会在这个版本，长期解决稳定性 bug。
 + HF（HotFix）表示只增加了关键 bugfix 的版本，旨在解决个别 “走投无路” 难以绕过的问题。
-+ GA（General Availability）代表稳定版本，是生产环境（即正式使用环境）下安全可靠的，可以广泛部署和用于日常业务操作的版本。在[官网](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001049779)上可以看到 4.3.1 就是一个 GA 版本。
++ GA（General Availability）代表稳定版本，是生产环境（即正式使用环境）下安全可靠的，可以广泛部署和用于日常业务操作的版本。在[官网](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001509391)上可以看到 4.3.1 就是一个 GA 版本。
 
 例如下图中 4.2.1_BP8(LTS) 就表示是 4.2.1 这个版本中进行过 8 次 Bundle Patch 的长期支持版本。
 

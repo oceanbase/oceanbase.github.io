@@ -124,20 +124,6 @@ ORDER BY
   role;
 ```
 
-## Oracle 模式角色授权情况
-
-```
-SELECT
-  *
-FROM
-  dba_role_privs
-WHERE
-  grantee = 'SYS'
-ORDER BY
-  grantee,
-  granted_role;
-```
-
 ## Oracle 模式系统权限授权情况
 
 ```

@@ -59,7 +59,7 @@ alter system start server 'xx.xxx.xxx.x:2882';
 - **<font color="red">租户切主，将机房对应的整个 ZONE 进行隔离（[副本隔离](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000001573944)）</font>**。
 ```
 -- 租户切主
-ALTER TENANT tenant_name primary_zone='zone1';
+ALTER TENANT tenant_name primary_zone='zone2';
 
 -- 隔离 zone
 ALTER SYSTEM STOP ZONE 'zone1';
