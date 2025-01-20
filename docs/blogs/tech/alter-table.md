@@ -3,6 +3,8 @@ slug: alter-table
 title: 'Principles of ALTER TABLE in OceanBase Database'
 ---
 
+# Principles of ALTER TABLE in OceanBase Database
+
 Foreword
 ====
 

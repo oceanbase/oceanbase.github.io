@@ -3,6 +3,8 @@ slug: query-engines
 title: "Evolution of Database Query Engines"
 ---
 
+# Evolution of Database Query Engines
+
 > In relational databases, the query scheduler and plan executor are as crucial as the query optimizer, and their importance is increasing with advancements in computer hardware. In this article, _**Yuming**_, a technical expert from the OceanBase team who was born in the 1990s, will walk you through the milestones in the evolution of plan executors.
 
 About the author: Wei Yuchen, a technical expert from the OceanBase team of Ant Group, has been working on SQL parsing, execution, and optimization since joining the OceanBase team in 2013.
@@ -39,10 +41,8 @@ However, the nested operator model has its drawbacks:
 The Volcano model was first introduced by Goetz Graefe in 1990 in his paper *Volcano—An Extensible and Parallel Query Evaluation System*. In the early 1990s, memory was expensive, and I/O was a significant bottleneck compared to CPU execution efficiency. This I/O bottleneck, the so-called "I/O wall" problem, between operators and storage was the primary limiting factor for query efficiency. The Volcano model allocated more memory resources to I/O caching than to CPU execution efficiency, which was a natural trade-off given the hardware constraints at the time.
 
 As hardware advances brought larger memory capacities, more data can be stored in memory. However, the relatively stagnant performance of single-core CPUs became a bottleneck. This spurred numerous optimizations aimed at improving CPU execution efficiency.  
-Operator Fusion
-==============================================================================================================
 
-The simplest and most effective way to optimize the execution efficiency of operators is to reduce their function calls during execution. The Project and Filter operators are the most common operators in plan trees. In OceanBase V1.0, we fuse these operators into other specific algebraic operators. This significantly reduces the number of operators in a plan tree and minimizes the number of nested next() calls between operators. Integrating the Project and Filter operators as internal capabilities of each operator also enhances code locality and CPU branch prediction.
+The simplest and most effective way to integrate and optimize the execution efficiency of operators is to reduce the function calls of operators during the execution process. The Project and Filter operators are the most common operators in plan trees. In OceanBase V1.0, we fuse these operators into other specific algebraic operators. This significantly reduces the number of operators in a plan tree and minimizes the number of nested next() calls between operators. Integrating the Project and Filter operators as internal capabilities of each operator also enhances code locality and CPU branch prediction.
 
 ![1679571568](https://obcommunityprod.oss-cn-shanghai.aliyuncs.com/pord/blog/2023-04/1679571568453.png)
 
