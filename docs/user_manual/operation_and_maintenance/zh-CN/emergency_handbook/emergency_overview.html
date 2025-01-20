@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H4XM2M50RX"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-H4XM2M50RX",{})</script><link rel="stylesheet" href="/assets/css/styles.7e3a93fe.css">
-<script src="/assets/js/runtime~main.7419307f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.bb1936f3.js" defer="defer"></script>
 <script src="/assets/js/main.68a43201.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -56,7 +56,7 @@
 <p>这一小节只有手册的内容介绍，没啥干货，有点儿过意不去。那就在最后附送一个 <strong><font color="red">针对 OceanBase 严重故障（尤其是业务停服场景），进行快速止血恢复的通用方法</font></strong> ，简单来说就是：切主 -&gt; 隔离 -&gt; 重启 -&gt; 切备集群。</p>
 <ul>
 <li>
-<p>如果集群中只有一个租户有问题，那就切这个租户的主（通过 set tenant primary_zone 修改租户的 primary_zone）。</p>
+<p>如果集群中只有一个租户有问题，那就切这个租户的主（通过 alter tenant set primary_zone 修改租户的 primary_zone）。</p>
 </li>
 <li>
 <p>如果集群中只有一个节点有问题，那就 stop or isolate 这个节点。</p>

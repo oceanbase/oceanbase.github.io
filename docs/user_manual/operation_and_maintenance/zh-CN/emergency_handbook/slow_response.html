@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H4XM2M50RX"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-H4XM2M50RX",{})</script><link rel="stylesheet" href="/assets/css/styles.7e3a93fe.css">
-<script src="/assets/js/runtime~main.7419307f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.bb1936f3.js" defer="defer"></script>
 <script src="/assets/js/main.68a43201.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -75,7 +75,7 @@
 <p><strong><font color="red">multi_level_queue</font></strong>，表示嵌套请求队列</p>
 <ul>
 <li>
-<p>total_size=n，n 表示优先级队列中总共的排队请求数。</p>
+<p>total_size=n，n 表示层级队列中总共的排队请求数。</p>
 </li>
 <li>
 <p>queue[x]=y，y 表示每个层级子队列中的排队请求数。</p>
@@ -111,7 +111,7 @@
 <p>这张虚拟表，可以实时地查看队列信息，好处是实时性强，缺点是不记录历史信息。</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="解决方法">解决方法<a href="#解决方法" class="hash-link" aria-label="Direct link to 解决方法" title="Direct link to 解决方法">​</a></h4>
 <p>这里先多说几句，OceanBase 的线程模型，是一个典型的生产者消费者模型，当请求的生产速度长期大于消费速度时，租户的工作队列就会被打爆，并返回错误码 -4019。</p>
-<p>即使没有打满，也会表现出  请求排队耗时长的情况，如租户中存在大量自增列的场景（详见：《DBA 入门教程》中的 “扩展功能” 的 <a href="https://www.oceanbase.com/docs/community-tutorials-cn-1000000001390115" target="_blank" rel="noopener noreferrer">“序列” 部分</a>）。</p>
+<p>即使没有打满，也会表现出请  求排队耗时长的情况，如租户中存在大量自增列的场景（详见：《DBA 入门教程》中的 “扩展功能” 的 <a href="https://www.oceanbase.com/docs/community-tutorials-cn-1000000001390115" target="_blank" rel="noopener noreferrer">“序列” 部分</a>）。</p>
 <p>解决方法如下：</p>
 <ul>
 <li>
@@ -136,7 +136,7 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="排查计划问题">排查计划问题<a href="#排查计划问题" class="hash-link" aria-label="Direct link to 排查计划问题" title="Direct link to 排查计划问题">​</a></h3>
 <p>如果资源问题这个分支的嫌疑被排除了，大概率就是计划问题了。</p>
 <p><img decoding="async" loading="lazy" alt="image" src="/assets/images/007-3dc4e821d9e8239e5d82040ef331599c.png" width="2234" height="1296" class="img_ev3q"></p>
-<p>如果 SQL 执行效率是 “由快变慢”，那么可以重点怀疑以下几个常见 问题：</p>
+<p>如果 SQL 执行效率是 “由快变慢”，那么可以重点怀疑以下几个常见问 题：</p>
 <ul>
 <li>
 <p>第一个是计划缓存（plan cahce）的 bad case，也被人称为 “大小账号问题”。问题描述、排查思路、解决方法都详见：《DBA 入门教程》中的 “常见的 SQL 调优方式” 的 <a href="https://www.oceanbase.com/docs/community-tutorials-cn-1000000001390071" target="_blank" rel="noopener noreferrer">“计划缓存的 bad case” 部分</a>，这里不再赘述。简而言之，“大小账号问题” 分两种：</p>
@@ -162,7 +162,7 @@
 <li>
 <p>第三个是在版本升级后，在低版本中好的计划，在高版本中回退成了差的计划。</p>
 <ul>
-<li>一般来说，升级之后，绝大多数的计划都 会变成更优的计划，这种回退只是极其个别的情况。这种情况在《入门教程》中没有为大家介绍，可以直接通过 OCP 观察对应 SQL 的历史趋势及计划变化来判断。
+<li>一般来说，升级之后，绝大多数的计划都会 变成更优的计划，这种回退只是极其个别的情况。这种情况在《入门教程》中没有为大家介绍，可以直接通过 OCP 观察对应 SQL 的历史趋势及计划变化来判断。
 <img decoding="async" loading="lazy" alt="image" src="/assets/images/008-7f6e30295b6a48cbaf0d57a1c4c3c660.png" width="3774" height="1802" class="img_ev3q"></li>
 <li>解决方法详见<a href="https://www.oceanbase.com/docs/community-tutorials-cn-1000000001390068" target="_blank" rel="noopener noreferrer">《入门教程》中的 “通过 Hint 生成指定计划” 以及 “通过 Outline 进行计划绑定”</a>。</li>
 </ul>
