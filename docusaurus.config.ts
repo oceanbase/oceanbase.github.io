@@ -24,6 +24,10 @@ const user_manual = [
     label: 'Operation And Maintenance Manual (in Chinese)',
     to: '/docs/user_manual/operation_and_maintenance/zh-CN/about_this_manual/overview',
   },
+  {
+    label: 'Operation And Maintenance Manual (in English)',
+    to: '/docs/user_manual/operation_and_maintenance/en-US/about_this_manual/overview',
+  },
 ];
 
 const dev_manual = [
@@ -79,8 +83,8 @@ const community = [
     href: 'http://github.com/oceanbase/oceanbase/discussions',
   },
   {
-    label: 'Slack',
-    href: 'https://join.slack.com/t/oceanbase/shared_invite/zt-1e25oz3ol-lJ6YNqPHaKwY_mhhioyEuw',
+    label: 'Discord',
+    href: 'https://discord.gg/74cF8vbNEs',
   },
   {
     label: 'Forum (in Chinese)',
