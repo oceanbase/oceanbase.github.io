@@ -304,7 +304,7 @@ slice 分片-> source 读取源端-> dispatcher 数据分发-> sink 写入目标
 wget 'localhost:17006/p_47qaxxxsu8_source-000-0' --post-data 'filter.conditions=*.*.*&checkpoint=1667996779'
 ```
 
-![FAQ-6](/img/user_manual/operation_and_maintenance/zh-CN/tool_emergency_handbook/01_oms_troubleshooting_guide/005.png)
+![FAQ-6](/img/user_manual/operation_and_maintenance/zh-CN/tool_emergency_handbook/01_oms_troubleshooting_guide/006.png)
 
 ## 典型使用场景和功能
 

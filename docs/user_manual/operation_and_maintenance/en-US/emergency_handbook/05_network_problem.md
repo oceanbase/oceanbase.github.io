@@ -1,0 +1,106 @@
+---
+title: Network Jitter
+weight: 5
+---
+
+> The previous topic describes how to troubleshoot OBServer node failures. The following topics will introduce troubleshooting approaches for certain hardware and environment faults.
+>
+> If you are not interested in topics relevant to faults, you do not need to read such topics in advance. You can bookmark the topics and refer to them when you encounter such faults. In short, you may choose not to read such content, but we must provide it.
+
+> **<font color="red">After a network exception occurs, we recommend that you isolate the exception before you analyze it. </font>**
+
+
+## Business and Database Symptoms
+If a network failure or network jitter occurs, an election without leader is repeatedly initiated among the log streams in the cluster. This results in fluctuations in the response time of application requests.
+
+- Minor network jitters may affect business SQL performance.
+
+- Severe network jitters may cause unstable communication with OceanBase databases, which further causes frequent leader switchovers. The database may even report the [OB_NOT_MASTER (-4038)](https://open.oceanbase.com/quicksearch?q=OB_NOT_MASTER&scope=knowledge) error. In 99.9% of cases, this error occurs because no leader is available due to leader switchover at the bottom layer.
+
+- When the network is disconnected and the network-isolated node hosts the leader, the cluster performs a leader switchover, after which the business recovers. If the sessions on the OBServer node are terminated due to network disconnection, specific business systems may be affected.
+
+## Troubleshooting Approach
+- If network packets are lost, OceanBase Cloud Platform (OCP) reports alerts.
+
+    ![image](/img/user_manual/operation_and_maintenance/en-US/emergency_handbook/05_network_problem/002.png)
+
+- If a network failure occurs or network packets are lost for a long period of time, OCP may report the [ob_cluster_exists_inactive_server](https://en.oceanbase.com/docs/common-ocp-10000000001899714) alert.
+
+    ![image](/img/user_manual/operation_and_maintenance/en-US/emergency_handbook/05_network_problem/003.png)
+
+- For more information about how to troubleshoot network failures, see [Network troubleshooting](https://en.oceanbase.com/docs/common-ocp-10000000001899741).
+
+## Troubleshooting Procedure
+
+Check the network of all nodes in the cluster to determine the impact scope.
+
+The following troubleshooting procedure is similar to that for node failures.
+
+### Single-server network failures
+
+- View network monitoring metrics to check whether packet loss and timeout retransmission occur.
+
+- **<font color="red">Isolate the affected server to prevent frequent leader switchovers</font>**.
+    ```
+    -- Stop the abnormal node to isolate it.
+    alter system stop server 'xx.xxx.xxx.x:2882';
+    ```
+- Identify the cause and fix the issue, and then cancel the isolation.
+    ```
+    alter system start server 'xx.xxx.xxx.x:2882';
+    ```
+
+
+### IDC-level network failures
+
+
+- Determine the affected replicas.
+
+- **<font color="red">Specify a new primary zone for leader switchover in the tenant. Isolate the zone where the faulty Internet data center (IDC) resides. For more information, see [Isolate a zone](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001714991)</font>**.
+    ```
+    -- Specify a new primary zone for leader switchover in the tenant.
+    ALTER TENANT tenant_name primary_zone='zone2';
+
+    -- Isolate the zone where the faulty IDC resides.
+    ALTER SYSTEM STOP ZONE 'zone1';
+
+    SELECT zone, status FROM oceanbase.DBA_OB_ZONES;
+    +-------+----------+
+    | zone  | status   |
+    +-------+----------+
+    | zone1 | INACTIVE |
+    | zone2 | ACTIVE   |
+    | zone3 | ACTIVE   |
+    +-------+----------+
+    ```
+
+- Identify the cause and fix the issue, and then cancel the isolation.
+    ```
+    ALTER SYSTEM START ZONE zone_name;
+
+    SELECT zone, status FROM oceanbase.DBA_OB_ZONES;
+    +-------+--------+
+    | zone  | status |
+    +-------+--------+
+    | zone1 | ACTIVE |
+    | zone2 | ACTIVE |
+    | zone3 | ACTIVE |
+    +-------+--------+
+    ```
+
+### Cluster-level network failures
+
+If network failures occur in all IDCs of the cluster and cannot be fixed within a short period of time, you need to switch to the standby cluster. For more information, see [Primary/Standby cluster switchover for disaster recovery](https://en.oceanbase.com/docs/common-ocp-10000000001899404).
+
+
+## Troubleshoot NIC Overload (Update Released on December 5, 2024)
+
+For more information, see [Node network card overload](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001717374).
+
+In my opinion, the backup tasks and data import/export tasks mentioned in the reference topic have a smaller impact on the network than on the disks. In most cases, these factors do not cause NIC overloads.
+
+However, when a special SQL query is executed, network shuffles generated by a distributed plan may cause network overload.
+
+In this case, you can use the SQL diagnostics feature of OCP to optimize the SQL query or throttle the SQL query in OCP.
+
+![image](/img/user_manual/operation_and_maintenance/en-US/emergency_handbook/05_network_problem/4.png)
