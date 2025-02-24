@@ -192,7 +192,7 @@ In different environments, the client can be OceanBase Command-Line Client (OBCl
 
 As reported by many users in the community, indexes cannot be used for joining two columns with the same data type (such as `varchar`) and the same character set.
 
-This issue usually occurs when different database administrators (DBAs) create the table and columns and set different collations for them. For more information about how to analyze and troubleshoot the issue, see [SQL Tuning Practices - Analyze the Inability to Use Indexes When Joining Columns with Different Collations](https://open.oceanbase.com/blog/14870818145).
+This issue usually occurs when different database administrators (DBAs) create the table and columns and set different collations for them. For more information about how to analyze and troubleshoot the issue, see [SQL Tuning Practices - Index Failure Caused by Collations](https://oceanbase.github.io/docs/blogs/tech/failure-by-collation).
 
 **<font color="red">Note that if tables in the production environment are created by different DBAs, you must check the collations set for these tables when using them. Otherwise, query performance may be compromised due to non-optimal plans. </font>**
 
