@@ -167,7 +167,9 @@ Client 将 SQL 字符串的发给 Server 执行，Server 将执行结果返回�
   * 使用 jdbc 连接 OceanBase 数据库，GBK 链路一般在 url 里修改参数设置，添加 `characterEncoding=gbk`。
 
     ```shell
-    String url = "jdbc:oceanbase://xxx.xxx.xxx.xxx:xxxx?useSSL=false&useUnicode=true&characterEncoding=gbk&connectTimeout=30000&rewriteBatchedStatements=true";
+    String url = "jdbc:oceanbase://host:port?useSSL=false"
+        + "&useUnicode=true&characterEncoding=gbk"
+        + "&connectTimeout=30000&rewriteBatchedStatements=true";
     ```
 
   * 使用 OBClient 客户端连接数据库，GBK 链路 bash 环境变量推荐使用 `zh_CN.GBK` 的超集 `zh_CN.GB18030`。
