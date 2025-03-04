@@ -411,7 +411,7 @@ OceanBase 社区版作为源端时，对于无中间件表，OMS 社区版迁移
 
 #### 查询 SQL
 
-```SQL
+```
 SET TIME_ZONE='%s';
 
 SET sql_mode='';
@@ -494,14 +494,13 @@ SELECT  REFERENCED_TABLE_SCHEMA, REFERENCED_TABLE_NAME, TABLE_SCHEMA, TABLE_NAME
 | oceanbase.__all_virtual_partition_item | 二级分区信息 |
 | oceanbase.__all_virtual_partition_sstable_macro_info  | 宏块信息表 |
 
-  <main id="notice" type='explain'>
-    <h4>说明</h4>
-    <p>宏块信息需要使用系统租户查询</p>
-  </main>
+> 说明：
+>
+> 宏块信息需要使用系统租户查询
 
 #### 查询SQL
 
-```SQL
+```
 -- 查询所有 Schema
 SELECT CATALOG_NAME, SCHEMA_NAME, DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME, SQL_PATH 
 FROM `information_schema`.`SCHEMATA`

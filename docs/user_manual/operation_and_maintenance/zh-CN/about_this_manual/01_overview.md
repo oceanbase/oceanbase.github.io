@@ -15,8 +15,6 @@ weight: 1
 ## 整体内容概览
 手册的内容大纲详见下图：
 
-（实际编写和整理的过程中，会持续根据用户建议和实际情况进行调整，非最终版本）
-
 ![image.png](/img/user_manual/operation_and_maintenance/zh-CN/about_this_manual/001.png)
 
 《OceanBase 4.x DBA 进阶教程》

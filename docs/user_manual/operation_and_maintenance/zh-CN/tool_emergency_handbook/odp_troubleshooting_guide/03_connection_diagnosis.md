@@ -52,11 +52,25 @@ cluster does not exist, this connection will disconnect
 [xiaofeng.lby@sqaobnoxdn011161204091.sa128 /home/xiaofeng.lby/obproxy/log]
 $grep Y0-00007F630AAA2A70 *
 
-obproxy_diagnosis.log:[2024-12-17 14:34:14.024938] [125907][Y0-00007F630AAA2A70] [LOGIN](trace_type="LOGIN_TRACE", connection_diagnosis={cs_id:278640, ss_id:0, proxy_session_id:0, server_session_id:0, client_addr:"127.0.0.1:9988", server_addr:"*Not IP address [0]*:0", cluster_name:"xiaofeng_91_435", tenant_name:"sys", user_name:"root", error_code:-4669, error_msg:"cluster does not exist", request_cmd:"OB_MYSQL_COM_LOGIN", sql_cmd:"OB_MYSQL_COM_LOGIN", req_total_time(us):196}{internal_sql:"", login_result:"failed"})
+obproxy_diagnosis.log:[2024-12-17 14:34:14.024938] [125907][Y0-00007F630AAA2A70] [LOGIN]
+(trace_type="LOGIN_TRACE", 
+   connection_diagnosis={
+      cs_id:278640, ss_id:0, proxy_session_id:0, server_session_id:0,
+      client_addr:"127.0.0.1:9988", server_addr:"*Not IP address [0]*:0", 
+      cluster_name:"xiaofeng_91_435", tenant_name:"sys", user_name:"root", 
+      error_code:-4669, error_msg:"cluster does not exist", 
+      request_cmd:"OB_MYSQL_COM_LOGIN", sql_cmd:"OB_MYSQL_COM_LOGIN",
+       req_total_time(us):196}
+   {internal_sql:"", login_result:"failed"})
 
-obproxy_error.log:2024-12-17 14:34:14.024960,xiaofeng_cluster_430_proxy,,,,xiaofeng_91_435:sys:,OB_MYSQL,,,OB_MYSQL_COM_LOGIN,,failed,-4669,,194us,0us,0us,0us,Y0-00007F630AAA2A70,,127.0.0.1:9988,,0,,cluster not exist,
+obproxy_error.log:2024-12-17 
+14:34:14.024960,xiaofeng_cluster_430_proxy,,,,xiaofeng_91_435:sys:,OB_MYSQL,,,
+OB_MYSQL_COM_LOGIN,,failed,-4669,,194us,0us,0us,0us,
+Y0-00007F630AAA2A70,,127.0.0.1:9988,,0,,cluster not exist,
 
-obproxy.log:[2024-12-17 14:34:13.584801] INFO  [PROXY.NET] accept (ob_mysql_session_accept.cpp:36) [125907][Y0-00007F630AAA2A70] [lt=0] [dc=0] [ObMysqlSessionAccept:main_event] accepted connection(netvc=0x7f630aa7d2e0, client_ip={127.0.0.1:9980})
+obproxy.log:[2024-12-17 14:34:13.584801] INFO  [PROXY.NET] accept (ob_mysql_session_accept.cpp:36)
+[125907][Y0-00007F630AAA2A70] [lt=0] [dc=0] [ObMysqlSessionAccept:main_event]
+accepted connection(netvc=0x7f630aa7d2e0, client_ip={127.0.0.1:9980})
 ...
 ```
 
@@ -72,7 +86,8 @@ connection_diagnosis={
     client_addr:"10.10.10.1:58218", server_addr:"*Not IP address [0]*:0", 
     cluster_name:"undefined", tenant_name:"test", user_name:"root", 
     error_code:-4043,
-    error_msg:"dummy entry is empty, please check if the tenant exists", request_cmd:"COM_SLEEP", sql_cmd:"COM_LOGIN"}{internal_sql:""})
+    error_msg:"dummy entry is empty, please check if the tenant exists", 
+    request_cmd:"COM_SLEEP", sql_cmd:"COM_LOGIN"}{internal_sql:""})
 ```
 
 看到最后 error_msg 中的 ``please check if the tenant exists``，基本也就能猜出断连接的原因了。
@@ -144,7 +159,15 @@ obproxy_diagnosis 日志通用内容如下：
 登录断连接对应的 trace_type 为 LOGIN_TRACE，租户名错误导致断连接的诊断日志示例如下：
 
 ```shell
-[2023-09-08 10:37:21.028960] [90663][Y0-00007F8EB76544E0] [CONNECTION](trace_type="LOGIN_TRACE", connection_diagnosis={cs_id:1031798785, ss_id:0, proxy_session_id:0, server_session_id:0, client_addr:"10.10.10.1:44018", server_addr:"*Not IP address [0]*:0", cluster_name:"undefined", tenant_name:"sys", user_name:"root", error_code:-10018, error_msg:"fail to check observer version, empty result", request_cmd:"COM_SLEEP", sql_cmd:"COM_LOGIN"}{internal_sql:"SELECT ob_version() AS cluster_version"})
+[2023-09-08 10:37:21.028960] [90663][Y0-00007F8EB76544E0] [CONNECTION](
+   trace_type="LOGIN_TRACE", 
+   connection_diagnosis={
+      cs_id:1031798785, ss_id:0, proxy_session_id:0, server_session_id:0, 
+      client_addr:"10.10.10.1:44018", server_addr:"*Not IP address [0]*:0", 
+      cluster_name:"undefined", tenant_name:"sys", user_name:"root", error_code:-10018, 
+      error_msg:"fail to check observer version, empty result", request_cmd:"COM_SLEEP", 
+      sql_cmd:"COM_LOGIN"}
+   {internal_sql:"SELECT ob_version() AS cluster_version"})
 ```
 
 额外诊断信息为 `internal_sql`，表示 ODP 当前执行的内部请求。
@@ -226,10 +249,9 @@ OceanBase 数据库主动断连接有如下几种场景。
 | ODP 传输请求给 OceanBase 数据库时连接断开 | 10016 | An EOS event eceived while proxy transferring request | 需与 OceanBase 数据库配合诊断。 |
 | ODP 传输 OceanBase 数据库回包时连接断开 | 10014 | An EOS event received while proxy reading response | 需与 OceanBase 数据库配合诊断。 |
 
-<main id="notice" type='explain'>
-   <h4>说明</h4>
-   <p>OceanBase 数据库主动断连接的场景下，ODP 无法收集更为详细的信息，如果 ODP 配置的 OBServer 节点状态正常，则需要配合 OceanBase 数据库的日志进行诊断。</p>
-</main>
+> 说明
+>
+> OceanBase 数据库主动断连接的场景下，ODP 无法收集更为详细的信息，如果 ODP 配置的 OBServer 节点状态正常，则需要配合 OceanBase 数据库的日志进行诊断。
 
 ### 客户端主动断连接
 
@@ -255,10 +277,9 @@ OceanBase 数据库主动断连接有如下几种场景。
 | ODP 处理请求时客户端断连接 | 10011 | An EOS event received from client while obproxy handling response | 需客户端配合诊断。 |
 | ODP 回包时客户端发送断连接 | 10012 | An EOS event received from client while obproxy transferring response | 需客户端配合诊断。 |
 
-<main id="notice" type='explain'>
-   <h4>说明</h4>
-   <p>客户端断连接的场景下，ODP 无法收集更为详细的信息，只能指出客户端方面主动断开连接的操作。比较常见的断连接问题有驱动超时主动断开连接、Druid/Hikaricp/Nginx 等中间件主动断连接、网络抖动等问题，具体情况可与客户端配合诊断。</p>
-</main>
+> 说明
+>
+> 客户端断连接的场景下，ODP 无法收集更为详细的信息，只能指出客户端方面主动断开连接的操作。比较常见的断连接问题有驱动超时主动断开连接、Druid / Hikaricp / Nginx 等中间件主动断连接、网络抖动等问题，具体情况可与客户端配合诊断。
 
 ### ODP 或 OceanBase 数据库内部错误
 
@@ -346,7 +367,8 @@ JDBC 默认的 socketTimeout 配置为 0，即不会产生 socketTimeout 超时�
 2. 根据 ODP 连接诊断日志信息确定是客户端主动断开了连接，从客户端入手排查，查看 JDBC 堆栈。
 
    ```shell
-   The last packet successfully received from the server was 5,016 milliseconds ago.  The last packet sent successfully to the server was 5,011 milliseconds ago.
+   The last packet successfully received from the server was 5,016 milliseconds ago.
+   The last packet sent successfully to the server was 5,011 milliseconds ago.
            at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
            at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
            at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
