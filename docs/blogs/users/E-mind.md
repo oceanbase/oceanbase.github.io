@@ -71,37 +71,15 @@ Running through its documentation, we had no problem with its high availability 
 
 We deployed OceanBase Database in a test environment to test its functionality and compatibility. With the help of its official documentation, we deployed the test environment on a local virtual machine of average specifications by simply executing a few lines of commands.
 
-Item
-
-Description
-
-OS
-
-CentOS Linux 7.6
-
-CPU
-
-4 cores
-
-Memory
-
-8 GB
-
-Disk type
-
-SSD
-
-Disk size
-
-100 GB
-
-File system
-
-XFS
-
-All-in-one package
-
-V4.1.0 or later
+| Item | Description |
+| ---------- | ----------- |
+| OS | CentOS Linux 7.6 |
+| CPU | 4 cores |
+| Memory | 8 GB |
+| Disk type | SSD |
+| Disk size | 100 GB |
+| File system | XFS |
+| All-in-one package | V4.1.0 or later |
 
 Then, we imported the test data and launched the reporting system to execute a test task. To our surprise, OceanBase Database generated a perfect report before we adapted it to our specific business requirements. This indicated that OceanBase Database was fully compatible with our BI system and the thousands of reports in it. We were so excited that we finally found a feasible solution that supported our complex statistical statements.
 

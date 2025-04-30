@@ -138,31 +138,11 @@ The following table shows the test results.
 
 First, let's compare the batch read throughput (unit: row/s).
 
-  
-
-Stress
-
-HBase
-
-OceanBase Database
-
-Level I
-
-83109.45
-
-158579.1
-
-Level II
-
-84355.54
-
-264192.8
-
-Level III
-
-76857.87
-
-329107.3
+| Stress | HBase | OceanBase Database |
+| ---------- | ----------- | ----------- |
+| Level I | 83109.45 | 158579.1 |
+| Level II | 84355.54 | 264192.8 |
+| Level III | 76857.87 | 329107.3 |
 
 ![1686714194](/img/blogs/users/Beike-Dict-service/image/1686714194863.png)
 
@@ -170,31 +150,11 @@ As mentioned above, the batch size was set to 100 for HBase and 500 for OceanBas
 
 **Now, let's compare the batch write throughput (unit: row/s)**.
 
-  
-
-Stress
-
-HBase
-
-OceanBase Database
-
-Level I
-
-43256.6
-
-249612.5
-
-Level II
-
-64339.58
-
-326436.7
-
-Level III
-
-77805.46
-
-358716.2
+| Stress | HBase | OceanBase Database |
+| ---------- | ----------- | ----------- |
+| Level I | 43256.6 | 249612.5 |
+| Level II | 64339.58 | 326436.7 |
+| Level III | 77805.46 | 358716.2 |
 
 ![1686714222](/img/blogs/users/Beike-Dict-service/image/1686714221976.png)
 
@@ -204,31 +164,11 @@ To ensure the uniqueness of keys, HBase uses the checkAndPut method to write one
 
 **Now, let's look at the average time, in milliseconds, that each database system took to finish a complete processing cycle**.
 
-  
-
-Stress
-
-HBase
-
-OceanBase Database
-
-Level I
-
-657.52
-
-307.45
-
-Level II
-
-1000.85
-
-386.42
-
-Level III
-
-1279.63
-
-474.59
+| Stress | HBase | OceanBase Database |
+| ---------- | ----------- | ----------- |
+| Level I | 657.52 | 307.45 |
+| Level II | 1000.85 | 386.42 |
+| Level III | 1279.63 | 474.59 |
 
 ![1686714234](/img/blogs/users/Beike-Dict-service/image/1686714234502.png)
 
@@ -244,31 +184,11 @@ The comparison indicates that:
 
 **At last, let's compare the average throughput (unit: row/s)**.
 
-  
-
-Stress
-
-HBase
-
-OceanBase Database
-
-Level I
-
-25033.94
-
-57429.03
-
-Level II
-
-33161.58
-
-91582.48
-
-Level III
-
-35500.47
-
-112002.3
+| Stress | HBase | OceanBase Database |
+| ---------- | ----------- | ----------- |
+| Level I | 25033.94 | 57429.03 |
+| Level II | 33161.58 | 91582.48 |
+| Level III | 35500.47 | 112002.3 |
 
 ![1686714264](/img/blogs/users/Beike-Dict-service/image/1686714264396.png)
 

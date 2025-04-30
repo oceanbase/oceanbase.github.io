@@ -42,36 +42,12 @@ Kirin ARM servers × 3, each equipped with ARM-based Kirin CPUs (32 cores × 2),
 
 ### **Scenario 1: batch writes**
 
-  
-```
-8C16GB
-
-16C32GB
-
-32C64GB
-
-64C128GB
-
-All-flash
-
-54903
-
-85870
-
-178158
-
-221443
-
-Hybrid
-
-38622
-
-61772
-
-121918
-
-164340
-```
+| | All-flash | Hybrid |
+| ---------- | ----------- | ----------- |
+| 8C16GB | 54903 | 38622 |
+| 16C32GB | 85870 | 61772 |
+| 32C64GB | 178158 | 121918 |
+| 64C128GB | 221443 | 164340 |
 
 ![1732082836](/img/blogs/users/Hybrid-Storage-Deploy/image/7c6096f8-9432-4cbe-9882-9abd79648977.png)
 
@@ -79,36 +55,12 @@ Conclusion: In the batch write scenario, performance increases linearly with spe
 
 ### **Scenario 2: regular writes**
 
-  
-```
-8C16GB
-
-16C32GB
-
-32C64GB
-
-64C128GB
-
-All-flash
-
-24490
-
-48079
-
-87440
-
-91702
-
-Hybrid
-
-20513
-
-40768
-
-56511
-
-56352
-```
+| | All-flash | Hybrid |
+| ---------- | ----------- | ----------- |
+| 8C16GB | 24490 | 20513 |
+| 16C32GB | 48079 | 40768 |
+| 32C64GB | 87440 | 56511 |
+| 64C128GB | 91702 | 56352 |
 
 ![1732082862](/img/blogs/users/Hybrid-Storage-Deploy/image/3692d7da-604c-4961-9a6d-4b1f80798e7a.png)
 
@@ -116,36 +68,12 @@ Conclusion: In the regular write scenario, performance increases linearly with s
 
 ### **Scenario 3: regular read-only**
 
-  
-```
-8C16GB
-
-16C32GB
-
-32C64GB
-
-64C128GB
-
-All-flash
-
-57283
-
-106498
-
-173308
-
-198595
-
-Hybrid
-
-53010
-
-96702
-
-166397
-
-188010
-```
+| | All-flash | Hybrid |
+| ---------- | ----------- | ----------- |
+| 8C16GB | 57283 | 53010 |
+| 16C32GB | 106498 | 96702 |
+| 32C64GB | 173308 | 166397 |
+| 64C128GB | 198595 | 188010 |
 
 ![1732082878](/img/blogs/users/Hybrid-Storage-Deploy/image/0f461c7e-0c8a-46d1-82f6-e82d31df8aa6.png)
 
@@ -153,56 +81,13 @@ Conclusion: In the regular read-only scenario, performance increases linearly wi
 
 ### **Scenario 4: regular reads/writes**
 
-  
-```
-8C16GB
+| | All-flash (reads) | All-flash (writes) | Hybrid (reads) | Hybrid (writes) |
+| ---------- | ----------- | ----------- | ----------- | ----------- |
+| 8C16GB | 36029 | 1801 | 34102 | 1705 |
+| 16C32GB | 69911 | 3495 | 61301 | 3065 |
+| 32C64GB | 131861 | 6593 | 111449 | 5572 |
+| 64C128GB | 148802 | 7440 | 125255 | 6262 |
 
-16C32GB
-
-32C64GB
-
-64C128GB
-
-All-flash (reads)
-
-36029
-
-69911
-
-131861
-
-148802
-
-All-flash (writes)
-
-1801
-
-3495
-
-6593
-
-7440
-
-Hybrid (reads)
-
-34102
-
-61301
-
-111449
-
-125255
-
-Hybrid (writes)
-
-1705
-
-3065
-
-5572
-
-6262
-```
 
 ![1732082891](/img/blogs/users/Hybrid-Storage-Deploy/image/156ae12a-7fd7-4439-bde1-c7520bdbe92a.png)
 
@@ -210,36 +95,12 @@ Conclusion: In the regular read/write scenario, performance increases linearly w
 
 ### **Scenario 5: TPC-C benchmark on TP performance**
 
-  
-```
-8C16GB
-
-16C32GB
-
-32C64GB
-
-64C128GB
-
-All-flash
-
-35127
-
-82656
-
-137854
-
-158995
-
-Hybrid
-
-28042
-
-67327
-
-118766
-
-157774
-```
+| | All-flash | Hybrid |
+| ---------- | ----------- | ----------- |
+| 8C16GB | 35127 | 28042 |
+| 16C32GB | 82656 | 67327 |
+| 32C64GB | 137854 | 118766 |
+| 64C128GB | 158995 | 157774 |
 
 ![1732082904](/img/blogs/users/Hybrid-Storage-Deploy/image/298265e0-0b5f-4bbe-9741-3cf39bc8129c.png)
 
