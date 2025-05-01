@@ -3,7 +3,7 @@ slug: column-store
 title: 'The Present and Future of Columnar Storage in OceanBase Database'
 ---
 
-OceanBase Database V4.3 provides the columnar storage feature to support real-time analysis business. As an extension of [**In-depth Interpretation of Columnar Storage**](https://open.oceanbase.com/blog/11685131568), this article further explores the application and evolution of columnar storage in the OceanBase Database architecture and its development trend.
+OceanBase Database V4.3 provides the columnar storage feature to support real-time analysis business. As an extension of [**In-depth Interpretation of Columnar Storage**](https://oceanbase.github.io/docs/blogs/tech/analysis-column), this article further explores the application and evolution of columnar storage in the OceanBase Database architecture and its development trend.
 
 **1. Background**
 --------
