@@ -21,7 +21,6 @@ You can contact us in the following ways:
 
 * GitHub page for reporting issues of OceanBase Database Community Edition: [https://github.com/oceanbase/oceanbase/issues](https://github.com/oceanbase/oceanbase/issues) 
 
-* DingTalk group ID: 33254054
 
 > **Note**
 >
