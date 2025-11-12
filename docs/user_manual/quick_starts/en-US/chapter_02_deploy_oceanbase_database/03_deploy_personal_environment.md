@@ -440,7 +440,7 @@ If you have multiple servers available, you can run the `obd web` command to sta
 
    ![Precheck](/img/user_manual/quick_starts/en-US/chapter_02_deploy_oceanbase_database/03_deploy_personal_environment/007.png)
 
-   If an error code is returned, you can click **Automatic Repair** to automatically repair the error, or click **Learn more** to go to the error code document and correct the error based on the reference document. After all the errors are corrected, click **Re-check** to perform a precheck again.
+   If an error code is returned, you can click **Automatic Repair** to automatically repair the error, or click **Learn more** to go to the error code document and correct the error based on the reference document. After all the errors are corrected, click **Re-check** to perform a precheck again. If you need to modify the content in the installation configuration file, you can usually find and edit the configuration file under ~/.obd/cluster/myoceanbase.
 
 8. After the precheck is passed, click **Deploy** to start the deployment.
 
