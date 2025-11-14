@@ -56,6 +56,7 @@ For more information about the `obd cluster tenant create` command, see the **ob
 * `test2` is a sample tenant name.
 
 * The resource unit and resource pool used by a tenant created by using the OBD command are respectively named `${tenant_name}_unit` and `${tenant_name}_pool`.
+* Note: When creating a tenant using OBD, the maximum occupancy mode is used by default. If resources are tight or you want to create a tenant in the minimum availability mode, it is recommended to use OCP or SQL first.
 
 The output is as follows:
 
