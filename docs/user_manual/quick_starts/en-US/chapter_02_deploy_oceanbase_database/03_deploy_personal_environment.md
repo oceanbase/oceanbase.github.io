@@ -460,7 +460,7 @@ If you have multiple servers available, you can run the `obd web` command to sta
     # View the cluster list.
     obd cluster list
     
-    # View the details of the myoceanbase cluster.
+    # View the details of the myoceanbase cluster.(Prior to operation, terminate the OBD web process; otherwise, an error will occur: "Another app is currently holding the obd lock.")
     obd cluster display myoceanbase
     ```
 
