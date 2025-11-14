@@ -5,24 +5,24 @@ weight: 1
 
 # 1.0 Introduction
 
-This chapter introduces OceanBase Database and OceanBase ecological tools.
+This chapter provides an overview of OceanBase Database and its related ecosystem tools.
 
 ## Topics
 
 * 1.1 OceanBase Database
 
-* 1.2 OceanBase ecological tools
+* 1.2 OceanBase Ecosystem Tools
 
 ## Contact us
 
-You can contact us in the following ways:
+You can reach out to us through the following channels:
 
-* Forum on the official website of OceanBase Database Community Edition: [https://ask.oceanbase.com/](https://ask.oceanbase.com/)
+* Forum for OceanBase Database Community Edition: [https://ask.oceanbase.com/](https://ask.oceanbase.com/)
 
-* GitHub page for reporting issues of OceanBase Database Community Edition: [https://github.com/oceanbase/oceanbase/issues](https://github.com/oceanbase/oceanbase/issues) 
+* GitHub page for reporting issues with OceanBase Database Community Edition: [https://github.com/oceanbase/oceanbase/issues](https://github.com/oceanbase/oceanbase/issues) 
 
 * DingTalk group ID: 33254054
 
 > **Note**
 >
-> You can click [here](https://open.oceanbase.com/course/275) to learn the supporting course of this tutorial — From Beginner to Pro: A Guide for DBAs (in Chinese). 
+> Click [here](https://open.oceanbase.com/course/275) to visit the supporting course for this tutorial — From Beginner to Pro: A Guide for DBAs (in Chinese). 
