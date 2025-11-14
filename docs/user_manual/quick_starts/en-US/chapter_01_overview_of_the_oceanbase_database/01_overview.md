@@ -5,7 +5,7 @@ weight: 2
 
 # 1.1 OceanBase Database
 
-This topic outlines the core features of OceanBase Database, the differences between its community and enterprise editions, and changes in the system tables and system views in its key versions such as V4.x and V3.x. 
+This topic highlights the key features of OceanBase Database, explores the differences between the Community and Enterprise editions, and dives into the evolution of system tables and views across major versions like V3.x and V4.x. 
 
 > **Note**
 >
@@ -13,13 +13,13 @@ This topic outlines the core features of OceanBase Database, the differences bet
 
 ## Overview
 
-OceanBase Database is a native, distributed database developed independently by the OceanBase team. It has successfully served the Double 11 promotion season for 11 consecutive years, and introduces a new region-level disaster recovery standard known as "Five IDCs across Three Regions". It is the only native, distributed database that has set new world records in both TPC-C and TPC-H benchmark tests. Based on the self-developed integrated architecture, OceanBase Database incorporates the scalability of a distributed architecture and the performance benefits of a centralized architecture. This enables the database to support transaction processing (TP) and analytical processing (AP) with one engine, and ensures its strong data consistency, high availability, high performance, online scalability, high compatibility with Oracle/MySQL, transparency to applications, and high cost-effectiveness. OceanBase Database has been making in-depth exploration in a wide range of core scenarios for 14 years, helping more than 1,000 enterprises from industries such as finance, government services, telecommunication, retail, and Internet in upgrading their key business systems. 
+OceanBase Database is a native, distributed database developed independently by the OceanBase team. It has successfully served the Singles' Day Shopping Festival for 11 consecutive years, and introduces a new region-level disaster recovery standard known as "Five IDCs across Three Regions". It is the only native, distributed database that has set new world records in both TPC-C and TPC-H benchmark tests. Based on the self-developed integrated architecture, OceanBase Database incorporates the scalability of a distributed architecture and the performance benefits of a centralized architecture. This enables the database to support transaction processing (TP) and analytical processing (AP) with one engine, and ensures its strong data consistency, high availability, high performance, online scalability, high compatibility with Oracle/MySQL, transparency to applications, and high cost-effectiveness. OceanBase Database has been making in-depth exploration in a wide range of core scenarios for 14 years, helping more than 1,000 enterprises from industries such as finance, government services, telecommunication, retail, and Internet in upgrading their key business systems. 
 
 ### Core features
 
 #### High availability
 
-OceanBase Database pioneers the "Five IDCs across Three Regions" disaster recovery solution, setting a new standard for lossless disaster recovery in the financial industry. It supports multi-active IDCs deployed across multiple regions for zone- and geo-disaster recovery, which meets the Level 6 disaster recovery requirements of the financial industry with a recovery point objective (RPO) of 0 and a recovery time objective (RTO) of less than 8 seconds. 
+OceanBase Database pioneers the "Five IDCs across Three Regions" disaster recovery solution, setting a new standard for lossless disaster recovery in the financial industry. It supports disaster recovery in the same region or across different regions, enabling multi-site active-active deployment. This meets the Level 6 disaster recovery requirements of the financial industry with a recovery point objective (RPO) of 0 and a recovery time objective (RTO) of less than 8 seconds. 
 
 #### High compatibility
 
@@ -31,7 +31,7 @@ OceanBase Database supports rapid transparent horizontal scaling in response to 
 
 #### Low costs
 
-OceanBase Database adopts a storage engine based on the log-structured merge-tree (LSM-tree), which can achieve a high compression ratio and reduce storage costs by 70% to 90%. OceanBase Database also supports the multi-tenant architecture, which means that the same cluster can serve multiple business lines with the data of one tenant isolated from that of others. This reduces deployment and O&M costs. 
+OceanBase Database adopts a storage engine based on the log-structured merge-tree (LSM-tree), which can achieve a high compression ratio and reduce storage costs by 70% to 90%. OceanBase Database also supports the multi-tenant architecture, which means that the same cluster can serve multiple business lines with the data of one tenant isolated from that of others. This reduces the deployment and operation and maintenance (O&M) costs. 
 
 #### Real-time HTAP
 
@@ -47,15 +47,15 @@ OceanBase Database Community Edition uses the MulanPubL-2.0 license. You can cop
 
 ### Core features of OceanBase Database Community Edition
 
-OceanBase Database Community Edition supports all core features of OceanBase Database Enterprise Edition, including:
+OceanBase Database Community Edition supports all the core features of OceanBase Database Enterprise Edition, including:
 
 * Multi-replica high availability and strong synchronization 
 
-* Multitenancy 
+* Multi-tenancy 
 
 * Online elastic scaling 
 
-* Geo-disaster recovery and active geo-redundancy (including three IDCs across two regions and five IDCs across three regions) 
+* Cross-region disaster recovery and active-active capability (including three IDCs across two regions and five IDCs across three regions) 
 
 * Table partitioning and replication 
 
@@ -75,7 +75,7 @@ OceanBase Database Community Edition supports all core features of OceanBase Dat
 
 ### Supported operating systems
 
-For more information, see [Software and hardware requirements](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375950). 
+For more information, see [Software and hardware requirements](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001971619). 
 
 ### Differences from a MySQL database
 
@@ -83,336 +83,122 @@ For more information, see [Software and hardware requirements](https://en.oceanb
 
 * Compared with MySQL, OceanBase Database employs a storage engine that achieves a higher compression ratio and reduces storage costs by 70% to 90%. 
 
-* OceanBase Database is a distributed database cluster. By default, the production environment comprises three replicas that use the Paxos protocol to synchronize transaction logs. The synchronization process is not asynchronous or semi-synchronous. An OceanBase cluster can be deployed across IDCs and regions. When a server or IDC fails, an automatic replica failover is performed without data loss. Therefore, OceanBase Database is naturally suitable for the deployment mode of three IDCs across two regions to achieve geo-disaster recovery and active geo-redundancy. 
+* OceanBase Database is a distributed database cluster product. In production environments, it defaults to three replicas, and the synchronization protocol among these replicas is not asynchronous or semi-synchronous. Instead, it uses the Paxos protocol to synchronize transaction logs. An OceanBase cluster can be deployed across IDCs and regions. When a server or IDC fails, an automatic replica failover is performed without data loss. Therefore, OceanBase Database is naturally suitable for the deployment mode of three IDCs across two regions to achieve the cross-region disaster recovery and active-active capability. 
 
-* An OceanBase cluster supports multiple tenants (also known as instances) that are allocated with resources on demand, elastic scaling, and high availability, and is similar to a cloud database service. O&M engineers only need to maintain a few OceanBase clusters to provide many instances for business systems, which means OceanBase Database is easy to use. 
+* An OceanBase cluster supports multiple tenants (also called instances) that are allocated resources on demand, enabling elastic scaling and high availability, much like a cloud database service. O&M engineers only need to manage a few OceanBase clusters to provide numerous instances for business applications, making OceanBase Database easy to use. 
 
-* OceanBase Database supports horizontal splitting (partitioned tables), without the need for database and table sharding. SQL statements and transactions are fully transparent to business systems without limitations on features. Partitioned tables demonstrate good linear scalability. Among the known cases by now, a single tenant can contain up to 1,500 nodes. 
+* OceanBase Database supports horizontal splitting (partitioned tables), without the need for database and table sharding. SQL statements and transactions are fully transparent to business systems without any functional limitations. Partitioned tables demonstrate good linear scalability. The largest known single-tenant deployment currently consists of 1,500 nodes. 
 
-* The SQL engine of OceanBase Database is more powerful than that of MySQL. It supports the caching of execution plans, avoiding the overhead caused by repeated generation of the same execution plan for the same SQL statement; allows you to use hints and outlines to intervene the form of SQL execution plans; and supports plan generation and SQL computing in distributed and complicated scenarios. In addition, OceanBase Database supports hybrid OLTP and OLAP (or HTAP) requirements. 
+* The SQL engine of OceanBase Database is more powerful than that of MySQL: it supports caching of execution plans to reduce the overhead of repeatedly generating the same plan for identical SQL statements; it allows intervention in the form of SQL execution plans through hints and outlines; and it supports plan generation and SQL computing in distributed and complex scenarios. Additionally, OceanBase Database supports hybrid workloads combining OLTP and OLAP (or HTAP). 
 
 ### Applicable business scenarios of OceanBase Database Community Edition
 
-* Scenario 1: MySQL 5.6/5.7 instances are large in scale.
+* Scenario 1: Large-scale MySQL 5.6/5.7 instances
 
-   When MySQL instances are large in scale, an automatic O&M platform is needed. When the automatic O&M platform handles problems of failover upon server breakdown and inconsistency between the primary and standby clusters, the DBA may need to intervene. High availability and strong consistency are the pain points of MySQL, which can be resolved based on the multitenancy, high availability, and strong consistency capabilities of OceanBase Database. 
+   In scenarios where MySQL instances are large and require automated operation and maintenance platforms, handling unexpected MySQL crashes and primary-standby inconsistencies probably requires DBA intervention. High availability and strong consistency pose inherent risks for MySQL. OceanBase Database's multi-tenant architecture, high availability, and strong consistency capabilities can completely address these pain points. 
 
-* Scenario 2: MySQL 5.6/5.7 stores a large amount of data at high costs.
+* Scenario 2: Large data volume and high storage costs in MySQL 5.6/5.7
 
-   When the business data volume of a MySQL instance grows to the TB level, the query and read/write performance may decrease and DDL operations on large tables take longer, increasing the risks. The disk capacity of a single server may also reach the scaling bottleneck in this case. The online DDL operations and high data compression ratio of MySQL tenants of OceanBase Database can resolve these pain points. 
+   When MySQL business data volume grows to several terabytes, the query and read/write performance may decrease and DDL operations on large tables take longer, increasing risks. The disk capacity of a single server may reach the expansion bottleneck in this case. The online DDL operations and high data compression ratio of MySQL tenants of OceanBase Database can resolve these pain points. 
 
-* Scenario 3: Business access is featured with high stress and great uncertainty.
+* Scenario 3: High or fluctuating business access pressure
 
-   The distributed database middleware restructured based on MySQL can share the business stress and storage space stress to a certain extent. However, strong consistency queries across nodes are not supported, the distributed transaction middleware is needed to coordinate transactions, and logical data splitting (database and table sharding) may be needed during scale-out, leading to high O&M costs and risks. MySQL tenants of OceanBase Database support horizontal splitting of partitioned tables and provide native SQL and transaction capabilities that are transparent to business systems. Online scaling and data migration can be performed asynchronously in OceanBase Database to ensure high availability, enabling it to resolve the preceding pain points during scaling. 
+   Distributed database middleware products built on MySQL can alleviate some business load and storage pressure. However, they often lack strong consistency for queries across nodes and require distributed transaction middleware to coordinate transactions. Scaling out may also involve logical data splitting (database and table sharding), which leads to high O&M costs and increased risks. OceanBase Database's MySQL tenants offer a horizontal partitioning solution using partitioned tables, providing native SQL and transaction capabilities that are transparent to the business. Additionally, OceanBase Database supports online scaling in and out with asynchronous internal data migration and built-in high availability, ensuring no service disruptions during scaling operations. This effectively addresses the challenges mentioned above. 
 
-* Scenario 4: Complex queries are made in transaction databases.
+* Scenario 4: Complex queries on transactional databases
 
-   A transaction database has a few complex query scenarios that involve a large amount of data. In conventional solutions, data is synchronized to the data warehouse to process such queries. The SQL engine of OceanBase Database applies to both OLTP and OLAP scenarios. The engine adopts the advanced SQL optimizer technology that has been tested in complex Oracle business scenarios to support complex SQL statement optimization and efficient execution. This way, complex queries can be directly performed in the transaction database, reducing unnecessary data synchronization. Moreover, OceanBase Database provides different read/write splitting technologies to control the impact of complex queries on transactions. 
+   Transactional databases sometimes experience a small number of complex queries over large amounts of data. Conventional solutions involve synchronizing data to a data warehouse for these queries. The SQL engine of OceanBase Database caters to both OLTP and OLAP scenarios, employing advanced SQL optimizer technology proven in complex Oracle business scenarios and supporting complex SQL statement optimization and efficient execution. This allows complex queries to run directly on the transaction database, reducing unnecessary data synchronization. Moreover, OceanBase Database provides different read/write splitting technologies to control the impact of complex queries on transactions. 
 
-* Click [here](https://en.oceanbase.com/blog#customer_stories) for case studies. 
+* For more scenarios, click [here](https://en.oceanbase.com/blog#customer_stories). 
 
 ## Differences between the Enterprise Edition and Community Edition
 
-OceanBase Database Community Edition differs from OceanBase Database Enterprise Edition in that the latter comprises more advanced features such as advanced compatibility modes, operation audit, and data encryption. The following table uses V4.2.2 as an example to compare the support for features by the two editions.
+OceanBase Database Community Edition differs from OceanBase Database Enterprise Edition in that the latter comprises more advanced features such as advanced compatibility modes, operation audit, and data encryption. Taking V4.4.1 as an example, the features supported by the Enterprise Edition and Community Edition are as follows:
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Feature</th>
-      <th>Enterprise Edition</th>
-      <th>Community Edition</th>
-    </tr>
-  </thead>
-  <tr>
-    <td rowspan="6">Core components</td>
-    <td>Integrated SQL engine</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Integrated transaction engine</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Integrated storage engine</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Cluster scheduling service</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Cluster proxy service</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Client, C driver, and Java driver</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td rowspan="8">High availability</td>
-    <td>Multi-replica</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Five IDCs across three regions</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Transparent horizontal scaling</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Multi-tenant management</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Data backup and restore</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Resource isolation</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Physical Standby Database solution</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Arbitration service</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td rowspan="8">Compatibility</td>
-    <td>Compatibility with MySQL syntax and protocols</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Data types and functions</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Stored procedures and packages</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Complex character sets</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Compatibility with Oracle syntax</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td>XA transactions</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td>Table locks</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td>Function-based indexes</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td rowspan="13">High performance</td>
-    <td>Cost-based optimizer</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Optimization and rewriting of complex queries</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Parallel execution engine</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Vectorized engine</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Advanced SQL plan management (SPM)</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td>Minimum specifications</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Paxos-based log transmission</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Distributed strong-consistency transactions, complete atomicity, consistency, isolation, and durability (ACID), and multi-version support</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Data partitioning (RANGE, HASH, and LIST)</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Global indexes</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Advanced compression</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Dynamic sampling</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Auto degree of parallelism (DOP)</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td rowspan="2">Cross-data source access</td>
-    <td>Read-only external tables (in the CSV format)</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>DBLink</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td rowspan="5">Multimodel</td>
-    <td>TableAPI</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>HBaseAPI</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>JSON</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Geographic information system (GIS)</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>XML</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td rowspan="4">Security</td>
-    <td>Audit</td>
-    <td>Supported</td>
-    <td>Not supported</td>
-  </tr>
-  <tr>
-    <td>Privilege management</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Communication encryption</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>Advanced security scaling</td>
-    <td>Supported</td>
-    <td>Not supported  <br></br>OceanBase Database Community Edition does not support transparent data encryption (TDE) for row-level labels, data, and logs. </td>
-  </tr>
-  <tr>
-    <td rowspan="4">O&M management</td>
-    <td>End-to-end diagnostics</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>O&M components (liboblog and ob_admin)</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>OBLOADER & OBDUMPER</td>
-    <td>Supported</td>
-    <td>Supported</td>
-  </tr>
-  <tr>
-    <td>GUI-based development and management tools</td>
-    <td>Supported</td>
-    <td>Supported<br></br>OceanBase Database Community Edition supports GUI-based development and management tools such as OceanBase Cloud Platform (OCP), OceanBase Migration Service (OMS), and OceanBase Developer Center (ODC). You can download these tools for free. However, OceanBase Migration Assessment (OMA) is a paid service. </td>
-  </tr>
-  <tr>
-    <td rowspan="4">Support and services</td>
-    <td>Technical consultation (on products)</td>
-    <td>Supported</td>
-    <td>OceanBase Database Community Edition provides only community-based technical consultation on products. No commercial expert team is provided for technical consultation. </td>
-  </tr>
-  <tr>
-    <td>Service acquisition (channels for obtaining technical support)</td>
-    <td>Commercial expert team</td>
-    <td>OceanBase Database Community Edition provides online service consultation only on its official website or in its official community and does not provide commercial expert teams. </td>
-  </tr>
-  <tr>
-    <td>Expert services (planning, implementation, inspection, fault recovery, and production assurance)</td>
-    <td>On-site services by commercial experts</td>
-    <td>OceanBase Database Community Edition does not provide expert assurance services. </td>
-  </tr>
-  <tr>
-    <td>Response to faults</td>
-    <td>24/7 services</td>
-    <td>OceanBase Database Community Edition does not provide emergency troubleshooting services. </td>
-  </tr>
-</table>
+| Category | Feature | Enterprise Edition | Community Edition |
+|----------|---------|-------------------|-------------------|
+| **Product Architecture** | Storage and compute separation | Supported | Not supported |
+| **Product Architecture** | Independent log service | Supported | Not supported |
+| **Core Components** | Integrated SQL engine | Supported | Supported |
+| **Core Components** | Integrated transaction engine | Supported | Supported |
+| **Core Components** | Integrated storage engine | Supported | Supported |
+| **Core Components** | Cluster scheduling service | Supported | Supported |
+| **Core Components** | Cluster proxy service | Supported | Supported |
+| **Core Components** | Client, C driver, and Java driver | Supported | Supported |
+| **High Availability** | Multi-replica support | Supported | Supported |
+| **High Availability** | Five IDCs across three regions | Supported | Supported |
+| **High Availability** | Transparent horizontal scaling | Supported | Supported |
+| **High Availability** | Multi-tenant management | Supported | Supported |
+| **High Availability** | Tenant cloning | Supported | Supported |
+| **High Availability** | Data backup and restore | Supported | Supported |
+| **High Availability** | Resource isolation | Supported | Supported |
+| **High Availability** | Physical standby database | Supported | Supported |
+| **High Availability** | Arbitration service | Supported | Not supported |
+| **Compatibility** | MySQL syntax and protocol compatibility | Supported | Supported |
+| **Compatibility** | Data types and function compatibility | Supported | Supported |
+| **Compatibility** | Stored procedures and packages | Supported | Supported |
+| **Compatibility** | Complex character sets | Supported | Supported |
+| **Compatibility** | Oracle syntax compatibility | Supported | Not supported |
+| **Compatibility** | XA transactions | Supported | Supported |
+| **Compatibility** | LOCK TABLE | Supported | Supported |
+| **Compatibility** | Function-based indexes | Supported | Supported |
+| **High Performance** | Cost-based optimizer | Supported | Supported |
+| **High Performance** | Optimization and rewriting of complex queries | Supported | Supported |
+| **High Performance** | Parallel execution engine | Supported | Supported |
+| **High Performance** | Vectorized engine | Supported | Supported |
+| **High Performance** | Columnar engine | Supported | Supported |
+| **High Performance** | Advanced SQL plan management (SPM) | Supported | Not supported |
+| **High Performance** | Minimum specifications | Supported | Supported |
+| **High Performance** | Paxos-based log transmission | Supported | Supported |
+| **High Performance** | Distributed strong-consistency transactions, complete ACID, and multi-version support | Supported | Supported |
+| **High Performance** | Data partitioning (RANGE, HASH, and LIST) | Supported | Supported |
+| **High Performance** | Partition exchange | Supported | Supported |
+| **High Performance** | Partition splitting | Supported | Supported |
+| **High Performance** | Global indexes | Supported | Supported |
+| **High Performance** | Multi-valued indexes | Supported | Supported |
+| **High Performance** | Full-text indexes | Supported | Supported |
+| **High Performance** | Advanced compression | Supported | Supported |
+| **High Performance** | Dynamic sampling | Supported | Supported |
+| **High Performance** | Auto degree of parallelism (DOP) | Supported | Supported |
+| **High Performance** | Materialized views | Supported | Supported |
+| **Cross-Data Source Access** | Read-only external tables | Supported | Supported |
+| **Cross-Data Source Access** | DBLink | Supported | Supported |
+| **Multimodel** | OBKV-Table | Supported | Supported |
+| **Multimodel** | OBKV-HBase | Supported | Supported |
+| **Multimodel** | JSON | Supported | Supported |
+| **Multimodel** | Geographic information system (GIS) | Supported | Supported |
+| **Multimodel** | XML | Supported | Supported (XML expressions) |
+| **Multimodel** | Vector | Supported | Supported |
+| **Security** | Audit | Supported | Not supported |
+| **Security** | Privilege management | Supported | Supported |
+| **Security** | Communication encryption | Supported | Supported |
+| **Security** | Advanced security scaling | Supported | Not supported<sup>1</sup> |
+| **O&M Management** | End-to-end tracing | Supported | Supported |
+| **O&M Management** | O&M components (liboblog and ob_admin) | Supported | Supported |
+| **O&M Management** | obloader and obdumper | Supported | Supported |
+| **O&M Management** | GUI-based development and management tools | Supported | Supported<sup>2</sup> |
+| **Support and Services** | Technical consultation (product technical consultation services) | Supported | Community-based technical consultation only<sup>3</sup> |
+| **Support and Services** | Service acquisition (channels for obtaining technical support) | Professional commercial support team | Online service consultation only<sup>4</sup> |
+| **Support and Services** | Expert services (planning, implementation, inspection, fault recovery, and production assurance) | Commercial expert on-site services | Not supported |
+| **Support and Services** | Fault response | 24/7 services | Not supported |
+| **Cost Efficiency** | CLOG storage compression | Supported | Not supported |
 
-For more information, see [Differences between the Enterprise Edition and the Community Edition](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375341). 
+## Notes
+
+1. **Advanced security scaling**: OceanBase Database Community Edition does not support row-level labels, transparent data encryption (TDE), RPC transmission encryption based on national cryptographic algorithms, or TLS password-free login.
+
+2. **GUI-based development and management tools**: OceanBase Database Community Edition supports GUI-based development and management tools such as OceanBase Cloud Platform (OCP), OceanBase Migration Service (OMS), and OceanBase Developer Center (ODC). You can download these tools for free. However, OceanBase Migration Assessment (OMA) is not included.
+
+3. **Technical consultation**: OceanBase Database Community Edition provides only community-based product technical consultation services, operating through community issues, and does not provide commercial expert team technical consultation.
+
+4. **Service acquisition**: OceanBase Database Community Edition provides online service consultation only on the OceanBase Community official website or official community, and does not provide commercial expert team exclusive services.
 
 ## Release notes of OceanBase Database Community Edition
 
-For more information, see [release notes](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001376050). 
+For more information, see [release notes](https://github.com/oceanbase/oceanbase/releases/tag/v4.4.1_CE). 
 
 ## Changes in system tables and views in OceanBase Database V3.x and V4.x
 
-Based on OceanBase Database V3.x, we greatly improve the stability and performance of V4.x, and add many new features. For example, we optimize the internal tables and virtual tables in V4.x, and provide system views for better information display. In a word, the biggest update in OceanBase Database V4.x is that all its internal information is queried from views. Views in different versions are defined in a unified manner to ensure compatibility between versions and clearer information display. 
+Compared to OceanBase Database version 3.x, version 4.x has made significant improvements in stability and performance, along with many new features. Notably, we have extensively redesigned internal tables and virtual tables, and introduced system views for information display. In short, the biggest change in version 4.x is the comprehensive shift to using views for internal information queries. These uniformly defined views ensure compatibility across versions and provide clearer information.
 
-For more information, see [Changes in views in OceanBase Database V3.x and V4.x](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375362). 
+For more information, see [Changes in views in OceanBase Database V3.x and V4.x](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001970993). 
