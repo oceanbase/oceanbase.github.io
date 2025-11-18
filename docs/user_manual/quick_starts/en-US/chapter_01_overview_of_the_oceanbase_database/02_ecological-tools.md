@@ -21,25 +21,15 @@ For more information, see [OceanBase Database Proxy](https://en.oceanbase.com/do
 
 ## Installation and deployment tools
 
+### For Enterprise Users
+
 ### OCP
 
 OceanBase Cloud Platform (OCP) is an enterprise-level management platform tailored for OceanBase clusters. It is compatible with all major OceanBase Database versions. It provides GUI-based management capabilities, including lifecycle management of database components and resources (such as hosts, networks, and software packages), fault recovery, performance diagnostics, as well as monitoring and alerting. OCP aims to help enterprises manage OceanBase clusters more efficiently at lower IT O&M costs and shorten the user learning curve. 
 
 For more information about the system architecture and features of OCP, see [OceanBase Cloud Platform](https://en.oceanbase.com/docs/common-ocp-10000000001553919). 
 
-### OCP Express
-
-OCP Express is a web-based management tool for OceanBase Database V4.x. Integrated with OceanBase clusters, OCP Express allows you to view key performance metrics and perform basic database management operations on OceanBase clusters. 
-
-OCP Express is derived from OCP. It retains the core capabilities of OCP and adjusts the overall layout of features to provide a brand-new user experience. Feature configurations are also rearranged in OCP Express so that OCP Express can be deployed on any database node with the minimum resource consumption. OCP Express allows you to gain extensive control over OceanBase Database V4.x at minimum costs. 
-
-OCP Express is intended for lightweight O&M management and is integrated with the managed OceanBase cluster for dedicated management. It minimizes resource consumption while meeting basic O&M requirements. OCP is intended for the O&M of large-scale complex clusters, and you can manage multiple OceanBase clusters in OCP. It provides more management capabilities than OCP Express. An additional OceanBase cluster is needed to store the data of OCP, and higher resource configurations are needed to implement the capabilities of OCP. 
-
-> **Note**
->
-> OCP Express applies to the O&M of an OceanBase cluster in a development and testing environment with no more than 20 servers and 3 to 5 tenants. We recommend that you use OCP in a production environment. 
-
-For more information about the system architecture and features of OCP Express, see [OCP Express](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375615). 
+### For Individual Users or Enterprises with Limited Resources
 
 ### OBD
 
@@ -50,6 +40,8 @@ In CLI-based deployment, you can edit the configuration file to flexibly adjust 
 Besides cluster deployment, OBD also provides general O&M capabilities such as the package manager, stress test software, and cluster management to deliver better user experience on OceanBase Database. 
 
 For more information, see [OceanBase Deployer](https://en.oceanbase.com/docs/obd-en). 
+
+### For K8s Users
 
 ### ob-operator
 
@@ -62,12 +54,6 @@ For more information about the features and usage instructions of ob-operator, s
 ### OCP / OCP Express
 
 OCP and OCP Express not only allow you to create and manage clusters and tenants, but also provide features such as performance diagnostics, and monitoring and alerting. For more information, see the description of OCP and OCP Express in 'Installation and deployment tools'. 
-
-### DOOBA
-
-DOOBA is an internal O&M script of OceanBase Database that is developed in Python for performance monitoring. After you connect to the sys tenant of OceanBase Database by running a MySQL command, you can run DOOBA to display the queries per second (QPS) and the average response time (RT) of the SQL statements executed in the tenant in real time. The supported SQL types include `SELECT`, `UPDATE`, `INSERT`, `DELETE`, and `COMMIT`. You can also view the QPS and RT of SQL statements executed on each OBServer node. 
-
-For more information, see [DOOBA](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375726). 
 
 ### OBAgent
 
@@ -82,6 +68,34 @@ OceanBase Agent (OBAgent) is a framework for monitoring data collection and O&M.
    OBAgent allows you to configure hot updates. It also provides APIs for OBAgent O&M, file operations, and RPM package operations. You can use these APIs as needed. 
 
 For more information, see the [obagent repository](https://github.com/oceanbase/obagent) on GitHub. 
+
+## O&M tools
+
+### For Enterprise Users
+
+### OCP
+
+In addition to creating and managing clusters and tenants, OCP also supports fault recovery, performance diagnostics, and monitoring and alerting. 
+
+For more information, see the description of OCP in 'Installation and deployment tools'. 
+
+### For Operations and Development Users
+
+### OBShell
+
+OceanBase Shell (OBShell) is an out-of-the-box command-line tool provided by OceanBase Database Community Edition for O&M engineers and developers to manage local OceanBase clusters. OBShell supports cluster O&M and provides O&M and management APIs based on OceanBase Database. This allows products from different ecosystems to manage the same OceanBase cluster in a unified manner, reducing the difficulty in and costs of OceanBase cluster management. 
+
+You do not need to separately install OBShell. As long as OceanBase Database Community Edition is installed, you can find the OBShell executable file in the `bin` directory under the working directory of each OBServer node. 
+
+For more information, see [OBShell](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001378072). 
+
+### obdiag
+
+obdiag is a CLI diagnostic tool designed for OceanBase Database. At present, it can scan, collect, and analyze diagnostic information such as the logs, SQL audit records, and the process stack information of OceanBase Database. You can use obdiag easily, no matter whether your OceanBase cluster is deployed manually or by using OCP or OBD. 
+
+obdiag allows you to use command lines to: (a) inspect OceanBase clusters for existing or possible exceptions, analyze their causes, and provide O&M suggestions; (b) collect diagnostic information dispersed across nodes and return the information to the obdiag server in a package; (c) analyze OceanBase Database logs to identify errors that have occurred; and (d) perform end-to-end diagnostics based on the `trace.log` file. 
+
+For more information, see [OceanBase Diagnostic Tool](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375725). 
 
 ## Migration and synchronization tools
 
@@ -114,44 +128,6 @@ OBLOADER provides extensive command-line options that allow you to import databa
 You can use OBDUMPER to export table data from OceanBase Database to files in the SQL or CSV format. You can also use it to export objects defined in the database to files. 
 
 For more information, see [OceanBase Loader and Dumper](https://en.oceanbase.com/docs/obloader-obdumper-en). 
-
-## O&M tools
-
-### OCP / OCP Express
-
-In addition to creating and managing clusters and tenants, OCP also supports fault recovery, performance diagnostics, and monitoring and alerting. 
-
-Unlike OCP, OCP Express does not support advanced O&M capabilities, such as backup and restore, version upgrade, and cluster scaling, aiming to reduce resource usage. OCP Express is more lightweight than OCP and is designed to meet the basic O&M and monitoring requirements of a single cluster. We recommend that you use OCP in a production environment. 
-
-For more information, see the description of OCP and OCP Express in 'Installation and deployment tools'. 
-
-### OBShell
-
-OceanBase Shell (OBShell) is an out-of-the-box command-line tool provided by OceanBase Database Community Edition for O&M engineers and developers to manage local OceanBase clusters. OBShell supports cluster O&M and provides O&M and management APIs based on OceanBase Database. This allows products from different ecosystems to manage the same OceanBase cluster in a unified manner, reducing the difficulty in and costs of OceanBase cluster management. 
-
-You do not need to separately install OBShell. As long as OceanBase Database Community Edition is installed, you can find the OBShell executable file in the `bin` directory under the working directory of each OBServer node. 
-
-For more information, see [OBShell](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001378072). 
-
-### obdiag
-
-obdiag is a CLI diagnostic tool designed for OceanBase Database. At present, it can scan, collect, and analyze diagnostic information such as the logs, SQL audit records, and the process stack information of OceanBase Database. You can use obdiag easily, no matter whether your OceanBase cluster is deployed manually or by using OCP or OBD. 
-
-obdiag allows you to use command lines to: (a) inspect OceanBase clusters for existing or possible exceptions, analyze their causes, and provide O&M suggestions; (b) collect diagnostic information dispersed across nodes and return the information to the obdiag server in a package; (c) analyze OceanBase Database logs to identify errors that have occurred; and (d) perform end-to-end diagnostics based on the `trace.log` file. 
-
-For more information, see [OceanBase Diagnostic Tool](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375725). 
-
-### ob_error
-
-ob_error is an error code parsing tool of OceanBase Database. ob_error returns the corresponding causes and solutions for each error code you entered. With ob_error, you can get basic error information without looking up the documentation. 
-
-For more information, see [ob_error](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001375718). 
-
-### ob_admin
-
-ob_admin is an O&M tool for OceanBase Database. It provides the slog_tool, log_tool, dumpsst, and dump_backup features to troubleshoot issues such as data inconsistency, data loss, and data errors. 
-
-For more information, see [ob_admin](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001378074). 
 
 ## GUI-based development tools
 
