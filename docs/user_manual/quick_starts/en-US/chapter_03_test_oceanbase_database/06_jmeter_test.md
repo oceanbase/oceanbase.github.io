@@ -7,7 +7,7 @@ weight: 7
 
 This topic introduces the procedure for executing JMeter tests on the OceanBase Database.
 
-## Jmeter Overview
+## JMeter Overview
 
 JMeter is an open-source load testing tool designed to measure and validate the performance of software applications, APIs, and databases. It supports simulating high user loads, generating realistic traffic, and providing detailed metrics on response times, throughput, and error rates—making it ideal for assessing the scalability and stability of target systems under test.
 
