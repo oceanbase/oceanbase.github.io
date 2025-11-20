@@ -5,13 +5,15 @@ weight: 4
 
 # 3.3 Run the Sysbench benchmark
 
-Sysbench is a LuaJIT-based multi-thread benchmark tool that allows you to write scripts to test the CPU, memory, thread, I/O, and database performance. It is often used to evaluate and test the database workload under various system parameter configurations. You can run the Sysbench benchmark to test a variety of database businesses by customizing Lua scripts without modifying the source code. 
-
 This topic describes two methods to run the Sysbench benchmark on OceanBase Database in a CentOS Linux 7.9 environment based on the x86 architecture.
 
 * Use OceanBase Deployer (OBD) to run the benchmark. 
 
-* Use the official Sysbench tool to manually run the Sysbench benchmark step by step. 
+* Use the official Sysbench tool to manually run the Sysbench benchmark step by step.
+
+## Sysbench overview
+
+Sysbench is a LuaJIT-based multi-thread benchmark tool that allows you to write scripts to test the CPU, memory, thread, I/O, and database performance. It is often used to evaluate and test the database workload under various system parameter configurations. You can run the Sysbench benchmark to test a variety of database businesses by customizing Lua scripts without modifying the source code.  
 
 ## Use obdiag to inspect the cluster before running the benchmark
 
@@ -137,6 +139,10 @@ CREATE TENANT sysbench_tenant resource_pool_list=('sysbench_pool'),  zone_list('
    ```
 
 3. Run the benchmark.
+
+> **Note**
+>
+> Ensure the script has the correct permissions before running it. 
 
    ```shell
    ./ob_sysbench.sh
