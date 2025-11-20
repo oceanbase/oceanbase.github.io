@@ -568,7 +568,7 @@ Before you run the TPC-C benchmark, you need to tune related parameters.
 
 To tune parameters of ODP, run the `obclient -h<host_ip> -P<host_port> -uroot@sys -A -p` command to connect to the sys tenant. 
 
-> **Description**
+> **Note**
 >
 > To modify ODP parameters, you must log on to the sys tenant of the OceanBase cluster by using the IP address and port of ODP. 
 
