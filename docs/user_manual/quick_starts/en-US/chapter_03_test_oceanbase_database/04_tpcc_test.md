@@ -71,7 +71,7 @@ OceanBase Database is a native distributed database system. Root cause analysis 
 
 The TPC-C benchmark requires five servers, one for deploying Benchmark SQL and OBD, one for deploying OceanBase Database Proxy (ODP) separately, and three for deploying an OceanBase cluster that has three zones, with each containing one OBServer node. 
 
-> **Notice**
+> **Note**
 >
 > * We recommend that you deploy ODP on a separate server to avoid resource contention with OceanBase Database. 
 >
