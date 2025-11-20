@@ -37,7 +37,7 @@ OceanBase Database is a native distributed database system. Root cause analysis 
 
 * OceanBase Client (OBClient): For information about OBClient, see the [GitHub repository](https://github.com/oceanbase/obclient).
 
-> **Notice**
+> **Note**
 >
 > In OBClient V2.2.0 or later, the OceanBase 2.0 protocol and end-to-end tracing are enabled by default, which will affect the performance in the Sysbench benchmark. We recommend that you set the `export ENABLE_PROTOCOL_OB20` environment variable to `0` to disable the protocol. 
 
@@ -45,7 +45,7 @@ OceanBase Database is a native distributed database system. Root cause analysis 
 
 The Sysbench benchmark requires five servers, one for deploying Sysbench and OBD, one for deploying OceanBase Database Proxy (ODP) separately, and three for deploying an OceanBase cluster that has three zones, with each containing one OBServer node. 
 
-> **Notice**
+> **Note**
 >
 > * We recommend that you deploy ODP on a separate server to avoid resource contention with OceanBase Database. 
 >
