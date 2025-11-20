@@ -5,6 +5,10 @@ weight: 7
 
 # 3.6 Use JMeter to test OceanBase Database in simulated business scenarios
 
+This topic describes the method for running JMeter tests on the OB database.
+
+## JMeter Overview
+
 JMeter is an open-source performance test tool developed by the Apache Software Foundation. It is built based on the Java platform and intended for load and stress tests on software applications. JMeter was designed for testing Web applications at the beginning and supports other test features later. You can use JMeter to simulate business SQL scenarios and analyze the performance of a database server under different loads. 
 
 ## Prepare the environment
