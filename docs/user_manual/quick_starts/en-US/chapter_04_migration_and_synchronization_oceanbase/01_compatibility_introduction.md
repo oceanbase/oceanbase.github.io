@@ -56,7 +56,7 @@ OceanBase Database also provides particular MySQL PL packages, such as `DBMS_RES
 
 OceanBase Database implements most views of two internal databases: `information_schema` and `mysql`. However, due to the differences from MySQL in architecture, OceanBase Database cannot implement all the views of MySQL or ensure consistency with MySQL in definitions of all columns in the views. 
 
-For more information about the columns in system views, see [Overview](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001103435). 
+For more information about the columns in system views, see [System views](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001103435). 
 
 ## Character sets and collations
 
