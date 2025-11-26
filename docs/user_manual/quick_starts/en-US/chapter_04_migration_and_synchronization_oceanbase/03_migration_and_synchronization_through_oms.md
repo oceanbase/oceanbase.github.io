@@ -65,13 +65,11 @@ You can deploy OMS Community Edition on multiple nodes in multiple regions. For 
 
 After you deploy OMS Community Edition on the server, access Docker and check the service status to determine whether OMS Community Edition is properly operating on the server. For more information, see [Check the deployment](https://en.oceanbase.com/docs/community-oms-en-10000000001087162).
 
-### Considerations
-
-* You can directly deploy OMS Community Edition V4.1.1, which does not support upgrade from an earlier version. 
-
-* To use OMS Community Edition to collect and display historical monitoring data, you must deploy an InfluxDB time-series database. For more information, see [Deploy a time-series database (Optional)](https://en.oceanbase.com/docs/community-oms-en-10000000001087169). 
-
-* The HA feature of OMS Community Edition is disabled by default. To enable this feature, set `enable` to `true` in `ha.config` in the console of OMS Community Edition. For more information, see [Modify HA configurations](https://en.oceanbase.com/docs/community-oms-en-10000000001087296). 
+> **Note**
+>
+> You can directly deploy OMS Community Edition V4.1.1, which does not support upgrade from an earlier version.
+> To use OMS Community Edition to collect and display historical monitoring data, you must deploy an InfluxDB time-series database. For more information, see [Deploy a time-series database (Optional)](https://en.oceanbase.com/docs/community-oms-en-10000000001087169). 
+> The HA feature of OMS Community Edition is disabled by default. To enable this feature, set `enable` to `true` in `ha.config` in the console of OMS Community Edition. For more information, see [Modify HA configurations](https://en.oceanbase.com/docs/community-oms-en-10000000001087296). 
 
 ## Use OMS for data migration
 
