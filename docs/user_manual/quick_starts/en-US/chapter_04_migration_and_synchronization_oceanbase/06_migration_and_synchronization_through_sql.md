@@ -87,7 +87,7 @@ The following takes exporting data to a local device as an example to describe h
 
    Set the system variable `secure_file_priv` to specify the path that can be accessed for file import or export. 
 
-   > **Notice**
+   > **Note**
    >
    > For security reasons, when you set the system variable `secure_file_priv`, you can connect to the database only through a local socket to execute the SQL statement that modifies the global variable. For more information, see [secure_file_priv](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001105254). 
 
