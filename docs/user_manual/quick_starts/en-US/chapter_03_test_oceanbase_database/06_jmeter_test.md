@@ -51,7 +51,7 @@ JMeter can run in the CLI or on the GUI. This section describes how to use JMete
 
 Run the `sh jmeter` command in the `apache-jmeter-xxx/bin/` directory to go to the GUI of JMeter. On the page shown in the following figure, create a test plan named `Oceanbase Test Plan`. 
 
-![Create a test plan](/docs/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/1.png)
+![Create a test plan](docs/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/1.png)
 
 In the left-side navigation pane, click **Oceanbase Test Plan** and choose **Add** > **Threads(Users)** > **Thread Group** to create a thread group. You can configure a variety of parameters when you use JMeter for testing. For more information about the parameters, see [Elements of a Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) in JMeter Documentation. 
 
