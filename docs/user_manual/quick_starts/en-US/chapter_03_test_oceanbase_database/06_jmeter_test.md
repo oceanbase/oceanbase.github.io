@@ -55,7 +55,7 @@ Run the `sh jmeter` command in the `apache-jmeter-xxx/bin/` directory to go to t
 
 In the left-side navigation pane, click **Oceanbase Test Plan** and choose **Add** > **Threads(Users)** > **Thread Group** to create a thread group. You can configure a variety of parameters when you use JMeter for testing. For more information about the parameters, see [Elements of a Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) in JMeter Documentation. 
 
-![Create a thread group](/docs/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/1.png)
+![Create a thread group](/docs/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/2.png)
 
 ### Add a JDBC connection
 
