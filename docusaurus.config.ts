@@ -18,7 +18,7 @@ const user_manual = [
   },
   {
     label: 'Quick Starts (in Chinese)',
-    href: 'https://www.oceanbase.com/docs/enterprise-tutorials-cn-1000000001390092',
+    href: 'https://www.oceanbase.com/docs/community-tutorials-cn-1000000001390093',
   },
   {
     label: 'Operation And Maintenance Manual (in Chinese)',

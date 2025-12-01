@@ -5,13 +5,15 @@ weight: 4
 
 # 3.3 Run the Sysbench benchmark
 
-Sysbench is a LuaJIT-based multi-thread benchmark tool that allows you to write scripts to test the CPU, memory, thread, I/O, and database performance. It is often used to evaluate and test the database workload under various system parameter configurations. You can run the Sysbench benchmark to test a variety of database businesses by customizing Lua scripts without modifying the source code. 
-
 This topic describes two methods to run the Sysbench benchmark on OceanBase Database in a CentOS Linux 7.9 environment based on the x86 architecture.
 
 * Use OceanBase Deployer (OBD) to run the benchmark. 
 
-* Use the official Sysbench tool to manually run the Sysbench benchmark step by step. 
+* Use the official Sysbench tool to manually run the Sysbench benchmark step by step.
+
+## Sysbench Overview
+
+Sysbench is a LuaJIT-based multi-thread benchmark tool that allows you to write scripts to test the CPU, memory, thread, I/O, and database performance. It is often used to evaluate and test the database workload under various system parameter configurations. You can run the Sysbench benchmark to test a variety of database businesses by customizing Lua scripts without modifying the source code. 
 
 ## Use obdiag to inspect the cluster before running the benchmark
 
@@ -37,7 +39,7 @@ OceanBase Database is a native distributed database system. Root cause analysis 
 
 * OceanBase Client (OBClient): For information about OBClient, see the [GitHub repository](https://github.com/oceanbase/obclient).
 
-> **Notice**
+> **Note**
 >
 > In OBClient V2.2.0 or later, the OceanBase 2.0 protocol and end-to-end tracing are enabled by default, which will affect the performance in the Sysbench benchmark. We recommend that you set the `export ENABLE_PROTOCOL_OB20` environment variable to `0` to disable the protocol. 
 
@@ -45,7 +47,7 @@ OceanBase Database is a native distributed database system. Root cause analysis 
 
 The Sysbench benchmark requires five servers, one for deploying Sysbench and OBD, one for deploying OceanBase Database Proxy (ODP) separately, and three for deploying an OceanBase cluster that has three zones, with each containing one OBServer node. 
 
-> **Notice**
+> **Note**
 >
 > * We recommend that you deploy ODP on a separate server to avoid resource contention with OceanBase Database. 
 >
