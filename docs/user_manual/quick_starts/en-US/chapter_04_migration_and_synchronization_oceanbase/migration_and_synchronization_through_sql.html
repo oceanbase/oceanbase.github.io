@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H4XM2M50RX"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-H4XM2M50RX",{})</script><link rel="stylesheet" href="/assets/css/styles.7e3a93fe.css">
-<script src="/assets/js/runtime~main.c82231b9.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.aa453ec0.js" defer="defer"></script>
 <script src="/assets/js/main.f609a655.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -62,7 +62,7 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="import-data-by-using-load-data">Import data by using LOAD DATA<a href="#import-data-by-using-load-data" class="hash-link" aria-label="Direct link to Import data by using LOAD DATA" title="Direct link to Import data by using LOAD DATA">​</a></h2>
 <p>You can use the <code>LOAD DATA</code> statement to import data to a database from files on OBServer nodes, clients, and OSS.</p>
 <blockquote>
-<p><strong>Notice</strong></p>
+<p><strong>Note</strong></p>
 <ul>
 <li>
 <p>Do not use the <code>LOAD DATA</code> statement on tables with triggers.</p>
@@ -174,7 +174,7 @@
 </li>
 </ul>
 <blockquote>
-<p><strong>Notice</strong></p>
+<p><strong>Note</strong></p>
 <p>Direct load will write all existing data. If the source table contains a large amount of data but only a small amount of data needs to be imported, direct load is inappropriate in this case.</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="import-data-through-direct-load-by-using-the-load-data-statement">Import data through direct load by using the LOAD DATA statement<a href="#import-data-through-direct-load-by-using-the-load-data-statement" class="hash-link" aria-label="Direct link to Import data through direct load by using the LOAD DATA statement" title="Direct link to Import data through direct load by using the LOAD DATA statement">​</a></h3>
@@ -225,7 +225,7 @@
 <p>Set the path where the file to be imported is located.</p>
 <p>Set the system variable <code>secure_file_priv</code> to specify the path that can be accessed for file import or export.</p>
 <blockquote>
-<p><strong>Notice</strong></p>
+<p><strong>Note</strong></p>
 <p>For security reasons, when you set the system variable <code>secure_file_priv</code>, you can connect to the database only through a local socket to execute the SQL statement that modifies the global variable. For more information, see <a href="https://en.oceanbase.com/docs/common-oceanbase-database-10000000001105254" target="_blank" rel="noopener noreferrer">secure_file_priv</a>.</p>
 </blockquote>
 <ol>
