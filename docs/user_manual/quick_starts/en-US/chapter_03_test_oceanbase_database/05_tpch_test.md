@@ -5,7 +5,7 @@ weight: 6
 
 # 3.5 Run the TPC-H benchmark
 
-This topic describes two methods to run the Transaction Processing Performance Council Benchmark H (TPC-H) benchmark on OceanBase Database in a CentOS Linux 7.9 environment based on the x86 architecture.
+This topic describes two methods to run the Transaction Processing Performance Council Benchmark H (TPC-H) on OceanBase Database in a CentOS Linux 7.9 environment based on the x86 architecture.
 
 * Use OceanBase Deployer (OBD) to run the benchmark. 
 
