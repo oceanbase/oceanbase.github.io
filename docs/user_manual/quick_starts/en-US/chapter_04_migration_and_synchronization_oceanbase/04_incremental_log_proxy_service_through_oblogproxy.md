@@ -23,7 +23,7 @@ OBLogProxy supports two modes: binlog mode and CDC mode.
 
 You can install OBLogProxy by downloading the installation package or using the source code. This section describes how to install OBLogProxy by downloading the installation package. 
 
-> **Notice**
+> **Note**
 >
 > OBLogProxy occupies resources separately. We recommend that you deploy OBLogProxy and OceanBase Database separately to avoid affecting the performance of OceanBase Database. 
 
