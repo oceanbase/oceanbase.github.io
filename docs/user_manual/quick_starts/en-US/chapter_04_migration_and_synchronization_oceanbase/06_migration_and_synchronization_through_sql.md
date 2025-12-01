@@ -127,7 +127,7 @@ The following takes exporting data to a local device as an example to describe h
 
 You can use the `LOAD DATA` statement to import data to a database from files on OBServer nodes, clients, and OSS. 
 
-> **Notice**
+> **Note**
 >
 > * Do not use the `LOAD DATA` statement on tables with triggers. 
 >
@@ -285,7 +285,7 @@ At present, OceanBase Database supports the following statements for direct load
 
 * `INSERT /*+ append */ INTO SELECT`
 
-> **Notice**
+> **Note**
 >
 > Direct load will write all existing data. If the source table contains a large amount of data but only a small amount of data needs to be imported, direct load is inappropriate in this case. 
 
@@ -352,7 +352,7 @@ This example describes how to import data from an OBServer node. In OceanBase Da
 
    Set the system variable `secure_file_priv` to specify the path that can be accessed for file import or export. 
 
-   > **Notice**
+   > **Note**
    >
    > For security reasons, when you set the system variable `secure_file_priv`, you can connect to the database only through a local socket to execute the SQL statement that modifies the global variable. For more information, see [secure_file_priv](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001105254). 
 
