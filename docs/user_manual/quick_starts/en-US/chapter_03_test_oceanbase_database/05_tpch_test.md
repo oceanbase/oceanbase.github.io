@@ -77,7 +77,7 @@ OceanBase Database is a native distributed database system. Root cause analysis 
 
 The TPC-H benchmark requires four servers, one for deploying the TPC-H tool, ODP, and OBD, and three for deploying an OceanBase cluster that has three zones, with each containing one OBServer node. 
 
-> **Notice**
+> **Note**
 >
 > * We recommend that you set input/output operations per second (IOPS) to a value greater than 10000, and configure three disks for system logs, transaction logs, and data files respectively. 
 >
