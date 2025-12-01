@@ -140,6 +140,11 @@ CREATE TENANT sysbench_tenant resource_pool_list=('sysbench_pool'),  zone_list('
 
 3. Run the benchmark.
 
+> **Note**
+>
+> Ensure the script has the correct permissions before running it.
+
+
    ```shell
    ./ob_sysbench.sh
    ```
