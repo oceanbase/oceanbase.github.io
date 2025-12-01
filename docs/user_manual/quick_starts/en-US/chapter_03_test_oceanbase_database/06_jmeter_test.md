@@ -51,17 +51,17 @@ JMeter can run in the CLI or on the GUI. This section describes how to use JMete
 
 Run the `sh jmeter` command in the `apache-jmeter-xxx/bin/` directory to go to the GUI of JMeter. On the page shown in the following figure, create a test plan named `Oceanbase Test Plan`. 
 
-![Create a test plan](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/001.png)
+![Create a test plan](1.png)
 
 In the left-side navigation pane, click **Oceanbase Test Plan** and choose **Add** > **Threads(Users)** > **Thread Group** to create a thread group. You can configure a variety of parameters when you use JMeter for testing. For more information about the parameters, see [Elements of a Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) in JMeter Documentation. 
 
-![Create a thread group](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/002.png)
+![Create a thread group](2.png)
 
 ### Add a JDBC connection
 
 Click **Thread Group** and choose **Add** > **Config Element** > **JDBC Connection Configuration** to create a JDBC configuration file. 
 
-![Add a JDBC connection](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/003.png)
+![Add a JDBC connection](3.png)
 
 The attributes shown in the preceding figure are common parameters of a connection pool. For more information, see the experience in configuring Java connection pools shared on the Internet. 
 
@@ -87,37 +87,37 @@ Click **Thread Group** and choose **Add** > **Logic Controller** > **Transaction
 
    Click **Transaction Controller** and choose **Add** > **Pre Processors** > **User Parameters** to add variables as needed. This test involves three variables: `credit_id` (account A), `debit_id` (account B), and `trans_amount` (transferred amount). The account parameters and amounts are set to random numbers within the actual ranges of test data. 
 
-   ![Configure transaction variables](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/004.png)
+   ![Configure transaction variables](4.png)
 
 * Start a transaction
 
    Click **Transaction Controller** and choose **Add** > **Sampler** > **JDBC Request** to create a JDBC request. Set **Query Type** to `AutoCommit(false)` to enable explicit transactions. 
 
-   ![Start a transaction](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/005.png)
+   ![Start a transaction](5.png)
 
 * Create a JDBC request to deduct the transferred amount from the balance of account A
 
    Click **Transaction Controller** and choose **Add** > **Sampler** > **JDBC Request**, to create a JDBC request named `JDBC update credit account`. Then, add an SQL request to deduct the transferred amount from the balance of account A. 
 
-   ![Deduct the transferred amount from the balance of account A](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/006.png)
+   ![Deduct the transferred amount from the balance of account A](6.png)
 
 * Add Post logic to obtain the return value of the JDBC request that deducts the transferred amount from the balance of account A
 
    Click **JDBC update credit account** and choose **Add** > **Post Processors** > **Regular Expression Extractor** to add Post logic to obtain the return value of the JDBC request that deducts the transferred amount from the balance of account A. 
 
-   ![Processing logic for account A](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/007.png)
+   ![Processing logic for account A](7.png)
 
 * Create a JDBC request to increase the balance of account B
 
    Click **Transaction Controller** and choose **Add** > **Sampler** > **JDBC Request** to create a JDBC request named `JDBC update debit account`. Then, add an SQL request to increase the balance of account B. 
 
-   ![Increase the balance of account B](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/008.png)
+   ![Increase the balance of account B](8.png)
 
 * Add Post logic to obtain the return value of the JDBC request that increases the balance of account B
 
    Click **JDBC update debit account** and choose **Add** > **Post Processors** > **Regular Expression Extractor** to add Post logic to obtain the return result of the JDBC request that increases the balance of account B. 
 
-   ![Processing logic for account B](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/009.png)
+   ![Processing logic for account B](9.png)
 
 ### Judgment logic - process succeeded
 
@@ -127,13 +127,13 @@ If the updates for both accounts are successful, the transaction is committed.
 
    Click **Transaction Controller** and choose **Add** > **Logic Controller** > **If Controller** to add an IF controller named `If success`. Then, add judgment conditions. 
 
-   ![Add an IF controller](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/010.png)
+   ![Add an IF controller](10.png)
 
 * Add a commit action upon update success
 
    Click **If success** and choose **Add** > **Sampler** > **JDBC Request** to create a JDBC request. Set **Query Type** to `Commit`. 
 
-   ![Commit a transaction](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/011.png)
+   ![Commit a transaction](11.png)
 
 ### Judgment logic - process failed
 
@@ -143,20 +143,20 @@ If the update for either account fails, the transaction is rolled back.
 
    Click **Transaction Controller** and choose **Add** > **Logic Controller** > **If Controller** to create an IF controller named `If fail`. Then, add judgment conditions. 
 
-   ![Add an IF controller](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/012.png)
+   ![Add an IF controller](12.png)
 
 * Add a commit action upon update failure
 
    Click **If fail** and choose **Add** > **Sampler** > **JDBC Request** to create a JDBC request. Set **Query Type** to `Rollback`. 
 
-   ![Roll back a transaction](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/013.png)
+   ![Roll back a transaction](13.png)
 
 ### View the results
 
 Click **Thread-Group** and choose **Add** > **Listener** > **View Results Tree** to create a result tree file to view the test results. 
 
-![View the results](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/014.png)
+![View the results](14.png)
 
 Click **Thread Group** and choose **Add** > **Listener** > **Aggregate Report** to create an aggregated report that aggregates the results. 
 
-![View the report](/img/user_manual/quick_starts/en-US/chapter_03_test_oceanbase_database/06_jmeter_test/015.png)
+![View the report](15.png)
