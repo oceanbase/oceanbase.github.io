@@ -112,7 +112,7 @@ The following describes the general O&M procedure in OBD through an example of m
 
    When you increase resource parameter values, make sure that the new values do not exceed the range of the remaining resources on servers. When you decrease resource parameter values, make sure that the new values are not smaller than the sizes of resources that have been allocated to or occupied by tenants. For more information about the relationships among resource parameters, see the **Common resource parameters of OceanBase Database and their calculation methods** section in **2.1 Deploy OceanBase database - Preparations before deployment**.
 
-   > **Notice**
+   > **Note**
    >
    > You cannot decrease the value of the `datafile_size` parameter.
 
@@ -260,7 +260,7 @@ Take note of the following considerations:
 
 * The status of a deployed cluster is `running` in the `obd cluster list` command output only if all components in the cluster have been restarted. If any component fails to be restarted, subsequent components will not be restarted.
 
-  > **Notice**
+  > **Note**
   >
   > The status of the deployed cluster returned in the `obd cluster list` command output is not updated in real time. When a server restarts, the service component on the server may become abnormal while the status of the cluster is still displayed as `running`. Therefore, we recommend that after a server restarts, you run the `obd cluster display` command to verify whether all components are normal.
 
