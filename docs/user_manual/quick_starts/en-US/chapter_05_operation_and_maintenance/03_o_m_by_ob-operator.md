@@ -177,7 +177,7 @@ spec:
         logDiskSize: 15Gi
 ```
 
-> **Notice**
+> **Note**
 >
 > Some tenant O&M operations involve multiple tenants, so the resources consumed by these operations cannot be defined in tenant resources. Instead, dedicated tenant O&M resources are defined for operations such as user password change, log replay, switchover, and failover. For more information about tenant O&M, see [Perform tenant O&M operations](https://en.oceanbase.com/docs/community-ob-operator-doc-en-10000000001195670).
 >
