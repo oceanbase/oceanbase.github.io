@@ -120,7 +120,7 @@ Take note of the following considerations:
 
 * Before the takeover, we recommend that you first move out the ODP cluster to which the ODPs to be taken over belong from the original OCP. For more information, see [Migrate an OBProxy cluster](https://en.oceanbase.com/docs/common-ocp-10000000001483849) or [Move out an OBProxy cluster](https://en.oceanbase.com/docs/common-ocp-10000000001483602).
   
-  > **Notice**
+  > **Note**
   >
   > When you take over ODPs, the password of the `root@proxysys` account is required. If you forget the password, you need to reset the password before you move out the ODP cluster. For more information about how to reset the password of the `root@proxysys` account, see [Change the password of the proxysys user](https://en.oceanbase.com/docs/common-ocp-10000000001483857).
 
