@@ -198,7 +198,7 @@ After you deploy the backup media, choose **Backup & Recovery** > **Backup** in 
 
 The following figure shows the physical backup architecture of OceanBase Database.
 
-![Data backup](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/01_o_m_by_ocp/001.png)
+![Data backup](/5.1.png)
 
 Take note of the following considerations:
 
@@ -240,7 +240,7 @@ OceanBase Database supports tenant-level restore, which allows you to create a t
 
 The following figure shows the physical restore architecture of OceanBase Database.
 
-![Data restore](/img/user_manual/quick_starts/en-US/chapter_05_operation_and_maintenance/01_o_m_by_ocp/002.png)
+![Data restore](/5.2.png)
 
 Take note of the following considerations:
 
