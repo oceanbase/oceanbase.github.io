@@ -71,7 +71,7 @@ CREATE TABLE `t1` (
      partition `p4`);
 ```
 
-> **Notice**
+> **Note**
 >
 >By default, when you create an index without specifying the `global` or `local` keyword, a global index is created if the index information is followed by partition information; otherwise, a local index is created.
 
