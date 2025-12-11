@@ -11,7 +11,7 @@ OceanBase Developer Center (ODC) is a GUI-based development tool and a collabora
 
 ### Features and architecture
 
-![Features and architecture](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/001.png)
+![Features and architecture](6.1.jpg)
 
 ## Limitations
 
@@ -59,7 +59,7 @@ Client ODC focuses on database development. It is lightweight and easy to deploy
 
 A data source is a remote database environment, such as a standalone OceanBase cluster or an instance of another database system.
 
-![Data sources](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/002.png)
+![Data sources](6.2.png)
 
 #### Configure a data source
 
