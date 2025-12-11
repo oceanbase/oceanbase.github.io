@@ -425,7 +425,7 @@ You can also create indexes to improve the query performance of partitioned tabl
   
   * The second type is called global index whose partitioning strategy is different from that of the partitioned table.
   
-> **Notice**
+> **Note**
 >
 > * By default, a local index is created for a partitioned table.
 >
@@ -439,7 +439,7 @@ CREATE INDEX idx_log_date ON t_log_part_by_range_hash(log_date) LOCAL;
 CREATE INDEX idx_log_date2 ON t_log_part_by_range_hash(log_value, log_date) GLOBAL;
 ```
 
-> **Notice**
+> **Note**
 >
 > You do not need to separately create indexes for the primary and unique keys of a partitioned table in OceanBase Database. In OceanBase Database, the primary key and local unique key in a partitioned table must have a partitioning key.
 
