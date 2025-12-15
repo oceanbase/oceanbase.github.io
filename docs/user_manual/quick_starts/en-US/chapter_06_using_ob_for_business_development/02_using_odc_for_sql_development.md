@@ -95,7 +95,7 @@ Manage databases
   
   * Assign a database to a project
 
-![Database tab](6.4.png)
+![Database tab](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/004.png)
 
 Manage the sessions of a data source
 
@@ -109,7 +109,7 @@ Manage the sessions of a data source
 
   * End an ongoing query in a session.
 
-![Session tab](6.4.png)
+![Session tab](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/005.png)
 
 Use the recycle bin
 
@@ -151,7 +151,7 @@ Use the command-line window
 
     Before formatting
 
-    ![Before formatting]()
+    ![Before formatting](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/008.png)
 
     After formatting
 
