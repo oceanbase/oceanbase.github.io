@@ -1336,7 +1336,7 @@ CREATE [OR REPLACE] OUTLINE <outline_name> ON <stmt>;
   WHERE col1 = 4 AND col2 = 6 ORDER BY 2 TO SELECT  * FROM tbl1 WHERE col1 = 4 AND col2 = 6 ORDER BY 2;
   ```
 
-> **Notice**
+> **Note**
 >
 > When you specify `target_stmt`, you must ensure that `stmt` exactly matches `target_stmt` when hints are removed.
 
@@ -1419,7 +1419,7 @@ DROP OUTLINE otl_t1_full;
 CREATE OUTLINE otl_t1_idx_c2 ON "ED570339F2C856BA96008A29EDF04C74" USING HINT /*+ INDEX(t1 idx_c2)*/ ;
 ```
 
-> **Notice**
+> **Note**
 >
 > - A hint is specified in the `/*+ xxx*/` format.
 >
