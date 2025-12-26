@@ -186,20 +186,12 @@ const config: Config = {
           position: 'left',
           items: [
             {
-              label: 'AI Workshops',
-              href: 'https://oceanbase-devhub.github.io',
-            },
-            {
-              label: 'RAG Bot',
-              href: 'https://oceanbase-devhub.github.io/ai-workshop-2024',
-            },
-            {
-              label: 'Dify (MySQL Compatible)',
-              href: 'https://oceanbase-devhub.github.io/dify/dify@oceanbase-workshop',
+              label: 'RAG Bot (AI Workshop 2024)',
+              href: 'https://oceanbase.github.io/ai-workshop-2024',
             },
             {
               label: 'DB-GPT',
-              href: 'https://oceanbase-devhub.github.io/DB-GPT/docker/compose_examples/ob_dbgpt_tutorial',
+              href: 'https://oceanbase.github.io/DB-GPT/docker/compose_examples/ob_dbgpt_tutorial',
             },
           ],
         },
