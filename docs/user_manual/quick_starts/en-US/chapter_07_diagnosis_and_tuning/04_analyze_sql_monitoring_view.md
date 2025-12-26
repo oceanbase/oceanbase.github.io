@@ -19,7 +19,7 @@ These views show you the internal architecture of OceanBase Database and details
 
 The data sources of metrics are internal dynamic performance views of OceanBase Database. All metrics can be queried by using SQL statements. Dynamic performance views are classified into `GV$` views and `V$` views. An external monitoring system, such as OceanBase Cloud Platform (OCP), deploys its agent process on each database server and regularly pulls local monitoring information (`V$` views) by using SQL APIs. Some global information, such as RootService-related information, is collected from the central node. All monitoring data is reported to the monitoring system database and aggregated by cluster, tenant, node, and resource unit, to display the metrics on the monitoring dashboard.
 
-> **Note**
+> **Note.**
 >
 > - Although the data sources of metrics are views of OceanBase Database, we recommend that you use a visual external monitoring system during daily O&M, which makes it easier to analyze the trends of metrics and improves efficiency.
 >
