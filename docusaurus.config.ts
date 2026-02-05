@@ -186,6 +186,10 @@ const config: Config = {
           position: 'left',
           items: [
             {
+              label: 'Data x AI Courses',
+              to: 'docs/ai_courses/overview',
+            },
+            {
               label: 'ChatBot',
               href: 'https://github.com/ob-labs/ChatBot/',
             },

@@ -1,4 +1,12 @@
-# Website
+# [Read Online](https://oceanbase.github.io/)
+
+# Locally Start This Website (Modern Approach)
+In the AI IDE dialog box (Cursor, VSCode, Trae, etc.), enter the following prompt to start this courseware:
+```
+Please help me run the local service for this project
+```
+
+# Locally Start This Website (Ancient Approach)
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
