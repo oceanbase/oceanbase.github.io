@@ -186,8 +186,12 @@ const config: Config = {
           position: 'left',
           items: [
             {
-              label: 'RAG Bot (AI Workshop 2024)',
-              href: 'https://oceanbase.github.io/ai-workshop-2024',
+              label: 'ChatBot',
+              href: 'https://github.com/ob-labs/ChatBot/',
+            },
+            {
+              label: 'Image Search',
+              href: 'https://github.com/ob-labs/image-search',
             },
             {
               label: 'DB-GPT',
