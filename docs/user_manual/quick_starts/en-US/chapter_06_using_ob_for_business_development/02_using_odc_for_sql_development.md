@@ -11,7 +11,7 @@ OceanBase Developer Center (ODC) is a GUI-based development tool and a collabora
 
 ### Features and architecture
 
-![Features and architecture](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/001.png)
+![Features and architecture](6.1.jpg)
 
 ## Limitations
 
@@ -59,7 +59,7 @@ Client ODC focuses on database development. It is lightweight and easy to deploy
 
 A data source is a remote database environment, such as a standalone OceanBase cluster or an instance of another database system.
 
-![Data sources](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/002.png)
+![Data sources](6.2.png)
 
 #### Configure a data source
 
@@ -81,7 +81,7 @@ A data source is a remote database environment, such as a standalone OceanBase c
 
 * The **Environment** parameter specifies the environment type of the data source, such as a development environment or production environment, to configure different control policies.
 
-![Create data source](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/003.png)
+![Create data source](6.3.png)
 
 #### Use ODC
 
@@ -155,13 +155,13 @@ Use the command-line window
 
     After formatting
 
-    ![After formatting](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/009.png)
+    ![After formatting](6.4.png)
 
 * Syntax prompts
 
   * ODC supports keyword prompts to minimize spelling errors.
 
-    ![Keyword prompt](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/02_using_odc_for_sql_development/010.png)
+    ![Keyword prompt](6.5.png)
 
   * ODC supports database object prompts. This allows you to quickly find the target from numerous database objects.
 
