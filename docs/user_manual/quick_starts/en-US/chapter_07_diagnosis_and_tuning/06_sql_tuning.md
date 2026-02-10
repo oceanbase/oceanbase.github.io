@@ -67,7 +67,7 @@ Here are some examples:
   call dbms_stats.gather_schema_stats('TEST', degree=>128);
   ```
 
-> **Notice**
+> **Note**
 >
 > The first parameter in the syntax of both the `GATHER_TABLE_STATS` and `GATHER_SCHEMA_STATS` procedures is `database_name` instead of `user_name`. The information in the documentation for some OceanBase Database versions may be incorrect.
 
@@ -234,7 +234,7 @@ The output is as follows:
 +---------+------------+---------+---------+---------+------------+
 ```
 
-> **Notice**
+> **Note**
 >
 > The first column `TABLE_OWNER` of the `OCEANBASE.DBA_TAB_MODIFICATIONS` view indicates the database name rather than the user name. The information in the documentation for some OceanBase Database versions may be incorrect.
 
@@ -544,13 +544,13 @@ You can also modify the parameterized SQL statement to prevent it from reusing a
 
 - Modify the parameterized SQL statement
   
-  > **Notice**
+  > **Note**
   >
   > This method is for your reference only.
 
   For example, you can add a space in the middle of the SQL statement to change `c2 = 1` to `c2 =  1`. For more information, see the `STATEMENT` field in the sample output below.
 
-  > **Notice**
+  > **Note**
   >
   > Add the space in the middle of the SQL statement. Do not add it in front of the first keyword or the semicolon (;).
 
@@ -2022,7 +2022,7 @@ explain select * from t1 where c1 = 1 and c3 > 0 order by c2 limit 10;
 
 For the preceding SQL statement, a query range can be extracted from the equality condition `c1 = 1` for a fast index scan. Due to the equality condition on `c1`, the scan on the index `idx` returns a result set sorted by `c2`. After 10 rows are scanned, the execution of the plan is completed in advance.
 
-> **Notice**
+> **Note**
 >
 > The SQL statement has a `c3 > 0` predicate. If you create an index based on the `(c1, c3, c2)` order, the query range can be directly extracted from the index for filtering based on `c3 > 0`, but the result set is not sorted by `c2`. When the `c3 > 0` predicate is highly selective, the elimination of sorting for a streaming plan and reduced number of rows to scan basically do not bring any performance improvement. In this case, the use of `idx(c1, c2, c3)` only makes the plan unable to fully utilize the selectivity of `c3 > 0`. Therefore, the SQL tuning methods are not omnipotent and must be used in consideration of specific scenarios.
 
