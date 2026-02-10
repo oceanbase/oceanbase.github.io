@@ -121,7 +121,7 @@ Use the recycle bin
 
   * Purge the recycle bin or delete an object in the recycle bin.
 
-> **Notice**
+> **Note**
 >
 > The recycle bin is a tenant-level feature. Enable it with caution.
 
