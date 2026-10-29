@@ -28,8 +28,7 @@ This command generates static content into the `build` directory and can be serv
 
 Document comments use [utterances](https://utteranc.es/) and GitHub Issues in
 `oceanbase/oceanbase.github.io`. Install the
-[utterances GitHub App](https://github.com/apps/utterances) for this repository;
-the website does not require an OAuth client secret.
+[utterances GitHub App](https://github.com/apps/utterances) for this repository.
 
 `src/data/comment-issues.json` maps existing document paths to their original
 GitHub Issues, including closed discussions. Keep these entries when renaming
