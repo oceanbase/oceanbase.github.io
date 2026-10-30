@@ -72,7 +72,7 @@ Canal works in the following way:
 
 3. Canal parses the binary logs into a stream of bytes.
 
-For more information, see the [introduction to Canal](https://github.com/alibaba/canal?tab=readme-ov-file). 
+For more information, see the [Introduction Of Canal](https://github.com/alibaba/canal?tab=readme-ov-file). 
 
 ### Flink CDC
 
@@ -80,7 +80,7 @@ Flink CDC is a streaming data processing technology based on Flink.
 
 It monitors and captures changes of the data source, extracts the changes into the data streams of Flink, and sends the data streams to downstream systems in real time, so that downstream systems can process the data changes in a timely manner. Flink CDC supports multiple data sources, such as relational databases, NoSQL databases, and message queues. 
 
-For more information, see the [introduction to Flink CDC](https://github.com/apache/flink-cdc). 
+For more information, see the [Introduction Of Flink CDC](https://github.com/apache/flink-cdc). 
 
 ### DataX
 
@@ -90,7 +90,7 @@ DataX is a tool for offline synchronization between heterogeneous data sources. 
 
 To address issues of data synchronization between heterogeneous data sources in a complex mesh topology, DataX introduces the star topology and serves as the transmission hub that connects to various data sources. This way, you can connect a new data source to DataX and start synchronizing data between the new data source and the existing data sources right away. 
 
-For more information, see [the introduction of DataX](https://github.com/alibaba/DataX/blob/master/introduction.md). 
+For more information, see [Introduction Of DataX](https://github.com/alibaba/DataX/blob/master/introduction.md). 
 
 ### SeaTunnel
 
@@ -114,4 +114,4 @@ The following diagram describes the workflow of SeaTunnel.
 
 ![SeaTunnel workflow](/img/user_manual/quick_starts/en-US/chapter_04_migration_and_synchronization_oceanbase/02_ecological_tools_of_migration_synchronization/002.png)
 
-For more information, see the [introduction to SeaTunnel](https://seatunnel.apache.org/docs/about/). 
+For more information, see the [Introduction Of SeaTunnel](https://seatunnel.apache.org/docs/about/). 
