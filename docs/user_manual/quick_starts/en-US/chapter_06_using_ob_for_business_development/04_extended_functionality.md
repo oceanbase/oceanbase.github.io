@@ -11,27 +11,27 @@ weight: 5
 
 MySQL Database supports only local indexes. Unlike a local index, the partitioning of a global index is independent of the partitioning of the table. You can specify the partitioning rules and the number of partitions for a global index. These rules and this number do not have to be the same as those of the table.
 
-![Global index](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/001.png)
+![Global index](6.6.png)
 
 ### Benefits
 
 Most indexes in a relational database are in a B+ Tree structure, where leaf nodes are stored in order by key values. Key values of an index correspond to the data in the table. When you specify the index conditions for data access, the database locates the target data by searching for the corresponding key value in the B+ Tree.
 
-![B+ Tree](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/002.png)
+![B+ Tree](6.7.png)
 
 If a table is split into multiple shards, or partitions in OceanBase Database, how to split the table index? In MySQL Database, the index is split with the table, and an index shard is used for retrieving data in the corresponding table shard. Such an index is known as a local index. You can also create a local index in OceanBase Database with ease by specifying a `local` keyword at the end of the `CREATE INDEX` statement. Local indexes cause some issues.
 
 First, if you use local indexes, you must specify the partitioning key in a query. Otherwise, the database does not know which partition contains the queried data, and will enumerate all the partitions, making the query inefficient. In the example as shown in the following figure, the partitioning key of the `employ` table is `emp_id`, and the partitioning key is not specified in the filter condition in the query statement. The result in the red box indicates that database has scanned all partitions.
 
-![1](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/003.png)
+![1](6.8.png)
 
 Another issue is that local indexes are created within partitions, so that index key values may not be globally unique. In the example as shown in the following figure, the key value `Edward` may exist in both local indexes of two partitions. Therefore, you must specify the partitioning key of partitions when you create a local index with a `UNIQUE` constraint in a database.
 
-![2](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/004.png)
+![2](6.9.png)
 
 To simplify the use of local indexes, OceanBase Database in MySQL mode allows you to create global indexes. The differences between global and local indexes are as follows: The structure of the global index for a table is independent of the table partitions. The key values of a global index may correspond to data in different partitions of the table. For example, in the index structure on the right side of the following figure, the key values `1`, `2`, and `5` correspond to the data in two partitions. This way, you no longer need to specify a partitioning key when you use a global index. In addition, the index key values will be globally unique because the structure of the global index is independent of the table.
 
-![Global index](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/005.png)
+![Global index](6.10.png)
 
 ### Sample statements
 
@@ -505,7 +505,7 @@ Here is an example:
 
 After you add tables `t1` and `t2` to the table group, their partitions with identical data are stored on the same node, as shown in the following figure.
 
-![tablegroup](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/006.png)
+![tablegroup](6.11.png)
 
 If two partitions adopting the same partitioning rule exist on the same node, you can perform a `JOIN` operation on their partitioning keys without redistributing the partition data or using the network. The aforementioned special `JOIN` operation in OceanBase Database is called a partition-wise join, which significantly reduces the network overheads.
 
@@ -979,7 +979,7 @@ The data structure of an auto-increment column in `NOORDER` mode consists of two
 
 * Cache: an auto-increment value range that exists in each OBServer node and is requested from the internal table.
 
-![NOORDER mode](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/007.png)
+![NOORDER mode](6.12.png)
 
 For an auto-increment column in `NOORDER` mode, OBServer nodes are independent of each other. Each OBServer node can obtain an auto-increment value range from the internal table and record the range in the server cache. Auto-increment values are obtained from the local cache without accessing the central node.
 
@@ -989,7 +989,7 @@ This mode is implemented based on the centralized cache. Values in a sequence or
 
 The following figure shows the working principle of an auto-increment column in `ORDER` mode.
 
-![ORDER mode](/img/user_manual/quick_starts/en-US/chapter_06_using_ob_for_business_development/04_extended_functionality/008.png)
+![ORDER mode](6.13.png)
 
 In `ORDER` mode, an auto-increment column will select the OBServer node that is the leader of the current cluster and where RootService is deployed to provide services. Other OBServer nodes that serve as followers must send an RPC request to apply for auto-increment values from the leader. The leader will request an auto-increment value range from the internal table and cache the value range.
 
